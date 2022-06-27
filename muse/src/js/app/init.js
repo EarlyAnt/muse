@@ -5,16 +5,16 @@
     //初始化入口，全异步加载
     //init.js中只包含loading所需的基础内容
     function setMainLoading(progress) {
-        progress = Math.round(progress);
-        const progressbar = document.querySelector(".loading>.progress>div:nth-child(2)");
-        progressbar.style.width = progress + '%';
-        const text = document.querySelector(".loading>.text");
-        text.innerText = `上线中...${progress}%`;
+        // progress = Math.round(progress);
+        // const progressbar = document.querySelector(".loading>.progress>div:nth-child(2)");
+        // progressbar.style.width = progress + '%';
+        // const text = document.querySelector(".loading>.text");
+        // text.innerText = `上线中...${progress}%`;
 
-        if (progress == 100) {
-            const loading = document.querySelector(".loading");
-            loading.classList.add('hide');
-        }
+        // if (progress == 100) {
+        //     const loading = document.querySelector(".loading");
+        //     loading.classList.add('hide');
+        // }
     }
     $.setMainLoading = setMainLoading;
 

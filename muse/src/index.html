@@ -4,7 +4,8 @@
 <head>
     <title>google 翻译</title>
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" href="./css/main.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="./css/main.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="./css/app.css" /> -->
     <script src="./js/libs/vconsole.min.js"></script>
 
     <script src="./js/app/init.js"></script>
@@ -14,14 +15,51 @@
 </head>
 
 <body>
-    <div id="divInput">
-        <div style="text-align:center;">
-            <p style="font-size:20px;">
-                <input type="text" id="txtInput" name="fname" placeholder="请输入内容">
-            </p>
+    <div id="divPage1">
+        <h2 class="title1">输入提示</h2>
+        <div id="divInput">
+            <div style="text-align:center;">
+                <p style="font-size:20px;">
+                    <input type="text" id="txtInput" name="fname" placeholder="输入任何内容">
+                <div id="divTip">
+                    <p id="txtTip">例句：阳光明媚，一望无际的草原上有一群羊在吃草。</p>
+                </div>
+                </p>
+            </div>
         </div>
-        <p id="txtTranslateResult">翻译结果-></p>
-        <button id="btnTranslate">翻译</button>
+
+        <h2 id="title2">风格</h2><br />
+        <div id="divStyle">
+            <ul>
+                <li><img class="imgStyle" src="./assets/images/button/1.jpg" /></li>
+                <li><img class="imgStyle" src="./assets/images/button/2.jpg" /></li>
+                <li><img class="imgStyle" src="./assets/images/button/3.jpg" /></li>
+                <li><img class="imgStyle" src="./assets/images/button/4.jpg" /></li>
+                <li><img class="imgStyle" src="./assets/images/button/5.jpg" /></li>
+                <li><img class="imgStyle" src="./assets/images/button/6.jpg" /></li>
+            </ul>
+        </div>
+
+        <h2 id="title3">作品展示</h2>
+        <div id="divDisplay">
+            <ul>
+                <li><img class="imgStyle" src="./assets/images/button/7.jpg" /></li>
+                <li><img class="imgStyle" src="./assets/images/button/8.jpg" /></li>
+                <li><img class="imgStyle" src="./assets/images/button/9.jpg" /></li>
+            </ul>
+        </div>
+    </div>
+    <div id="divPage2" style="display: none;">
+        <div>
+            <img id="imgProcedure" src="./assets/images/ufo/01.png" />
+        </div>
+        <p id="txtProgress">正在生成图片...(0%)</p>
+    </div>
+    <div id="divPage3" style="display: none;">
+        <div>
+            <img id="imgComplete" src="./assets/images/ufo/06.png" />
+        </div>
+        <button id="btnSave">保存</button>
     </div>
 </body>
 

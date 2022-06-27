@@ -1,13 +1,22 @@
+/**** 一级样式(标签) ****/
+html,
 body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fdf8f4;
+    overflow: hidden;
+
     font-size: 16;
-    background-color: lightsteelblue;
+    background-color: #b0c4de;
 }
 
 input {
     appearance: none;
     text-align: center;
     height: 36px;
-    width: 248px;
+    /* width: 248px; */
     border-radius: 8px;
     border: 0px solid #fff;
     padding: 0 8px;
@@ -36,15 +45,35 @@ input::-webkit-input-placeholder {
     font-style: italic;
 }
 
-button {
-    position: relative;
-    left: 8px;
-    font-size: 16px;
+/**** 二级样式(id) ****/
+/*===    page1    ===*/
+#divPage1 {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    z-index: 1;
 }
 
 #divInput {
     position: relative;
-    top: 20px;
+    /* top: 20px; */
+}
+
+#divTip {
+    /* width: 96%; */
+    position: absolute;
+    left: 5px;
+    right: 5px;
+    text-align: center;
+    margin-top: -10px;
+
+    color: rgb(212, 212, 212);
+    border-radius: 8px;
+    border: 0px solid #fff;
+    font-size: 13px;
+    background: rgba(45, 45, 45, .10);
+    border: 1px solid rgba(255, 255, 255, .15);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
 }
 
 #txtInput {
@@ -53,8 +82,102 @@ button {
 
 #txtTranslateResult {
     position: relative;
-    left: 5px;
-    right: 5px;
+    /* left: 5px;
+    right: 5px; */
     font-style: italic;
     color: #0071db;
+}
+
+#title2 {
+    position: relative;
+    top: 50px;
+}
+
+#title3 {
+    position: relative;
+    top: 210px;
+}
+
+#divStyle {
+    width: 100%;
+    /* margin: 20px auto; */
+    position: absolute;
+    top: 200px;
+    left: -7.5%;
+    text-align: center;
+}
+
+#divDisplay {
+    /* width: 100%;
+    margin: 20px auto; */
+    position: absolute;
+    top: 455px;
+    left: -7.5%;
+    text-align: center;
+}
+
+li {
+    position: relative;
+    float: left;
+    width: 90px;
+    height: 90px;
+    margin-left: 6px;
+    margin-top: 6px;
+    border: 1px solid #000;
+    color: #333;
+    font-size: 16px;
+    /* line-height: 80px; */
+    text-align: center;
+    list-style-type: none;
+}
+
+.box li:hover {
+    border: 1px solid #f00;
+    /* position: relative;
+    z-index: 2; */
+}
+
+.imgStyle {
+    width: 90px;
+    height: 90px;
+}
+
+/*===    page2    ===*/
+#divPage2 {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    text-align: center;
+    z-index: 2;
+}
+
+#imgProcedure,
+#imgComplete {
+    position: relative;
+    top: 150px;
+    width: 240px;
+    height: 320px;
+}
+
+#txtProgress {
+    position: relative;
+    top: 150px;
+    font-size: 16px;
+}
+
+/*===    page3    ===*/
+#divPage3 {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    text-align: center;
+    z-index: 3;
+}
+
+#btnSave {
+    position: relative;
+    top: 170px;
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
 }

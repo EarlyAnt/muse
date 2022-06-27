@@ -11,6 +11,7 @@
                 height: 2436
             }
         };
+        console.log("view size: (" + document.body.clientWidth + ", " + document.body.clientHeight + ")")
 
         obj['scale'] = obj.screen.width / obj.design.width;
 
@@ -40,7 +41,7 @@
         app = new PIXI.Application({
             width: sysInfo.design.width,
             height: sysInfo.design.height,
-            backgroundColor: 0xfdf8f4,
+            backgroundColor: 0xb0c4de,
             sharedLoader: true,
             legacy: true
         });
@@ -53,107 +54,7 @@
 
         //加载所有静态资源
         loadAllAssets([
-            'assets/main/bg.png',
-            'assets/main/bg2.png',
-            'assets/main/bigcanister.png',
-            'assets/main/btn_next.png',
-            'assets/main/label.png',
-            'assets/main/bucket.json',
-            'assets/main/btn_mysign.png',
-            'assets/main/tips.png',
-            'assets/main/nosigns.png',
-
-            'assets/scene1/btn_boy_0.png',
-            'assets/scene1/btn_boy_1.png',
-            'assets/scene1/btn_girl_0.png',
-            'assets/scene1/btn_girl_1.png',
-            'assets/scene1/text_boy.png',
-            'assets/scene1/text_girl.png',
-            'assets/scene1/iconcheck.png',
-
-            'assets/scene7/btn_left.png',
-            'assets/scene7/btn_right.png',
-            'assets/scene7/btn_close.png',
-
-            'assets/scene2/camera_tips.json',
-            'assets/scene2/tips.png',
-
-            'assets/scene3/tips.png',
-            'assets/scene4/tips.png',
-            'assets/scene4/cardframe.png',
-            'assets/scene4/cardsample.png',
-            'assets/scene4/cardmask.png',
-            'assets/scene4/iconscrape.png',
-            'assets/scene4/anicut.json',
-            'assets/scene4/btn_getmorepoint.png',
-            'assets/scene4/tips2.png',
-            'assets/scene4/imglost30.png',
-
-            'assets/scene5/btn_retry.png',
-            'assets/scene5/framebg.png',
-            'assets/scene5/img_100.png',
-            'assets/scene5/img_200.png',
-            'assets/scene5/img_300.png',
-            'assets/scene5/label_110.png',
-            'assets/scene5/label_120.png',
-            'assets/scene5/label_130.png',
-            'assets/scene5/label_210.png',
-            'assets/scene5/label_220.png',
-            'assets/scene5/label_230.png',
-            'assets/scene5/label_240.png',
-            'assets/scene5/label_250.png',
-            'assets/scene5/label_260.png',
-            'assets/scene5/label_270.png',
-            'assets/scene5/label_310.png',
-            'assets/scene5/label_320.png',
-
-            'assets/scene6/btn_again.png',
-            'assets/scene6/btn_share.png',
-            'assets/scene6/btn_unlock.png',
-            'assets/scene6/label.png',
-            'assets/scene6/frame.png',
-            'assets/scene6/sharetips.png',
-            'assets/scene6/btn_again2.png',
-
-            'assets/poster/bg.png',
-            'assets/poster/m_logo.png',
-            'assets/poster/labelbg1.png',
-            'assets/poster/labelbg2.png',
-            'assets/poster/btn_pen.png',
-            'assets/poster/btn_close.png',
-            'assets/poster/btn_confirm.png',
-            'assets/poster/input_frame.png',
-            'assets/poster/bg_flower.png',
-            'assets/poster/bg_flower2.png',
-            'assets/poster/img_qrcode.png',
-            'assets/poster/img_qrcodeword.png',
-            'assets/poster/line.png',
-            'assets/poster/qian_title/400.png',
-            'assets/poster/qian_title/500.png',
-            'assets/poster/qian_title/600.png',
-            'assets/poster/qian_title/700.png',
-            'assets/poster/qian_slogan/410.png',
-            'assets/poster/qian_slogan/420.png',
-            'assets/poster/qian_slogan/510.png',
-            'assets/poster/qian_slogan/520.png',
-            'assets/poster/qian_slogan/530.png',
-            'assets/poster/qian_slogan/610.png',
-            'assets/poster/qian_slogan/620.png',
-            'assets/poster/qian_slogan/710.png',
-            'assets/poster/qian_word/411.png',
-            'assets/poster/qian_word/412.png',
-            'assets/poster/qian_word/421.png',
-            'assets/poster/qian_word/422.png',
-            'assets/poster/qian_word/511.png',
-            'assets/poster/qian_word/521.png',
-            'assets/poster/qian_word/531.png',
-            'assets/poster/qian_word/611.png',
-            'assets/poster/qian_word/612.png',
-            'assets/poster/qian_word/621.png',
-            'assets/poster/qian_word/711.png',
-            'assets/poster/prop_chicken.png',
-            'assets/poster/prop_pepper.png',
-            'assets/poster/prop_ketchup.png',
+            'assets/images/button/btn_next.png',
 
             // 场景逻辑，最后整合成一个文件
             //replace start
@@ -171,6 +72,9 @@
         }, (e) => {
             onLoad();
         });
+
+        // let btnTranslate = document.getElementById("btnUpload");
+        // btnTranslate.style.display = '';
     }
     //统一加载静态资源的函数
     function loadAllAssets(resources, pcb, ccb) {
@@ -207,30 +111,20 @@
     //初始化场景
     function onLoad() {
         console.log("onLoad");
-        document.getElementById("btnTranslate").addEventListener("click", translate);
 
-        // let tContainer = new PIXI.Container();
-        // app.stage.addChild(tContainer);
+        let scene = new PIXI.Container();
+        app.stage.addChild(scene);
 
-        // let img_bg = new PIXI.Sprite(getAsset("assets/main/bg.png").texture);
-        // tContainer.addChild(img_bg);
-
-        // var bucket = new PIXI.spine.Spine(getAsset("assets/main/bucket.json").spineData);
-        // tContainer.addChild(bucket);
-        // bucket.autoUpdate = true;
-        // bucket.state.timeScale = 1.6;
-        // bucket.y = -160;
-        // bucket.state.setAnimation(0, 'animation', true);
-
-        // let btn_next = new PIXI.Sprite(getAsset("assets/main/btn_next.png").texture);
-        // btn_next.x = 261;
-        // btn_next.y = sysInfo.viewport.height - (86 + 240);
-        // tContainer.addChild(btn_next);
-
-        // btn_next.interactive = btn_next.buttonMode = true;
-        // btn_next.on('pointerdown', (e) => {
-        //     switchScene(1);
-        // });
+        let btnTranslate = new PIXI.Sprite(getAsset("assets/images/button/btn_next.png").texture);
+        btnTranslate.x = (sysInfo.viewport.width - 489) / 2;
+        btnTranslate.y = sysInfo.viewport.height - (0 + 240);
+        btnTranslate.interactive = btnTranslate.buttonMode = true;
+        btnTranslate.on('pointerdown', (e) => {
+            btnTranslate.visible = false;
+            document.getElementById("divPage1").style.display = "none";
+            switchScene(1);
+        });
+        scene.addChild(btnTranslate);
 
         // overlay = new PIXI.Sprite();
         // let gr = new PIXI.Graphics();
@@ -291,6 +185,5 @@
         document.getElementById("txtTranslateResult").innerText = text;
     }
 
-    // init();
-    onLoad();
+    init();
 }();

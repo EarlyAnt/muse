@@ -115,6 +115,8 @@
         let scene = new PIXI.Container();
         app.stage.addChild(scene);
 
+        document.getElementById("divPage1").style.display = "";
+
         var buttonWidth = 900, buttonHeight = 132;
         let btnTranslate = new PIXI.Sprite(getAsset("assets/images/button/create_enable.png").texture);
         btnTranslate.x = (sysInfo.viewport.width - buttonWidth) / 2;

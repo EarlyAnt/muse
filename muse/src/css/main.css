@@ -9,7 +9,7 @@ body {
     overflow: hidden;
 
     font-size: 16;
-    background-color: #b0c4de;
+    background-color: #0c0f18;
 }
 
 input {
@@ -45,6 +45,11 @@ input::-webkit-input-placeholder {
     font-style: italic;
 }
 
+h2 {
+    color: #FBFEFF;
+    font-size: 13px;
+}
+
 /**** 二级样式(id) ****/
 /*===    page1    ===*/
 #divPage1 {
@@ -56,7 +61,7 @@ input::-webkit-input-placeholder {
 
 #divInput {
     position: relative;
-    /* top: 20px; */
+    top: 20px;
 }
 
 #divTip {
@@ -90,19 +95,19 @@ input::-webkit-input-placeholder {
 
 #title2 {
     position: relative;
-    top: 50px;
+    top: 80px;
 }
 
 #title3 {
     position: relative;
-    top: 210px;
+    top: 270px;
 }
 
 #divStyle {
     width: 100%;
     /* margin: 20px auto; */
     position: absolute;
-    top: 200px;
+    top: 170px;
     left: -7.5%;
     text-align: center;
 }
@@ -111,7 +116,7 @@ input::-webkit-input-placeholder {
     /* width: 100%;
     margin: 20px auto; */
     position: absolute;
-    top: 455px;
+    top: 425px;
     left: -7.5%;
     text-align: center;
 }
@@ -154,15 +159,16 @@ li {
 #imgProcedure,
 #imgComplete {
     position: relative;
-    top: 150px;
-    width: 240px;
-    height: 320px;
+    top: 107px;
+    width: 330px;
+    height: 440px;
 }
 
 #txtProgress {
     position: relative;
-    top: 150px;
+    top: 110px;
     font-size: 16px;
+    color: #FFFFFF;
 }
 
 /*===    page3    ===*/
@@ -174,10 +180,15 @@ li {
     z-index: 3;
 }
 
-#btnSave {
-    position: relative;
-    top: 170px;
-    width: 200px;
-    height: 40px;
-    font-size: 16px;
+#txtShare {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 5px;
+    text-align: right;
+    font-size: 13px;
+    color: #FBFEFF;
 }
+
+
+

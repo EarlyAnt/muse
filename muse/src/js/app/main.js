@@ -42,7 +42,7 @@
         app = new PIXI.Application({
             width: sysInfo.design.width,
             height: sysInfo.design.height,
-            backgroundColor: 0xb0c4de,
+            backgroundColor: 0x0c0f18,
             sharedLoader: true,
             legacy: true
         });
@@ -55,7 +55,9 @@
 
         //加载所有静态资源
         loadAllAssets([
-            'assets/images/button/btn_next.png',
+            'assets/images/button/create_enable.png',
+            'assets/images/button/create_disable.png',
+            'assets/images/button/save.png',
 
             // 场景逻辑，最后整合成一个文件
             //replace start
@@ -113,9 +115,12 @@
         let scene = new PIXI.Container();
         app.stage.addChild(scene);
 
-        let btnTranslate = new PIXI.Sprite(getAsset("assets/images/button/btn_next.png").texture);
-        btnTranslate.x = (sysInfo.viewport.width - 489) / 2;
-        btnTranslate.y = sysInfo.viewport.height - (0 + 240);
+        var buttonWidth = 900, buttonHeight = 132;
+        let btnTranslate = new PIXI.Sprite(getAsset("assets/images/button/create_enable.png").texture);
+        btnTranslate.x = (sysInfo.viewport.width - buttonWidth) / 2;
+        btnTranslate.y = sysInfo.viewport.height - (0 + 300);
+        btnTranslate.width = buttonWidth;
+        btnTranslate.height = buttonHeight;
         btnTranslate.interactive = btnTranslate.buttonMode = true;
         btnTranslate.on('pointerdown', (e) => {
             btnTranslate.visible = false;

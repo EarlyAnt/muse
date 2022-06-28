@@ -19,7 +19,7 @@ this.scene1 = function () {
             setTimeout(() => {
                 document.getElementById("divPage2").style.display = 'none';
                 switchScene(2);
-            }, 1000);
+            }, 500);
         }
     }, 1000);
 }

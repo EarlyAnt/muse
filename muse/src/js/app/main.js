@@ -35,6 +35,7 @@
     //主内容容器
     let mainContainer;
     let overlay;
+    // let tween;
     // 脚本入口
     function init() {
         //基于设计稿的尺寸创建PIXI App对象
@@ -72,9 +73,6 @@
         }, (e) => {
             onLoad();
         });
-
-        // let btnTranslate = document.getElementById("btnUpload");
-        // btnTranslate.style.display = '';
     }
     //统一加载静态资源的函数
     function loadAllAssets(resources, pcb, ccb) {
@@ -126,6 +124,9 @@
         });
         scene.addChild(btnTranslate);
 
+        animate();
+        setTimeout(changeTip, 1500);
+
         // overlay = new PIXI.Sprite();
         // let gr = new PIXI.Graphics();
         // gr.beginFill(0x000);
@@ -138,6 +139,39 @@
         // overlay.interactive = true;
         // overlay.visible = false;
     }
+
+    function changeTip(from = 1) {
+        doFade(from, 1 - from, () => {
+            changeTip(1 - from);
+        });
+    }
+
+    function doFade(opacityFrom, opacityTo, callback) {
+        // console.log("doFade->from: " + opacityFrom + ", to: " + opacityTo);
+        var txtTip = document.getElementById("txtTip");
+        // console.log(txtTip);
+        var fadeDuration = opacityTo == 1 ? 400 : 1000;
+        tween = new TWEEN.Tween({ opacity: opacityFrom });
+        tween.to({ opacity: opacityTo }, fadeDuration);
+        tween.easing(TWEEN.Easing.Sinusoidal.InOut);
+        tween.onUpdate(lerp => {
+            // console.log("tween work->opacity: " + lerp.opacity);
+            txtTip.style.opacity = lerp.opacity;
+        });
+        tween.start();
+        tween.onComplete(function () {
+            // console.log('doFade->tween finish')
+            if (callback) {
+                var keepDuration = opacityTo == 1 ? 2000 : 0;
+                setTimeout(callback, keepDuration);
+            }
+        });
+    }
+    function animate() {
+        requestAnimationFrame(animate);
+        TWEEN.update();
+    }
+
     //切换场景
     function switchScene(index, args) {
         //切换前先删除画面内容

@@ -30,7 +30,7 @@
 
             // 第三方库：本地库
             "./js/libs/gsap.min.js",
-            // "./js/libs/tween.umd.js",
+            "./js/libs/tween.umd.js",
             "./js/libs/pixi.min.js",
             "./js/libs/pixi-spine.js",
             "./js/libs/pixi.textinput.min.js",

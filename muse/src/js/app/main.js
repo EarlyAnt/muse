@@ -58,6 +58,7 @@
             'assets/images/button/create_enable.png',
             'assets/images/button/create_disable.png',
             'assets/images/button/save.png',
+            'assets/images/page/dialog.png',
 
             // 场景逻辑，最后整合成一个文件
             //replace start
@@ -117,20 +118,14 @@
 
         document.getElementById("divLoading").style.zIndex = -1;
         document.getElementById("divPage1").style.zIndex = 1;
+        document.getElementById("style1").addEventListener("click", () => { showPopup() });
 
-        var buttonWidth = 900, buttonHeight = 132;
-        let btnTranslate = new PIXI.Sprite(getAsset("assets/images/button/create_enable.png").texture);
-        btnTranslate.x = (sysInfo.viewport.width - buttonWidth) / 2;
-        btnTranslate.y = sysInfo.viewport.height - (0 + 280);
-        btnTranslate.width = buttonWidth;
-        btnTranslate.height = buttonHeight;
-        btnTranslate.interactive = btnTranslate.buttonMode = true;
-        btnTranslate.on('pointerdown', (e) => {
-            btnTranslate.visible = false;
+        let btnCreate = document.getElementById("btnCreate");
+        btnCreate.addEventListener("click", () => {
+            btnCreate.style.display = "none";
             document.getElementById("divPage1").style.zIndex = -1;
             switchScene(1);
         });
-        scene.addChild(btnTranslate);
 
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: 3,
@@ -148,17 +143,17 @@
         animate();
         setTimeout(changeTip, 1500);
 
-        // overlay = new PIXI.Sprite();
-        // let gr = new PIXI.Graphics();
-        // gr.beginFill(0x000);
-        // gr.drawRect(0, 0, sysInfo.viewport.width, sysInfo.viewport.height);
-        // gr.endFill();
-        // overlay.addChild(gr);
-        // gr.alpha = .9;
-        // app.stage.addChild(overlay);
-        // overlay.y = 0;
-        // overlay.interactive = true;
-        // overlay.visible = false;
+        overlay = new PIXI.Sprite();
+        let gr = new PIXI.Graphics();
+        gr.beginFill(0x000);
+        gr.drawRect(0, 0, sysInfo.viewport.width, sysInfo.viewport.height);
+        gr.endFill();
+        overlay.addChild(gr);
+        gr.alpha = .9;
+        app.stage.addChild(overlay);
+        overlay.y = 0;
+        overlay.interactive = true;
+        overlay.visible = false;
     }
 
     function changeTip(from = 1) {
@@ -191,6 +186,11 @@
     function animate() {
         requestAnimationFrame(animate);
         TWEEN.update();
+    }
+
+    function showPopup() {
+        var dialog = document.getElementById("divDialog");
+        dialog.style.display = "flex";
     }
 
     //切换场景

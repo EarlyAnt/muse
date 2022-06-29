@@ -19,13 +19,13 @@ input {
     height: 36px;
     border-radius: 8px;
     border: 0px solid #fff;
-    padding: 0 8px;
+    padding: 0 12px;
     outline: 0;
     letter-spacing: 1px;
-    color: #fff;
+    color: #FBFEFF;
     font-size: 20px;
     font-weight: 600;
-    background: rgba(45, 45, 45, .10);
+    background: rgba(49, 57, 72, 1);
     border: 1px solid rgba(255, 255, 255, .15);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1) inset;
     text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
@@ -77,17 +77,17 @@ p {
 
 #divTip {
     position: absolute;
-    left: 5px;
-    right: 5px;
+    left: 10px;
+    right: 10px;
     text-align: center;
     margin-top: -10px;
 
     color: rgb(212, 212, 212);
-    border-radius: 8px;
-    border: 0px solid #fff;
+    /* border-radius: 8px;
+    border: 0px solid #fff; */
     font-size: 13px;
-    background: rgba(45, 45, 45, .10);
-    border: 1px solid rgba(255, 255, 255, .15);
+    /* background: rgba(45, 45, 45, .10); */
+    /* border: 1px solid rgba(255, 255, 255, .15); */
     text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
 }
 
@@ -106,10 +106,9 @@ p {
 }
 
 #divStyle {
-    width: 100%;
     position: relative;
     top: 60px;
-    left: -7.5%;
+    left: -7%;
     text-align: center;
 }
 

@@ -5,7 +5,7 @@ this.scene2 = function (gender) {
     mainContainer.addChild(scene);
     // overlay.visible = true;
 
-    document.getElementById("divPage3").style.display = '';
+    document.getElementById("divPage3").style.zIndex = 1;
 
     var buttonWidth = 960, buttonHeight = 141;
     let btnSave = new PIXI.Sprite(getAsset("assets/images/button/save.png").texture);

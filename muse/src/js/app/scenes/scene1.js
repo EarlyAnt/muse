@@ -5,7 +5,7 @@ this.scene1 = function () {
     mainContainer.addChild(scene);
     // overlay.visible = true;
 
-    document.getElementById("divPage2").style.display = '';
+    document.getElementById("divPage2").style.zIndex = 1;
     let imgProcedure = document.getElementById("imgProcedure");
     let txtProgress = document.getElementById("txtProgress");
     let index = 1;
@@ -17,7 +17,7 @@ this.scene1 = function () {
             clearInterval(timer);
             txtProgress.innerText = "正在生成图片...(100%)";
             setTimeout(() => {
-                document.getElementById("divPage2").style.display = 'none';
+                document.getElementById("divPage2").style.zIndex = -1;
                 switchScene(2);
             }, 500);
         }

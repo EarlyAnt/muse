@@ -115,21 +115,35 @@
         let scene = new PIXI.Container();
         app.stage.addChild(scene);
 
-        document.getElementById("divPage1").style.display = "";
+        document.getElementById("divLoading").style.zIndex = -1;
+        document.getElementById("divPage1").style.zIndex = 1;
 
         var buttonWidth = 900, buttonHeight = 132;
         let btnTranslate = new PIXI.Sprite(getAsset("assets/images/button/create_enable.png").texture);
         btnTranslate.x = (sysInfo.viewport.width - buttonWidth) / 2;
-        btnTranslate.y = sysInfo.viewport.height - (0 + 300);
+        btnTranslate.y = sysInfo.viewport.height - (0 + 280);
         btnTranslate.width = buttonWidth;
         btnTranslate.height = buttonHeight;
         btnTranslate.interactive = btnTranslate.buttonMode = true;
         btnTranslate.on('pointerdown', (e) => {
             btnTranslate.visible = false;
-            document.getElementById("divPage1").style.display = "none";
+            document.getElementById("divPage1").style.zIndex = -1;
             switchScene(1);
         });
         scene.addChild(btnTranslate);
+
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3,
+            spaceBetween: 6,
+            // autoplay: true,
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
 
         animate();
         setTimeout(changeTip, 1500);

@@ -34,6 +34,7 @@
             "./js/libs/pixi.min.js",
             "./js/libs/pixi-spine.js",
             "./js/libs/pixi.textinput.min.js",
+            "./js/libs/swiper.min.js",
             "./js/libs/weui.min.js",
             //replace start
             "./js/app/server.js",

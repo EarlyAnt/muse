@@ -3,9 +3,10 @@
 
 <head>
     <title>google 翻译</title>
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <link rel="stylesheet" type="text/css" href="./css/main.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="./css/app.css" /> -->
+    <link rel="stylesheet" href="./css/swiper.min.css">
     <script src="./js/libs/vconsole.min.js"></script>
 
     <script src="./js/app/init.js"></script>
@@ -15,12 +16,11 @@
 </head>
 
 <body>
-    <div id="divLoading">
+    <div id="divLoading" style="z-index: 0">
         <p id="txtLoading">加载中...</p>
     </div>
 
-    <div id="divPage1" style="display: none;">
-        <!-- <h2 class="title1">输入提示</h2> -->
+    <div id="divPage1" style="z-index: -1">
         <div id="divInput">
             <div style="text-align:center;">
                 <p style="font-size:20px;">
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <h2 id="title2">风格</h2><br />
+        <p id="title2">风格</p>
         <div id="divStyle">
             <ul>
                 <li><img class="imgStyle" src="./assets/images/button/1.jpg" /></li>
@@ -44,26 +44,51 @@
             </ul>
         </div>
 
-        <h2 id="title3">作品展示</h2>
+        <p id="title3">作品展示</p>
         <div id="divDisplay">
-            <ul>
-                <li><img class="imgStyle" src="./assets/images/button/7.jpg" /></li>
-                <li><img class="imgStyle" src="./assets/images/button/8.jpg" /></li>
-                <li><img class="imgStyle" src="./assets/images/button/9.jpg" /></li>
-            </ul>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="swiper-zoom-container">
+                            <img src="./assets/images/button/7.jpg">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="swiper-zoom-container">
+                            <img src="./assets/images/button/8.jpg">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="swiper-zoom-container">
+                            <img src="./assets/images/button/9.jpg">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="swiper-zoom-container">
+                            <img src="./assets/images/button/1.jpg">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="swiper-zoom-container">
+                            <img src="./assets/images/button/3.jpg">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="swiper-zoom-container">
+                            <img src="./assets/images/button/5.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div id="divPage2" style="display: none;">
-        <!-- <div> -->
+    <div id="divPage2" style="z-index: -1;">
         <img id="imgProcedure" src="./assets/images/ufo/01.png" />
-        <!-- </div> -->
         <p id="txtProgress">正在生成图片...(0%)</p>
     </div>
-    <div id="divPage3" style="display: none;">
+    <div id="divPage3" style="z-index: -1;">
         <p id="txtShare">请点击右上角分享</p>
-        <!-- <div> -->
         <img id="imgComplete" src="./assets/images/ufo/06.png" />
-        <!-- </div> -->
     </div>
 </body>
 

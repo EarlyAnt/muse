@@ -5,6 +5,7 @@ body {
     padding: 0;
     width: 100%;
     height: 100%;
+    position: relative;
     background-color: #fdf8f4;
     overflow: hidden;
 
@@ -16,7 +17,6 @@ input {
     appearance: none;
     text-align: center;
     height: 36px;
-    /* width: 248px; */
     border-radius: 8px;
     border: 0px solid #fff;
     padding: 0 8px;
@@ -29,10 +29,6 @@ input {
     border: 1px solid rgba(255, 255, 255, .15);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1) inset;
     text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
-    /* -o-transition: all .2s;
-    -moz-transition: all .2s;
-    -webkit-transition: all .2s;
-    -ms-transition: all .2s; */
 }
 
 input {
@@ -64,7 +60,7 @@ p {
     bottom: 50%;
     text-align: center;
     vertical-align: middle;
-    z-index: 0;
+    /* z-index: 0; */
 }
 
 /*===    page1    ===*/
@@ -72,7 +68,6 @@ p {
     position: absolute;
     left: 20px;
     right: 20px;
-    z-index: 1;
 }
 
 #divInput {
@@ -81,7 +76,6 @@ p {
 }
 
 #divTip {
-    /* width: 96%; */
     position: absolute;
     left: 5px;
     right: 5px;
@@ -101,40 +95,36 @@ p {
     width: 90%;
 }
 
-#txtTranslateResult {
-    position: relative;
-    /* left: 5px;
-    right: 5px; */
-    font-style: italic;
-    color: #0071db;
-}
-
 #title2 {
     position: relative;
-    top: 80px;
+    top: 70px;
 }
 
 #title3 {
     position: relative;
-    top: 270px;
+    top: 80px;
 }
 
 #divStyle {
     width: 100%;
-    /* margin: 20px auto; */
-    position: absolute;
-    top: 170px;
+    position: relative;
+    top: 60px;
     left: -7.5%;
     text-align: center;
 }
 
 #divDisplay {
-    /* width: 100%;
-    margin: 20px auto; */
-    position: absolute;
-    top: 425px;
-    left: -7.5%;
-    text-align: center;
+    position: relative;
+    top: 80px;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    overflow: hidden;
 }
 
 li {
@@ -147,15 +137,8 @@ li {
     border: 1px solid #000;
     color: #333;
     font-size: 16px;
-    /* line-height: 80px; */
     text-align: center;
     list-style-type: none;
-}
-
-.box li:hover {
-    border: 1px solid #f00;
-    /* position: relative;
-    z-index: 2; */
 }
 
 .imgStyle {
@@ -169,7 +152,6 @@ li {
     left: 20px;
     right: 20px;
     text-align: center;
-    z-index: 2;
 }
 
 #imgProcedure,
@@ -193,7 +175,6 @@ li {
     left: 20px;
     right: 20px;
     text-align: center;
-    z-index: 3;
 }
 
 #txtShare {

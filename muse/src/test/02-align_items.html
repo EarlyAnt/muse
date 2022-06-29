@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>test</title>
+  <style>
+    /* body {
+      text-align: center;
+    } */
+
+    #root {
+      background-color: aquamarine;
+      display: flex;
+      justify-content: center;
+    }
+
+    #app {
+      width: 240px;
+      border: 1px solid red;
+    }
+
+    .box-wrap {
+      display: flex;
+      height: 240px;
+      flex-wrap: wrap;
+      /* 如果需要两端顶头，就把下面这行加上 */
+      /* margin: 0 -8px; */
+    }
+
+    .box-item {
+      width: 33.33%;
+      height: 33.33%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    .box-item-inner {
+      height: 100%;
+      text-align: center;
+      line-height: 65px;
+      border: 1px solid rgb(0, 162, 255);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <div id="app">
+      <div class="box-wrap">
+        <div class="box-item">
+          <div class="box-item-inner">1</div>
+        </div>
+        <div class="box-item">
+          <div class="box-item-inner">2</div>
+        </div>
+        <div class="box-item">
+          <div class="box-item-inner">3</div>
+        </div>
+        <div class="box-item">
+          <div class="box-item-inner">4</div>
+        </div>
+        <div class="box-item">
+          <div class="box-item-inner">5</div>
+        </div>
+        <div class="box-item">
+          <div class="box-item-inner">6</div>
+        </div>
+        <div class="box-item">
+          <div class="box-item-inner">7</div>
+        </div>
+        <div class="box-item">
+          <div class="box-item-inner">8</div>
+        </div>
+        <div class="box-item">
+          <div class="box-item-inner">9</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

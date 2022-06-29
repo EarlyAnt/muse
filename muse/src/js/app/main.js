@@ -118,7 +118,9 @@
 
         document.getElementById("divLoading").style.zIndex = -1;
         document.getElementById("divPage1").style.zIndex = 1;
-        document.getElementById("style1").addEventListener("click", () => { showPopup() });
+        document.getElementById("style1").addEventListener("click", () => { showPopup(); });
+        document.getElementById("btnConfirm").addEventListener("click", () => { hidePopup(); });
+        document.getElementById("btnCancel").addEventListener("click", () => { hidePopup(); });
 
         let btnCreate = document.getElementById("btnCreate");
         btnCreate.addEventListener("click", () => {
@@ -191,6 +193,11 @@
     function showPopup() {
         var dialog = document.getElementById("divDialog");
         dialog.style.display = "flex";
+    }
+
+    function hidePopup() {
+        var dialog = document.getElementById("divDialog");
+        dialog.style.display = "none";
     }
 
     //切换场景

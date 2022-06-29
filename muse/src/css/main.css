@@ -98,18 +98,33 @@ p {
 
 #title3 {
     position: relative;
-    top: 80px;
+    top: 60px;
 }
 
 #divStyle {
     position: relative;
-    top: 60px;
-    height: 180px;
+    top: 65px;
+    display: flex;
+    justify-content: center;
+}
+
+.divStyleItems {
+    width: 330px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.imgStyle {
+    width: 33.33%;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-bottom: 8px;
+    box-sizing: border-box;
 }
 
 #divDisplay {
     position: relative;
-    top: 80px;
+    top: 60px;
 }
 
 .swiper-container {
@@ -121,24 +136,7 @@ p {
     overflow: hidden;
 }
 
-li {
-    position: relative;
-    float: left;
-    width: 90px;
-    height: 90px;
-    margin-left: 6px;
-    margin-top: 6px;
-    border: 1px solid #000;
-    color: #333;
-    font-size: 16px;
-    text-align: center;
-    list-style-type: none;
-}
 
-.imgStyle {
-    width: 90px;
-    height: 90px;
-}
 
 /*===    page2    ===*/
 #divPage2 {

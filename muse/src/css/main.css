@@ -90,37 +90,53 @@ p {
 
 #title2 {
     position: relative;
-    top: 70px;
+    top: 60px;
 }
 
 #title3 {
     position: relative;
-    top: 60px;
+    top: 40px;
 }
 
 #divStyle {
     position: relative;
-    top: 65px;
+    top: 50px;
     display: flex;
     justify-content: center;
 }
 
 .divStyleItems {
-    width: 330px;
+    /* background-color: darkseagreen; */
+    width: 310px;
+    height: 250px;
     display: flex;
     flex-wrap: wrap;
 }
 
-.imgStyle {
+.divStyleBorder {
     width: 33.33%;
+    height: 15%;
     box-sizing: border-box;
+    text-align: center;
+}
+
+.imgStyle {
+    width: 90%;
+    /* box-sizing: border-box; */
     border-radius: 14px;
     border-style: solid;
 }
 
+.lblStyle {
+    position: relative;
+    top: -15px;
+    color: #FBFEFF;
+    font-size: 12px;
+}
+
 #divDisplay {
     position: relative;
-    top: 60px;
+    top: 40px;
 }
 
 .swiper-container {
@@ -134,7 +150,7 @@ p {
 
 #btnCreate {
     position: relative;
-    top: 90px;
+    top: 70px;
     width: 100%;
     height: 100%;
 }

@@ -13,12 +13,22 @@
         textarea {
             margin-top: 20px;
             width: 357px;
-            height: 500px;
+            height: 300px;
             display: block;
+        }
+
+        img {
+            margin-top: 20px;
+            width: 357px;
+            height: 240px;
         }
 
         #txtPrompt {
             width: 230px;
+        }
+
+        #txtProgress {
+            margin-top: 4px;
         }
     </style>
 </head>
@@ -29,14 +39,19 @@
         <button id="btnCallApi">访问接口</button>
         <button id="btnClear">清除</button>
         <textarea id="txtResult"></textarea>
+        <img id="imgTexture" src="../assets/images/page/blank.jpg" />
+        <p id="txtProgress">生成进度</p>
+        <!-- <img id="imgTexture" src="https://pic1.zhimg.com/80/v2-74c8502c03f994f86ae3037e51074d04_720w.jpg?source=1940ef5c" /> -->
     </div>
 
     <script type="text/javascript">
         var baseUrl = "http://region-4.autodl.com:40410/api/";
+        var imgUrl = "http://region-4.autodl.com:40410/";
         var taskId = "";
         var loop = false;
         let timer;
-
+        let imgTexture = document.getElementById("imgTexture");
+        let txtProgress = document.getElementById("txtProgress");
         let txtPrompt = document.getElementById("txtPrompt");
 
         document.getElementById("btnCallApi").addEventListener("click", async () => {
@@ -45,12 +60,25 @@
                 return;
             }
 
-            var data = await callApi("make_image_v1?text=" + txtPrompt.value + "&style=1", params = null, method = "get", callback = (data) => {
+            var data = await callApi("make_image_v1?text=" + txtPrompt.value + "&style=1", callback = (data) => {
                 console.log("taskId: " + data.taskId);
                 loop = true;
 
                 timer = setInterval(async () => {
-                    await callApi("query_progress?task_id=" + data.taskId);
+                    await callApi("query_progress?task_id=" + data.taskId, callback = (data) => {
+                        if (data.progress_img != null && data.progress_img != "") {
+                            console.log("image path: " + imgUrl + data.progress_img);
+                            imgTexture.src = imgUrl + data.progress_img;
+                        }
+
+                        if (data.progress > 0) {
+                            txtProgress.innerText = "生成进度：" + data.progress + "%";
+                        }
+
+                        if (data.progress == 100 && timer) {
+                            clearInterval(timer);
+                        }
+                    });
                 }, 3000);
             });
         });
@@ -59,7 +87,7 @@
             showMultiResult("", false);
         });
 
-        async function callApi(api, params = null, method = "get", callback = null) {
+        async function callApi(api, callback = null, params = null, method = "get") {
             url = baseUrl + api;
             console.log("url: " + url);
 

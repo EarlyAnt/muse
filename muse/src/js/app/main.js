@@ -35,8 +35,12 @@
     //主内容容器
     let mainContainer;
     let overlay;
-    let txtPrompt, txtInput;
+    let txtPrompt, txtInput, txtTip;
     const PLACE_HOLDER = "输入任何内容";
+    var promptList = ["在冬日的早晨，满天飞雪，树上、屋顶上都落满了雪花，世界变得一片洁白。",
+        "一束光照在海底的梦幻宫殿上。",
+        "在夜空中，柔和的月光照耀着平静的湖面，湖边有一个宁静的小屋。"]
+    var promptIndex = 0;
 
     // 脚本入口
     function init() {
@@ -61,6 +65,13 @@
             'assets/images/button/create_disable.png',
             'assets/images/button/save.png',
             'assets/images/page/dialog.png',
+            'assets/images/works/01.png',
+            'assets/images/works/02.png',
+            'assets/images/works/03.png',
+            'assets/images/works/04.png',
+            'assets/images/works/05.png',
+            'assets/images/works/06.png',
+            'assets/images/works/07.png',
 
             // 场景逻辑，最后整合成一个文件
             //replace start
@@ -120,6 +131,8 @@
 
         txtPrompt = document.getElementById("txtPromptEdit");
         txtInput = document.getElementById("txtInput");
+        txtTip = document.getElementById("txtTip");
+        txtTip.addEventListener("click", () => { fillPrompt(); });
         document.getElementById("divLoading").style.zIndex = -1;
         document.getElementById("divPage1").style.zIndex = 1;
         document.getElementById("txtInput").addEventListener("click", () => { showPopup(); });
@@ -164,13 +177,17 @@
 
     function changeTip(from = 1) {
         doFade(from, 1 - from, () => {
+            if (from == 1) {
+                promptIndex = (promptIndex + 1) % promptList.length;
+                txtTip.innerText = promptList[promptIndex];
+            }
             changeTip(1 - from);
         });
     }
 
     function doFade(opacityFrom, opacityTo, callback) {
         // console.log("doFade->from: " + opacityFrom + ", to: " + opacityTo);
-        var txtTip = document.getElementById("txtTip");
+        var divTip = document.getElementById("divTip");
         // console.log(txtTip);
         var fadeDuration = opacityTo == 1 ? 400 : 1000;
         tween = new TWEEN.Tween({ opacity: opacityFrom });
@@ -178,7 +195,7 @@
         tween.easing(TWEEN.Easing.Sinusoidal.InOut);
         tween.onUpdate(lerp => {
             // console.log("tween work->opacity: " + lerp.opacity);
-            txtTip.style.opacity = lerp.opacity;
+            divTip.style.opacity = lerp.opacity;
         });
         tween.start();
         tween.onComplete(function () {
@@ -192,6 +209,15 @@
     function animate() {
         requestAnimationFrame(animate);
         TWEEN.update();
+    }
+
+    function fillPrompt() {
+        if (!txtInput.value.includes(txtTip.innerText)) {
+            txtInput.value += txtTip.innerText;
+            // txtInput.setSelectionRange(txtInput.value.length - 1, 1);
+
+            getSelection().getRangeAt(0);
+        }
     }
 
     function showPopup() {
@@ -210,7 +236,7 @@
         dialog.style.display = "none";
 
         if (confirm) {
-            txtInput.value = txtPrompt.value.replace('，', ',');
+            txtInput.value = txtPrompt.value;
         }
     }
 

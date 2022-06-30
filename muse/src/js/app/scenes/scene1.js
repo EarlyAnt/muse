@@ -1,11 +1,13 @@
-this.scene1 = function (taskId) {
+this.scene1 = function (taskId, prompt_tanslation) {
     console.log("scene1 start");
     console.log("scene1->taskId: " + taskId);
+    console.log("scene1->prompt_tanslation: " + prompt_tanslation);
 
     let scene = new PIXI.Container();
     mainContainer.addChild(scene);
     // overlay.visible = true;
 
+    document.getElementById("prompt_tanslation").innerText = prompt_tanslation;
     document.getElementById("divPage2").style.zIndex = 1;
     let imgProcedure = document.getElementById("imgProcedure");
     let txtProgress = document.getElementById("txtProgress");

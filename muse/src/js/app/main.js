@@ -143,10 +143,11 @@
             var response = await SERVER.callApi(params = { path: "make_image_v1?text=" + txtInput.value + "&style=1" });
             console.log("");
             console.log("main.onLoad->taskId: " + response.taskId);
+            console.log("main.onLoad->prompt_tanslation: " + response.prompt_tanslation);
 
             btnCreate.style.display = "none";
             document.getElementById("divPage1").style.zIndex = -1;
-            switchScene(1, response.taskId);
+            switchScene(1, response.taskId, response.prompt_tanslation);
         });
 
         var swiper = new Swiper('.swiper-container', {
@@ -244,14 +245,14 @@
     }
 
     //切换场景
-    function switchScene(index, args) {
+    function switchScene(index, ...args) {
         //切换前先删除画面内容
         app.stage.removeChild(mainContainer);
         mainContainer = new PIXI.Container();
         app.stage.addChild(mainContainer);
         //调用场景配置函数
         console.log("switch scene[" + index + "], args[" + args + "]");
-        this['scene' + index](args);
+        this['scene' + index](...args);
     }
     //翻译多个文本
     async function translate() {

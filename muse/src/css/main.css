@@ -220,19 +220,28 @@ p {
     left: 20px;
     right: 20px;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 #imgProcedure,
 #imgComplete {
-    position: relative;
+    position: absolute;
     top: 107px;
     width: 330px;
     height: 440px;
 }
 
+#prompt_tanslation {
+    position: absolute;
+    top: 5px;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
 #txtProgress {
-    position: relative;
-    top: 110px;
+    position: absolute;
+    top: 550px;
     font-size: 16px;
     color: #FFFFFF;
 }
@@ -243,6 +252,8 @@ p {
     left: 20px;
     right: 20px;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 #txtShare {

@@ -31,11 +31,18 @@
     <script type="text/javascript">
         var baseUrl = "http://region-4.autodl.com:40410/api/";
         var taskId = "";
+        var loop = false;
         let timer;
 
         document.getElementById("btnCallApi").addEventListener("click", async () => {
+            if (loop) {
+                showMultiResult("正在轮训接口...");
+                return;
+            }
+
             var data = await callApi("make_image_v1?text=束着马尾的姑娘&style=1", params = null, method = "get", callback = (data) => {
-                console.log("taskId 111 : " + data.taskId);
+                console.log("taskId: " + data.taskId);
+                loop = true;
 
                 timer = setInterval(async () => {
                     await callApi("query_progress?task_id=" + data.taskId);
@@ -77,6 +84,7 @@
             } else {
                 if (timer) {
                     clearInterval(timer);
+                    loop = false;
                 }
 
                 setTimeout(() => { txtResult.value = text; }, 500);

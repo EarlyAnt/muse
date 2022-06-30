@@ -1,11 +1,13 @@
 !function () {
     var SERVER = {}
 
-    function getServerURL() {
-        return 'http://127.0.0.1:5550/';
-        // return 'http://192.168.0.102:5550/';
-        // return "http://192.168.180.142:5550/";
-    }
+    // var baseUrl = "http://127.0.0.1:5550/";
+    // var baseUrl = "http://192.168.0.102:5550/";
+    // var baseUrl = "http://192.168.180.142:5550/";
+    var baseUrl = "http://region-4.autodl.com:40410/api/";
+    var imgUrl = "http://region-4.autodl.com:40410/";
+
+    SERVER.imgUrl = imgUrl;
 
     async function callApi(params) {
         if (!request) throw new Error("pls confirm request already mounted");
@@ -13,7 +15,7 @@
         console.log("method: " + params.method + ", content: " + params.q)
 
         const res = await request({
-            url: getServerURL() + params.path,
+            url: baseUrl + params.path,
             method: params.method || "GET",
             headers: params.headers || {},
             data: params.data
@@ -55,7 +57,7 @@
 
         console.log("method:" + method + ", url: " + url);
         console.log(headers);
-        console.log(data);
+        // console.log(data);
         // console.log(body);
 
         if (method.toLowerCase() == 'get') {
@@ -67,15 +69,12 @@
             // mode: "no-cors",
             mode: "cors",
             body: body,
-            // body: JSON.stringify({
-            //     'name': '早起的蚂蚁123'
-            // }),
             headers: headers,
         });
 
         // console.log("ok: " + res.ok + ", text: " + res.text() + ", json: " + res.json());
         // console.log(res);
-        return res;
+        return await res.json();
     }
     SERVER.callApi = callApi;
 

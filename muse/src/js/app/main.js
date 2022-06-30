@@ -68,7 +68,6 @@
             'assets/images/works/01.png',
             'assets/images/works/02.png',
             'assets/images/works/03.png',
-            'assets/images/works/04.png',
             'assets/images/works/05.png',
             'assets/images/works/06.png',
             'assets/images/works/07.png',
@@ -140,10 +139,14 @@
         document.getElementById("btnCancel").addEventListener("click", () => { hidePopup(); });
 
         let btnCreate = document.getElementById("btnCreate");
-        btnCreate.addEventListener("click", () => {
+        btnCreate.addEventListener("click", async () => {
+            var response = await SERVER.callApi(params = { path: "make_image_v1?text=" + txtInput.value + "&style=1" });
+            console.log("");
+            console.log("main.onLoad->taskId: " + response.taskId);
+
             btnCreate.style.display = "none";
             document.getElementById("divPage1").style.zIndex = -1;
-            switchScene(1);
+            switchScene(1, response.taskId);
         });
 
         var swiper = new Swiper('.swiper-container', {

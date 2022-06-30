@@ -35,7 +35,9 @@
     //主内容容器
     let mainContainer;
     let overlay;
-    // let tween;
+    let txtPrompt, txtInput;
+    const PLACE_HOLDER = "输入任何内容";
+
     // 脚本入口
     function init() {
         //基于设计稿的尺寸创建PIXI App对象
@@ -116,10 +118,12 @@
         let scene = new PIXI.Container();
         app.stage.addChild(scene);
 
+        txtPrompt = document.getElementById("txtPromptEdit");
+        txtInput = document.getElementById("txtInput");
         document.getElementById("divLoading").style.zIndex = -1;
         document.getElementById("divPage1").style.zIndex = 1;
-        document.getElementById("style1").addEventListener("click", () => { showPopup(); });
-        document.getElementById("btnConfirm").addEventListener("click", () => { hidePopup(); });
+        document.getElementById("txtInput").addEventListener("click", () => { showPopup(); });
+        document.getElementById("btnConfirm").addEventListener("click", () => { hidePopup(true); });
         document.getElementById("btnCancel").addEventListener("click", () => { hidePopup(); });
 
         let btnCreate = document.getElementById("btnCreate");
@@ -193,11 +197,21 @@
     function showPopup() {
         var dialog = document.getElementById("divDialog");
         dialog.style.display = "flex";
+
+        if (txtInput.innerText != PLACE_HOLDER) {
+            txtPrompt.value = txtInput.value;
+        } else {
+            txtPrompt.value = "";
+        }
     }
 
-    function hidePopup() {
+    function hidePopup(confirm) {
         var dialog = document.getElementById("divDialog");
         dialog.style.display = "none";
+
+        if (confirm) {
+            txtInput.value = txtPrompt.value.replace('，', ',');
+        }
     }
 
     //切换场景

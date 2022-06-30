@@ -17,21 +17,19 @@ input {
     appearance: none;
     text-align: center;
     height: 36px;
+    line-height: 35px;
     border-radius: 8px;
     border: 0px solid #fff;
     padding: 0 12px;
     outline: 0;
     letter-spacing: 1px;
     color: #FBFEFF;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 600;
     background: rgba(49, 57, 72, 1);
     border: 1px solid rgba(255, 255, 255, .15);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1) inset;
     text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
-}
-
-input {
     box-shadow: 0 0 5px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -170,8 +168,23 @@ p {
     font-size: 14px;
 }
 
-#btnCancel {
+#divPromptEdit {
     position: relative;
+    top: 310px;
+}
+
+#txtPromptEdit {
+    font-size: 16px;
+    min-width: 252px;
+    min-height: 92px;
+    max-width: 252px;
+    max-height: 92px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+#btnCancel {
+    position: absolute;
     top: 423px;
     left: 100px;
     color: #000000;
@@ -179,7 +192,7 @@ p {
 }
 
 #btnConfirm {
-    position: relative;
+    position: absolute;
     top: 423px;
     right: 100px;
     color: #576A94;

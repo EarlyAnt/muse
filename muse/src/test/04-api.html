@@ -1,0 +1,88 @@
+<html>
+
+<head>
+    <title>接口测试</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <style type="text/css">
+        div {
+            position: absolute;
+            text-align: center;
+        }
+
+        textarea {
+            margin-top: 20px;
+            width: 357px;
+            height: 500px;
+            display: block;
+        }
+    </style>
+
+    <script src="../js/app/server.js"></script>
+</head>
+
+<body>
+    <div>
+        <button id="btnCallApi">访问接口</button>
+        <button id="btnClear">清除</button>
+        <textarea id="txtResult"></textarea>
+    </div>
+
+    <script type="text/javascript">
+        var baseUrl = "http://region-4.autodl.com:40410/api/";
+        var taskId = "";
+        let timer;
+
+        document.getElementById("btnCallApi").addEventListener("click", async () => {
+            var data = await callApi("make_image_v1?text=束着马尾的姑娘&style=1", params = null, method = "get", callback = (data) => {
+                console.log("taskId 111 : " + data.taskId);
+
+                timer = setInterval(async () => {
+                    await callApi("query_progress?task_id=" + data.taskId);
+                }, 3000);
+            });
+        });
+
+        document.getElementById("btnClear").addEventListener("click", async () => {
+            showMultiResult("", false);
+        });
+
+        async function callApi(api, params = null, method = "get", callback = null) {
+            url = baseUrl + api;
+            console.log("url: " + url);
+
+            let headers = {
+                "Content-Type": "application/json"
+            };
+
+            const res = await fetch(url, {
+                method: method,
+                mode: "cors",
+                headers: headers
+            }).then(response => response.json()).then(data => {
+                console.log(data);
+                showMultiResult("访问结果->" + JSON.stringify(data));
+
+                if (callback) {
+                    callback(data);
+                }
+            });
+        }
+
+        //显示多个文本的翻译结果
+        function showMultiResult(text, append = true) {
+            var txtResult = document.getElementById("txtResult");
+            if (append) {
+                txtResult.value += text + "\n\n";
+            } else {
+                if (timer) {
+                    clearInterval(timer);
+                }
+
+                setTimeout(() => { txtResult.value = text; }, 500);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -16,13 +16,16 @@
             height: 500px;
             display: block;
         }
-    </style>
 
-    <script src="../js/app/server.js"></script>
+        #txtPrompt {
+            width: 230px;
+        }
+    </style>
 </head>
 
 <body>
     <div>
+        <input id="txtPrompt" type="text" value="采姑娘的小蘑菇" />
         <button id="btnCallApi">访问接口</button>
         <button id="btnClear">清除</button>
         <textarea id="txtResult"></textarea>
@@ -34,13 +37,15 @@
         var loop = false;
         let timer;
 
+        let txtPrompt = document.getElementById("txtPrompt");
+
         document.getElementById("btnCallApi").addEventListener("click", async () => {
             if (loop) {
                 showMultiResult("正在轮训接口...");
                 return;
             }
 
-            var data = await callApi("make_image_v1?text=束着马尾的姑娘&style=1", params = null, method = "get", callback = (data) => {
+            var data = await callApi("make_image_v1?text=" + txtPrompt.value + "&style=1", params = null, method = "get", callback = (data) => {
                 console.log("taskId: " + data.taskId);
                 loop = true;
 

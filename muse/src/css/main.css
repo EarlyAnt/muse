@@ -282,3 +282,13 @@ p {
     width: 15px;
     height: 15px;
 }
+
+#txtSave {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 550px;
+    text-align: center;
+    font-size: 13px;
+    color: #FBFEFF;
+}

@@ -237,10 +237,12 @@
         console.log("main.setButtonStatus->prompt: " + prompt + ", style: " + style);
         var enable = prompt != null && prompt != "" && style != null && style != "";
         if (enable) {
-            btnCreate.src = "../src/assets/images/button/create_enable.png";
+            btnCreate.src = "assets/images/button/create_enable.png";
+            console.log("src: " + btnCreate.src);
             canCreateImage = true;
         } else {
-            btnCreate.src = "../src/assets/images/button/create_disable.png";
+            btnCreate.src = "assets/images/button/create_disable.png";
+            console.log("src: " + btnCreate.src);
             canCreateImage = false;
         }
     }
@@ -280,7 +282,7 @@
     }
 
     //切换场景
-    function switchScene(index, ...args) {
+    function switchScene(index, ...args) {  
         //切换前先删除画面内容
         app.stage.removeChild(mainContainer);
         mainContainer = new PIXI.Container();

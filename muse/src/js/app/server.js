@@ -12,8 +12,7 @@
     async function callApi(params) {
         if (!request) throw new Error("pls confirm request already mounted");
 
-        console.log("method: " + params.method + ", content: " + params.q)
-
+        console.log("method: " + params.method + ", content: " + params.path)
         const res = await request({
             url: baseUrl + params.path,
             method: params.method || "GET",

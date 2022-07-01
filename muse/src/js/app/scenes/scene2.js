@@ -13,7 +13,7 @@ this.scene2 = function (imagePath) {
     imgComplete.src = imagePath;
 
     var buttonWidth = 960, buttonHeight = 141;
-    let btnSave = new PIXI.Sprite(getAsset("assets/images/button/save.png").texture);
+    let btnSave = PIXI.Sprite.from("assets/images/button/save.png");
     btnSave.x = (sysInfo.viewport.width - buttonWidth) / 2;
     btnSave.y = sysInfo.viewport.height - (0 + 240);
     btnSave.width = buttonWidth;

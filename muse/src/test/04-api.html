@@ -35,7 +35,7 @@
 
 <body>
     <div>
-        <input id="txtPrompt" type="text" value="采姑娘的小蘑菇" onchange="printValue(this.value);" />
+        <input id="txtPrompt" type="text" value="采姑娘的小蘑菇" onkeyup="printValue(this.value);" />
         <button id="btnCallApi">访问接口</button>
         <button id="btnClear">清除</button>
         <textarea id="txtResult"></textarea>
@@ -57,11 +57,11 @@
         let btnClear = document.getElementById("btnClear");
 
         function printValue(value) {
-            console.log("onchange->value: " + value);
+            console.log("onkeyup->value: " + value);
         }
 
-        txtPrompt.addEventListener("change", (event) => {
-            console.log("change->value: " + event.target.value);
+        txtPrompt.addEventListener("keyup", (event) => {
+            console.log("keyup->value: " + event.target.value);
         });
 
         btnCallApi.addEventListener("click", async () => {

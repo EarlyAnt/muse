@@ -35,11 +35,11 @@
 
 <body>
     <div>
-        <input id="txtPrompt" type="text" value="采姑娘的小蘑菇" />
+        <input id="txtPrompt" type="text" value="采姑娘的小蘑菇" onchange="printValue(this.value);" />
         <button id="btnCallApi">访问接口</button>
         <button id="btnClear">清除</button>
         <textarea id="txtResult"></textarea>
-        <img id="imgTexture" src="../assets/images/page/blank.jpg" />
+        <img id="imgTexture" src="../assets/images/page/blank.png" />
         <p id="txtProgress">生成进度</p>
         <!-- <img id="imgTexture" src="https://pic1.zhimg.com/80/v2-74c8502c03f994f86ae3037e51074d04_720w.jpg?source=1940ef5c" /> -->
     </div>
@@ -53,8 +53,18 @@
         let imgTexture = document.getElementById("imgTexture");
         let txtProgress = document.getElementById("txtProgress");
         let txtPrompt = document.getElementById("txtPrompt");
+        let btnCallApi = document.getElementById("btnCallApi");
+        let btnClear = document.getElementById("btnClear");
 
-        document.getElementById("btnCallApi").addEventListener("click", async () => {
+        function printValue(value) {
+            console.log("onchange->value: " + value);
+        }
+
+        txtPrompt.addEventListener("change", (event) => {
+            console.log("change->value: " + event.target.value);
+        });
+
+        btnCallApi.addEventListener("click", async () => {
             if (loop) {
                 showMultiResult("正在轮训接口...");
                 return;
@@ -83,7 +93,7 @@
             });
         });
 
-        document.getElementById("btnClear").addEventListener("click", async () => {
+        btnClear.addEventListener("click", async () => {
             showMultiResult("", false);
         });
 

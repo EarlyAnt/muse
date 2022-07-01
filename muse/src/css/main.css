@@ -164,6 +164,16 @@ p {
     height: 100%;
 }
 
+#txtVersion {
+    position: relative;
+    left: 0px;
+    right: 0px;
+    bottom: -65px;
+    font-size: 13px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.2);
+}
+
 #divDialog {
     width: 100%;
     height: 100%;

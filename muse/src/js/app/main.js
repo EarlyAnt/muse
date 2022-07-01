@@ -237,11 +237,9 @@
         console.log("main.setButtonStatus->prompt: " + prompt + ", style: " + style);
         var enable = prompt != null && prompt != "" && style != null && style != "";
         if (enable) {
-            console.log(true);
             btnCreate.src = "../src/assets/images/button/create_enable.png";
             canCreateImage = true;
         } else {
-            console.log(false);
             btnCreate.src = "../src/assets/images/button/create_disable.png";
             canCreateImage = false;
         }

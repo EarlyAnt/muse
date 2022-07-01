@@ -259,9 +259,17 @@ p {
 #txtShare {
     position: absolute;
     left: 0px;
-    right: 0px;
+    right: 25px;
     top: 5px;
     text-align: right;
     font-size: 13px;
     color: #FBFEFF;
+}
+
+#imgShare {
+    position: absolute;
+    top: 20px;
+    right: 5px;
+    width: 15px;
+    height: 15px;
 }

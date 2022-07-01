@@ -41,6 +41,7 @@
         "一束光照在海底的梦幻宫殿上。",
         "在夜空中，柔和的月光照耀着平静的湖面，湖边有一个宁静的小屋。"]
     var promptIndex = 0;
+    var style = "";
 
     // 脚本入口
     function init() {
@@ -137,6 +138,21 @@
         document.getElementById("txtInput").addEventListener("click", () => { showPopup(); });
         document.getElementById("btnConfirm").addEventListener("click", () => { hidePopup(true); });
         document.getElementById("btnCancel").addEventListener("click", () => { hidePopup(); });
+
+        var chkStyles = document.getElementsByClassName("imgStyleChecked");
+        // console.log("chkStyle.length: " + chkStyles.length);
+        for (var i = 0; i < 6; i++) {
+            var imgStyle = document.getElementById("style" + i);
+            // console.log("imgStyle: " + imgStyle.id);
+            imgStyle.addEventListener("click", (event) => {
+                style = event.target.id;
+                console.log("selected style: " + style);
+                for (var j = 0; j < chkStyles.length; j++) {
+                    // console.log("target.id: " + event.target.id + ", enum.id: style" + j)              
+                    chkStyles[j].style.visibility = (event.target.id == "style" + j ? "visible" : "hidden");
+                }
+            });
+        }
 
         let btnCreate = document.getElementById("btnCreate");
         btnCreate.addEventListener("click", async () => {

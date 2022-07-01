@@ -127,6 +127,15 @@ p {
     border-style: solid;
 }
 
+.imgStyleChecked {
+    position: relative;
+    top: 30px;
+    right: -33px;
+    width: 20px;
+    height: 20px;
+    visibility: hidden;
+}
+
 .lblStyle {
     position: relative;
     top: -15px;

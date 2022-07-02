@@ -188,7 +188,7 @@
         overlay.interactive = true;
         overlay.visible = false;
     }
-
+    //切换prompt提示词
     function changeTip(from = 1) {
         doFade(from, 1 - from, () => {
             if (from == 1) {
@@ -198,7 +198,7 @@
             changeTip(1 - from);
         });
     }
-
+    //prompt提示词淡入淡出效果
     function doFade(opacityFrom, opacityTo, callback) {
         // console.log("doFade->from: " + opacityFrom + ", to: " + opacityTo);
         var divTip = document.getElementById("divTip");
@@ -220,11 +220,12 @@
             }
         });
     }
+    //页面刷新事件
     function animate() {
         requestAnimationFrame(animate);
         TWEEN.update();
     }
-
+    //prompt提示词填充输入框
     function fillPrompt() {
         if (!txtInput.value.includes(txtTip.innerText)) {
             txtInput.value += txtTip.innerText;
@@ -232,7 +233,7 @@
 
         setButtonStatus(txtInput.value);
     }
-
+    //设置创造按钮的状态
     function setButtonStatus(prompt) {
         console.log("main.setButtonStatus->prompt: " + prompt + ", style: " + style);
         var enable = prompt != null && prompt != "" && style != null && style != "";
@@ -245,7 +246,7 @@
         }
         console.log("src: " + btnCreate.src);
     }
-
+    //显示编辑对话框
     function showPopup() {
         var dialog = document.getElementById("divDialog");
         dialog.style.display = "flex";
@@ -257,7 +258,7 @@
             txtPrompt.value = "";
         }
     }
-
+    //隐藏编辑对话框
     function hidePopup(confirm) {
         var dialog = document.getElementById("divDialog");
         dialog.style.display = "none";
@@ -267,7 +268,7 @@
             setButtonStatus(txtInput.value);
         }
     }
-
+    //创建图像
     async function createImage() {
         if (!canCreateImage) return;
 
@@ -280,7 +281,6 @@
         document.getElementById("divPage1").style.zIndex = -1;
         switchScene(1, response.taskId, response.prompt_tanslation);
     }
-
     //切换场景
     function switchScene(index, ...args) {
         //切换前先删除画面内容

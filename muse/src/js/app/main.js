@@ -250,6 +250,7 @@
         var dialog = document.getElementById("divDialog");
         dialog.style.display = "flex";
 
+        txtPrompt.focus();
         if (txtInput.innerText != PLACE_HOLDER) {
             txtPrompt.value = txtInput.value;
         } else {

@@ -39,6 +39,7 @@
             //replace start
             "./js/app/server.js",
             "./js/app/main.js",
+            "./js/app/cookie.js",
             //replace end
         ], (p) => {
             // setMainLoading(p*50);

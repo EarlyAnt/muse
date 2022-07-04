@@ -11,4 +11,6 @@ this.scene2 = function (imagePath) {
 
     let imgComplete = document.getElementById("imgComplete");
     imgComplete.src = imagePath;
+    COOKIE.setCookie("taskId", "", -1);
+    COOKIE.setCookie("translation", "", -1);
 }

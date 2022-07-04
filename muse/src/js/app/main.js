@@ -130,6 +130,17 @@
         let scene = new PIXI.Container();
         app.stage.addChild(scene);
 
+        console.log("main.onLoad->cookie: " + document.cookie);
+        var taskId = COOKIE.getCookie("taskId");
+        var translation = COOKIE.getCookie("translation");
+        if (taskId != null && taskId != "") {
+            console.log("main.onLoad->continue the last task");
+            document.getElementById("divLoading").style.zIndex = -1;
+            switchScene(1, taskId, translation, false);
+            return;
+        }
+
+        console.log("main.onLoad->start a new task");
         btnCreate = document.getElementById("btnCreate");
         txtPrompt = document.getElementById("txtPromptEdit");
         txtInput = document.getElementById("txtInput");
@@ -141,7 +152,6 @@
         document.getElementById("txtInput").addEventListener("click", () => { showPopup(); });
         document.getElementById("btnConfirm").addEventListener("click", () => { hidePopup(true); });
         document.getElementById("btnCancel").addEventListener("click", () => { hidePopup(); });
-
 
         var chkStyles = document.getElementsByClassName("imgStyleChecked");
         // console.log("chkStyle.length: " + chkStyles.length);
@@ -279,7 +289,9 @@
 
         btnCreate.style.display = "none";
         document.getElementById("divPage1").style.zIndex = -1;
-        switchScene(1, response.taskId, response.prompt_tanslation);
+        COOKIE.setCookie("taskId", response.taskId, 1);
+        COOKIE.setCookie("translation", response.prompt_tanslation, 1);
+        switchScene(1, response.taskId, response.prompt_tanslation, true);
     }
     //切换场景
     function switchScene(index, ...args) {

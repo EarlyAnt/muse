@@ -1,0 +1,57 @@
+<html>
+
+<head>
+    <title>定时刷新图片</title>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <style type="text/css">
+        div {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        p {
+            height: 100px;
+            width: 300px;
+            padding: 4px;
+            border-color: #5588ff;
+            border-width: 2px;
+            border-style: solid;
+            border-radius: 8px;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .imgStyle {
+            border-color: lightcoral;
+            border-style: solid;
+            border-radius: 8px;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body style="background-color:rgb(234, 241, 253)">
+    <div>
+        <p>这是一个测试定时刷新图片的例子，刷新时，img要能完整显示图片，而不会只显示一部分</p>
+        <!-- <img id="imgStyle" class="imgStyle" src="../assets/images/styles/01.png"> -->
+        <img id="imgStyle" class="imgStyle"
+            src="https://img1.baidu.com/it/u=2551142350,872017681&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500">
+    </div>
+
+    <script>
+        let times = 0;
+        let imgStyle = document.getElementById("imgStyle");
+
+        setInterval(() => {
+            times += 1;
+            console.log("refresh image->timer: " + times);
+            imgStyle.src = "https://img1.baidu.com/it/u=2551142350,872017681&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500";
+        }, 3000);        
+    </script>
+</body>
+
+</html>

@@ -34,15 +34,20 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
         }
     });
 
-    let timer = setInterval(async () => {
+    refresh();
+    let timer = setInterval(() => {
+        refresh();
+    }, 10000);
+
+    async function refresh() {
         var response = await SERVER.callApi(params = { path: "query_progress?task_id=" + taskId });
 
         if (response.progress == 0) {
             txtProgress.innerText = newTask ? NEW_TASK : LAST_TASK;
         } else if (response.progress > 0) {
             txtProgress.innerText = "正在生成图片...(" + response.progress + "%)";
-            imgProcedure.src = SERVER.imgUrl + response.progress_img;
-            // console.log("scene1->progress: " + txtProgress.innerText + ", imagePath: " + imgProcedure.src);
+            imgProcedure.src = SERVER.imgUrl + response.progress_img + "?" + Math.random();
+            console.log("scene1->progress: " + txtProgress.innerText + ", imagePath: " + imgProcedure.src);
         }
 
         if (response.progress == 100) {
@@ -52,8 +57,7 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
                 switchScene(2, imgProcedure.src);
             }, 500);
         }
-
-    }, 5000);
+    }
 
 
     // // 测试代码

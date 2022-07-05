@@ -10,7 +10,11 @@ this.scene2 = function (imagePath) {
     document.getElementById("divPage3").style.zIndex = 1;
 
     let imgComplete = document.getElementById("imgComplete");
-    imgComplete.src = imagePath;
+    imgComplete.src = imagePath + "?" + Math.random();
     COOKIE.setCookie("taskId", "", -1);
     COOKIE.setCookie("translation", "", -1);
+
+    document.getElementById("btnRetry").addEventListener("click", () => {
+        location.reload();
+    });
 }

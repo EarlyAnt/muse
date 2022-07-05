@@ -302,3 +302,17 @@ p {
     font-size: 13px;
     color: #FBFEFF;
 }
+
+#btnRetry {
+    position: absolute;
+    left: 5px;
+    right: 5px;
+    top: 600px;
+    height: 45px;
+    border-radius: 8px;
+    background-color: #FFC02B;
+    color: #0C0F18;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}

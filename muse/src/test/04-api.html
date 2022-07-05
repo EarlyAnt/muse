@@ -71,11 +71,15 @@
             }
 
             var data = await callApi("make_image_v1?text=" + txtPrompt.value + "&style=1", callback = (data) => {
+                console.log("----create image response----");
+                console.log(data);
                 console.log("taskId: " + data.taskId);
                 loop = true;
 
                 timer = setInterval(async () => {
                     await callApi("query_progress?task_id=" + data.taskId, callback = (data) => {
+                        console.log("----query progress response----");
+                        console.log(data);
                         if (data.progress_img != null && data.progress_img != "") {
                             console.log("image path: " + imgUrl + data.progress_img);
                             imgTexture.src = imgUrl + data.progress_img;

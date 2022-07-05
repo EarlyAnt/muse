@@ -68,21 +68,4 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
             }, 500);
         }
     }
-
-
-    // // 测试代码
-    // let index = 1;
-    // let timer = setInterval(() => {
-    //     imgProcedure.src = "../src/assets/images/ufo/0" + index + ".png";
-    //     txtProgress.innerText = "正在生成图片...(" + ((index / 6) * 100).toFixed(0) + "%)";
-    //     index += 1;
-    //     if (index > 6) {
-    //         clearInterval(timer);
-    //         txtProgress.innerText = "正在生成图片...(100%)";
-    //         setTimeout(() => {
-    //             document.getElementById("divPage2").style.zIndex = -1;
-    //             switchScene(2);
-    //         }, 500);
-    //     }
-    // }, 1000);
 }

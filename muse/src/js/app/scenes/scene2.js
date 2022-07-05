@@ -1,14 +1,18 @@
-this.scene2 = function (imagePath) {
+this.scene2 = function (taskId, imagePath) {
     console.log("scene2 start");
-    console.log("scene1->imagePath: " + imagePath);
+    console.log("scene2->taskId: " + taskId);
+    console.log("scene2->imagePath: " + imagePath);
 
 
     let scene = new PIXI.Container();
     mainContainer.addChild(scene);
     // overlay.visible = true;
 
+    let clickTimes = 0;
+
     document.getElementById("divPage3").style.zIndex = 1;
 
+    let txtSetting = document.getElementById("txtSetting");
     let imgComplete = document.getElementById("imgComplete");
     imgComplete.src = imagePath + "?" + Math.random();
     COOKIE.setCookie("taskId", "", -1);
@@ -17,4 +21,25 @@ this.scene2 = function (imagePath) {
     document.getElementById("btnRetry").addEventListener("click", () => {
         location.reload();
     });
+
+    document.getElementById("txtShare").addEventListener("click", () => {
+        clickTimes += 1;
+        if (clickTimes == 3) {
+            imgComplete.style.display = "none";
+            txtSetting.style.display = "";
+        } else if (clickTimes == 4) {
+            clickTimes = 0;
+            imgComplete.style.display = "";
+            txtSetting.style.display = "none";
+        }
+    });
+
+    async function getSetting() {
+        var response = await SERVER.callApi(params = { path: "settings/task/" + taskId });
+        console.log("----get setting response----");
+        console.log(response);
+        txtSetting.value = JSON.stringify(response, null, "\t");
+    }
+
+    getSetting();
 }

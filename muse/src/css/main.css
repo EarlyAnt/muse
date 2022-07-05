@@ -244,7 +244,8 @@ p {
 }
 
 #imgProcedure,
-#imgComplete {
+#imgComplete,
+#txtSetting {
     position: absolute;
     top: 107px;
     width: 330px;

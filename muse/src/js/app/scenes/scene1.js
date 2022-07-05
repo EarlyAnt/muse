@@ -64,7 +64,7 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
             clearTimeout(timer);
             setTimeout(() => {
                 document.getElementById("divPage2").style.zIndex = -1;
-                switchScene(2, imgProcedure.src);
+                switchScene(2, taskId, imgProcedure.src);
             }, 500);
         }
     }

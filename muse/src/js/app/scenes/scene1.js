@@ -4,8 +4,10 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
     console.log("scene1->prompt_tanslation: " + prompt_tanslation);
     console.log("scene1->newTask: " + newTask);
 
-    const NEW_TASK = "任务排队中...";
+    const START_TASK = "即将开始生成图片...";
+    const WAIT_TASK = "任务排队中...";
     const LAST_TASK = "正在尝试继续上一个任务...";
+    const TASK_DURATION = 2;
 
     let clickTimes = 0;
     let scene = new PIXI.Container();
@@ -41,9 +43,17 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
 
     async function refresh() {
         var response = await SERVER.callApi(params = { path: "query_progress?task_id=" + taskId });
+        console.log("----query progress response----");
+        console.log(response);
 
         if (response.progress == 0) {
-            txtProgress.innerText = newTask ? NEW_TASK : LAST_TASK;
+            var queueNumber = response.queue_num;
+            if (queueNumber == 0) {
+                txtProgress.innerText = START_TASK;
+            }
+            else {
+                txtProgress.innerText = WAIT_TASK + "(大约等待" + (queueNumber * TASK_DURATION).toFixed(0) + "分钟)";
+            }
         } else if (response.progress > 0) {
             txtProgress.innerText = "正在生成图片...(" + response.progress + "%)";
             imgProcedure.src = SERVER.imgUrl + response.progress_img + "?" + Math.random();

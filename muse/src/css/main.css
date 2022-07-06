@@ -174,65 +174,6 @@ p {
     color: rgba(255, 255, 255, 0.2);
 }
 
-#divDialog {
-    width: 100%;
-    height: 100%;
-}
-
-.divPopup {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.75);
-}
-
-.imgPopup {
-    position: absolute;
-    top: 266px;
-    width: 300px;
-    height: 208px;
-}
-
-#txtRemark {
-    position: absolute;
-    top: 262px;
-    color: #8F8F8F;
-    font-size: 14px;
-}
-
-#divPromptEdit {
-    position: relative;
-    top: 310px;
-}
-
-#txtPromptEdit {
-    font-size: 16px;
-    min-width: 252px;
-    min-height: 92px;
-    max-width: 252px;
-    max-height: 92px;
-    border: none;
-    background-color: rgba(255, 255, 255, 0);
-}
-
-#btnCancel {
-    position: absolute;
-    top: 423px;
-    left: 100px;
-    color: #000000;
-    font-weight: bold;
-}
-
-#btnConfirm {
-    position: absolute;
-    top: 423px;
-    right: 100px;
-    color: #576A94;
-    font-weight: bold;
-}
-
-
 /*===    page2    ===*/
 #divPage2 {
     position: absolute;
@@ -304,16 +245,81 @@ p {
     color: #FBFEFF;
 }
 
-#btnRetry {
+#divRetry {
     position: absolute;
-    left: 5px;
-    right: 5px;
-    top: 600px;
-    height: 45px;
+    top: 580px;
     border-radius: 8px;
-    background-color: #FFC02B;
+}
+
+#btnRetry {
+    width: 100%;
+}
+
+#txtRetry {
+    position: relative;
+    top: 35px;
     color: #0C0F18;
     text-align: center;
     font-size: 16px;
+    font-weight: bold;
+    display: inline;
+}
+
+/*===    dialog    ===*/
+#divDialog {
+    width: 100%;
+    height: 100%;
+}
+
+.divPopup {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.imgPopup {
+    position: absolute;
+    top: 266px;
+    width: 300px;
+    height: 208px;
+}
+
+#txtRemark {
+    position: absolute;
+    top: 262px;
+    color: #8F8F8F;
+    font-size: 14px;
+}
+
+#divPromptEdit {
+    position: relative;
+    top: 310px;
+}
+
+#txtPromptEdit {
+    font-size: 16px;
+    min-width: 252px;
+    min-height: 92px;
+    max-width: 252px;
+    max-height: 92px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+#btnCancel {
+    position: absolute;
+    top: 423px;
+    left: 100px;
+    color: #000000;
+    font-weight: bold;
+}
+
+#btnConfirm {
+    position: absolute;
+    top: 423px;
+    right: 100px;
+    color: #576A94;
     font-weight: bold;
 }

@@ -186,17 +186,17 @@
         animate();
         setTimeout(changeTip, 1500);
 
-        overlay = new PIXI.Sprite();
-        let gr = new PIXI.Graphics();
-        gr.beginFill(0x000);
-        gr.drawRect(0, 0, sysInfo.viewport.width, sysInfo.viewport.height);
-        gr.endFill();
-        overlay.addChild(gr);
-        gr.alpha = .9;
-        app.stage.addChild(overlay);
-        overlay.y = 0;
-        overlay.interactive = true;
-        overlay.visible = false;
+        // overlay = new PIXI.Sprite();
+        // let gr = new PIXI.Graphics();
+        // gr.beginFill(0x000);
+        // gr.drawRect(0, 0, sysInfo.viewport.width, sysInfo.viewport.height);
+        // gr.endFill();
+        // overlay.addChild(gr);
+        // gr.alpha = .9;
+        // app.stage.addChild(overlay);
+        // overlay.y = 0;
+        // overlay.interactive = true;
+        // overlay.visible = false;
     }
     //切换prompt提示词
     function changeTip(from = 1) {
@@ -259,7 +259,8 @@
     //显示编辑对话框
     function showPopup() {
         var dialog = document.getElementById("divDialog");
-        dialog.style.display = "flex";
+        dialog.style.display = "";
+        // dialog.style.zIndex = 2;
 
         txtPrompt.focus();
         if (txtInput.innerText != PLACE_HOLDER) {
@@ -272,6 +273,7 @@
     function hidePopup(confirm) {
         var dialog = document.getElementById("divDialog");
         dialog.style.display = "none";
+        // dialog.style.zIndex = -1;
 
         if (confirm) {
             txtInput.value = txtPrompt.value;

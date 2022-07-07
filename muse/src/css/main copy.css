@@ -5,7 +5,7 @@ body {
     padding: 0;
     width: 100%;
     height: 100%;
-    /* position: relative; */
+    position: relative;
     background-color: #fdf8f4;
     overflow: hidden;
 
@@ -63,32 +63,22 @@ p {
 
 /*===    page1    ===*/
 #divPage1 {
-    /* position: absolute;
+    position: absolute;
     left: 20px;
-    right: 20px; */
-
-    padding-left: 20px;
-    padding-right: 20px;
+    right: 20px;
 }
 
 #divInput {
-    /* position: relative; */
-    /* top: 20px; */
-
-    padding-top: 20px;
+    position: relative;
+    top: 20px;
 }
 
 #divTip {
-    /* position: absolute;
+    position: absolute;
     left: 10px;
-    right: 10px; */
-    /* background-color: darkseagreen; */
-
+    right: 10px;
     margin-top: -10px;
-    padding-left: 10px;
-    padding-right: 10px;
 
-    height: 36px;
     color: rgb(212, 212, 212);
     font-size: 13px;
     text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
@@ -99,26 +89,18 @@ p {
 }
 
 #title2 {
-    /* position: absolute;
-    top: 122px; */
-    /* background-color: darkseagreen; */
-
-    margin-top: 0px;
+    position: relative;
+    top: 60px;
 }
 
 #title3 {
-    /* position: relative;
-    top: 40px; */
-
-    margin-top: 30px;
+    position: relative;
+    top: 40px;
 }
 
 #divStyle {
-    /* position: relative;
-    top: 30px; */
-    /* background-color: darkseagreen; */
-
-    margin-top: -30px;
+    position: relative;
+    top: 30px;
     display: flex;
     justify-content: center;
 }
@@ -162,10 +144,8 @@ p {
 }
 
 #divDisplay {
-    /* position: relative;
-    top: 40px; */
-
-    margin-top: 10px;
+    position: relative;
+    top: 40px;
 }
 
 .swiper-container {
@@ -178,23 +158,111 @@ p {
 }
 
 #btnCreate {
-    /* position: relative;
-    top: 70px; */
-
-    margin-top: 20px;
+    position: relative;
+    top: 70px;
     width: 100%;
+    height: 100%;
 }
 
 #txtVersion {
-    /* position: relative;
+    position: relative;
     left: 0px;
     right: 0px;
-    bottom: -65px; */
-
-    margin-top: 3px;
+    bottom: -65px;
     font-size: 13px;
     text-align: center;
     color: rgba(255, 255, 255, 0.2);
+}
+
+/*===    page2    ===*/
+#divPage2 {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+#imgProcedure,
+#imgComplete,
+#txtSetting {
+    position: absolute;
+    top: 107px;
+    width: 330px;
+    height: 440px;
+}
+
+#prompt_tanslation {
+    position: absolute;
+    top: 5px;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+#txtProgress {
+    position: absolute;
+    top: 550px;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+/*===    page3    ===*/
+#divPage3 {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+#txtShare {
+    position: absolute;
+    left: 0px;
+    right: 25px;
+    top: 5px;
+    text-align: right;
+    font-size: 13px;
+    color: #FBFEFF;
+}
+
+#imgShare {
+    position: absolute;
+    top: 20px;
+    right: 5px;
+    width: 15px;
+    height: 15px;
+}
+
+#txtSave {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 550px;
+    text-align: center;
+    font-size: 13px;
+    color: #FBFEFF;
+}
+
+#divRetry {
+    position: absolute;
+    top: 580px;
+    border-radius: 8px;
+}
+
+#btnRetry {
+    width: 100%;
+}
+
+#txtRetry {
+    position: relative;
+    top: 35px;
+    color: #0C0F18;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    display: inline;
 }
 
 /*===    dialog    ===*/
@@ -204,11 +272,11 @@ p {
 }
 
 .divPopup {
-    /* width: 100%;
-    height: 100%; */
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
-    /* background-color: rgba(0, 0, 0, 0.75); */
+    background-color: rgba(0, 0, 0, 0.75);
 }
 
 .imgPopup {

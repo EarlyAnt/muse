@@ -35,7 +35,7 @@
     //主内容容器
     let mainContainer;
     let overlay;
-    let txtPrompt, txtInput, txtTip, btnCreate;
+    let divLoading, divPage1, txtPrompt, txtInput, txtTip, btnCreate, dialog;
     const PLACE_HOLDER = "输入任何内容";
     var promptList = ["在冬日的早晨，满天飞雪，树上、屋顶上都落满了雪花，世界变得一片洁白。",
         "一束光照在海底的梦幻宫殿上。",
@@ -141,14 +141,19 @@
         }
 
         console.log("main.onLoad->start a new task");
+        divLoading = document.getElementById("divLoading");
+        divPage1 = document.getElementById("divPage1");
         btnCreate = document.getElementById("btnCreate");
         txtPrompt = document.getElementById("txtPromptEdit");
         txtInput = document.getElementById("txtInput");
         txtTip = document.getElementById("txtTip");
+        dialog = document.getElementById("divDialog");
+
+        divLoading.style.display = "none";
+        divPage1.style.display = "";
+
         txtTip.addEventListener("click", () => { fillPrompt(); });
         btnCreate.addEventListener("click", () => { createImage(); });
-        document.getElementById("divLoading").style.display = "none";
-        document.getElementById("divPage1").style.display = "";
         document.getElementById("txtInput").addEventListener("click", () => { showPopup(); });
         document.getElementById("btnConfirm").addEventListener("click", () => { hidePopup(true); });
         document.getElementById("btnCancel").addEventListener("click", () => { hidePopup(); });
@@ -246,7 +251,7 @@
     }
     //显示编辑对话框
     function showPopup() {
-        var dialog = document.getElementById("divDialog");
+        divPage1.style.display = "none";
         dialog.style.display = "";
         // dialog.style.zIndex = 2;
 
@@ -259,7 +264,7 @@
     }
     //隐藏编辑对话框
     function hidePopup(confirm) {
-        var dialog = document.getElementById("divDialog");
+        divPage1.style.display = "";
         dialog.style.display = "none";
 
         if (confirm) {
@@ -277,7 +282,7 @@
         console.log("main.onLoad->taskId: " + response.taskId + ", prompt_tanslation: " + response.prompt_tanslation);
 
         btnCreate.style.display = "none";
-        document.getElementById("divPage1").style.display = "none";
+        divPage1.style.display = "none";
         COOKIE.setCookie("taskId", response.taskId, 1);
         COOKIE.setCookie("translation", response.prompt_tanslation, 1);
         switchScene(1, response.taskId, response.prompt_tanslation, true);

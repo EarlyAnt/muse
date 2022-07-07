@@ -82,7 +82,7 @@
                         console.log(data);
                         if (data.progress_img != null && data.progress_img != "") {
                             console.log("image path: " + imgUrl + data.progress_img);
-                            imgTexture.src = imgUrl + data.progress_img;
+                            imgTexture.src = data.progress_img;
                         }
 
                         if (data.progress > 0) {

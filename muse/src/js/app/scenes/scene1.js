@@ -56,7 +56,9 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
             }
         } else if (response.progress > 0) {
             txtProgress.innerText = "正在生成图片...(" + response.progress + "%)";
-            imgProcedure.src = SERVER.imgUrl + response.progress_img + "?" + Math.random();
+            SERVER.download(response.progress_img, (imageObj) => {
+                imgProcedure.src = imageObj;
+            });            
             console.log("scene1->progress: " + txtProgress.innerText + ", imagePath: " + imgProcedure.src);
         }
 

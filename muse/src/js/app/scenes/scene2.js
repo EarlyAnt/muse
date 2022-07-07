@@ -14,7 +14,9 @@ this.scene2 = function (taskId, imagePath) {
 
     let txtSetting = document.getElementById("txtSetting");
     let imgComplete = document.getElementById("imgComplete");
-    imgComplete.src = imagePath + "?" + Math.random();
+    SERVER.download(imagePath, (imageObj) => {
+        imgComplete.src = imageObj;
+    });
     COOKIE.setCookie("taskId", "", -1);
     COOKIE.setCookie("translation", "", -1);
 

@@ -5,9 +5,6 @@
     // var baseUrl = "http://192.168.0.102:5550/";
     // var baseUrl = "http://192.168.180.142:5550/";
     var baseUrl = "http://region-4.autodl.com:40410/api/";
-    var imgUrl = "http://region-4.autodl.com:40410/";
-
-    SERVER.imgUrl = imgUrl;
 
     async function callApi(params) {
         if (!request) throw new Error("pls confirm request already mounted");
@@ -76,6 +73,29 @@
         return await res.json();
     }
     SERVER.callApi = callApi;
+
+    function download(url, callback) {
+        console.log("download->url: " + url);
+        var request = new XMLHttpRequest();
+        request.open('GET', url, true);
+        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        request.responseType = "blob"; //返回类型blob
+        request.mode = "cors";
+        request.onload = function () { //定义请求完成的处理函数
+            console.log("download->request.status: " + request.status);
+            if (request.status == 200 && callback != null) {
+                var blob = this.response;
+                callback(window.URL.createObjectURL(blob));
+                console.log('download->complete');
+            } else if (this.status === 504) {
+                console.log('download->time out');
+            } else {
+                console.log('download->failed');
+            }
+        };
+        request.send();
+    }
+    SERVER.download = download;
 
     window.SERVER = SERVER;
 }();

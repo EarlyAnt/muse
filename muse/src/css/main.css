@@ -76,7 +76,7 @@ p {
 
 #divPage1Top {
     padding-left: 20px;
-    padding-right: 20px;    
+    padding-right: 20px;
 }
 
 #divPage1Bottom {
@@ -194,7 +194,7 @@ p {
 
 #prompt_tanslation {
     position: absolute;
-    top : 5px;
+    top: 5px;
     left: 20px;
     right: 20px;
     font-size: 16px;
@@ -227,8 +227,6 @@ p {
 /*===    page3    ===*/
 #divPage3 {
     height: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
     display: flex;
     justify-content: center;
 }
@@ -236,7 +234,7 @@ p {
 #txtShare {
     position: absolute;
     left: 0px;
-    right: 25px;
+    right: 50px;
     top: 5px;
     text-align: right;
     font-size: 13px;
@@ -246,14 +244,15 @@ p {
 #imgShare {
     position: absolute;
     top: 20px;
-    right: 5px;
+    right: 30px;
     width: 15px;
     height: 15px;
 }
 
 #imgComplete,
 #txtSetting {
-    padding-top: 90px;
+    position: absolute;
+    top: 90px;
     width: 330px;
     height: 440px;
     display: block;

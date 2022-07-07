@@ -10,7 +10,7 @@ this.scene2 = function (taskId, imagePath) {
 
     let clickTimes = 0;
 
-    document.getElementById("divPage3").style.zIndex = 1;
+    document.getElementById("divPage3").style.display = "";
 
     let txtSetting = document.getElementById("txtSetting");
     let imgComplete = document.getElementById("imgComplete");

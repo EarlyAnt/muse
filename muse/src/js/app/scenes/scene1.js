@@ -15,7 +15,7 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
     // overlay.visible = true;
 
     document.getElementById("prompt_tanslation").innerText = prompt_tanslation;
-    document.getElementById("divPage2").style.zIndex = 1;
+    document.getElementById("divPage2").style.display = "";
 
     let imgProcedure = document.getElementById("imgProcedure");
     let txtProgress = document.getElementById("txtProgress");
@@ -63,7 +63,7 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
         if (response.progress == 100) {
             clearTimeout(timer);
             setTimeout(() => {
-                document.getElementById("divPage2").style.zIndex = -1;
+                document.getElementById("divPage2").style.display = "none";
                 switchScene(2, taskId, imgProcedure.src);
             }, 500);
         }

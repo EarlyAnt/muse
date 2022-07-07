@@ -147,8 +147,8 @@
         txtTip = document.getElementById("txtTip");
         txtTip.addEventListener("click", () => { fillPrompt(); });
         btnCreate.addEventListener("click", () => { createImage(); });
-        document.getElementById("divLoading").style.zIndex = -1;
-        document.getElementById("divPage1").style.zIndex = 1;
+        document.getElementById("divLoading").style.display = "none";
+        document.getElementById("divPage1").style.display = "";
         document.getElementById("txtInput").addEventListener("click", () => { showPopup(); });
         document.getElementById("btnConfirm").addEventListener("click", () => { hidePopup(true); });
         document.getElementById("btnCancel").addEventListener("click", () => { hidePopup(); });
@@ -185,18 +185,6 @@
 
         animate();
         setTimeout(changeTip, 1500);
-
-        // overlay = new PIXI.Sprite();
-        // let gr = new PIXI.Graphics();
-        // gr.beginFill(0x000);
-        // gr.drawRect(0, 0, sysInfo.viewport.width, sysInfo.viewport.height);
-        // gr.endFill();
-        // overlay.addChild(gr);
-        // gr.alpha = .9;
-        // app.stage.addChild(overlay);
-        // overlay.y = 0;
-        // overlay.interactive = true;
-        // overlay.visible = false;
     }
     //切换prompt提示词
     function changeTip(from = 1) {
@@ -273,7 +261,6 @@
     function hidePopup(confirm) {
         var dialog = document.getElementById("divDialog");
         dialog.style.display = "none";
-        // dialog.style.zIndex = -1;
 
         if (confirm) {
             txtInput.value = txtPrompt.value;
@@ -290,7 +277,7 @@
         console.log("main.onLoad->taskId: " + response.taskId + ", prompt_tanslation: " + response.prompt_tanslation);
 
         btnCreate.style.display = "none";
-        document.getElementById("divPage1").style.zIndex = -1;
+        document.getElementById("divPage1").style.display = "none";
         COOKIE.setCookie("taskId", response.taskId, 1);
         COOKIE.setCookie("translation", response.prompt_tanslation, 1);
         switchScene(1, response.taskId, response.prompt_tanslation, true);

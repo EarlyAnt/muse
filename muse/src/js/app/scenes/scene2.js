@@ -35,7 +35,7 @@ this.scene2 = function (taskId, imagePath) {
     });
 
     async function getSetting() {
-        var response = await SERVER.callApi(params = { path: "settings/task/" + taskId });
+        var response = await SERVER.callApi(params = { path: "query_settings?task_id=" + taskId });
         console.log("----get setting response----");
         console.log(response);
         txtSetting.value = JSON.stringify(response, null, "\t");

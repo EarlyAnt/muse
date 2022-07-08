@@ -24,7 +24,7 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
         txtProgress.innerText = LAST_TASK
     }
 
-    imgProcedure.addEventListener("click", () => {
+    txtProgress.addEventListener("click", () => {
         clickTimes += 1;
         console.log("scene1->clickTimes: " + clickTimes);
         if (clickTimes >= 5) {
@@ -58,7 +58,7 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
             txtProgress.innerText = "正在生成图片...(" + response.progress + "%)";
             SERVER.download(response.progress_img, (imageObj) => {
                 imgProcedure.src = imageObj;
-            });            
+            });
             console.log("scene1->progress: " + txtProgress.innerText + ", imagePath: " + imgProcedure.src);
         }
 

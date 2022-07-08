@@ -66,7 +66,7 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
             clearTimeout(timer);
             setTimeout(() => {
                 document.getElementById("divPage2").style.display = "none";
-                switchScene(2, taskId, imgProcedure.src);
+                switchScene(2, taskId, response.progress_img);
             }, 500);
         }
     }

@@ -43,6 +43,7 @@
     var promptIndex = 0;
     var style = "";
     var canCreateImage = false;
+    var startedCreateImage = false;
 
     // 脚本入口
     function init() {
@@ -274,8 +275,14 @@
     }
     //创建图像
     async function createImage() {
-        if (!canCreateImage) return;
+        if (!canCreateImage) {
+            return;
+        } else if (startedCreateImage) {
+            console.log("main.createImage->can not create image twice");
+            return;
+        }
 
+        startedCreateImage = true;
         var prompt = txtInput.value.replace('，', ',').replace('。', ',');
         console.log("main.onLoad->prompt: " + prompt + ", style" + style);
         var response = await SERVER.callApi(params = { path: "make_image_v1?text=" + prompt + "&style=" + style });

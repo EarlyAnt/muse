@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>div页面布局</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <style type="text/css">
+        html,
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        p {
+            color: #FBFEFF;
+        }
+
+        #page1 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        #page1_top {
+            position: relative;
+            width: 100%;
+            height: 15%;
+            background-color: rgb(97, 97, 97);
+            /* padding: 0px;
+            margin: 0px; */
+            padding-left: 20px;
+            padding-right: 20px;
+
+            display: flex;
+            justify-content: center;
+        }
+
+        #page1_middle {
+            width: 100%;
+            height: 70%;
+            background-color: rgb(48, 48, 48);
+            padding: 0px;
+            margin: 0px;
+        }
+
+        #page1_bottom {
+            width: 100%;
+            height: 15%;
+            background-color: rgb(102, 102, 102);
+            text-align: center;
+        }
+
+        #btnCreate {
+            width: 90%;
+        }
+
+        #txtVersion {
+            margin-top: 0px;
+            padding-top: 0px;
+            font-size: 13px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page1">
+        <div id="page1_top">
+            <!-- <div id="divInput">
+                <input type="text" id="txtInput" name="fname" placeholder="输入任何内容">
+                <div id="divTip">
+                    <p id="txtLabel" style="display:inline">例句：</p>
+                    <p id="txtTip" style="display:inline">在冬日的早晨，满天飞雪，树上、屋顶上都落满了雪花，世界变得一片洁白。</p>
+                </div>
+                </p>
+            </div> -->
+        </div>
+
+        <div id="page1_middle">
+            <!-- <p id="title2">风格</p> -->
+            <!-- <div id="divStyle">
+                <div class="divStyleItems">
+                    <div class="divStyleBorder">
+                        <img id="style0_checked" class="imgStyleChecked" src="../assets/images/page/checked.png" />
+                        <img id="style0" name="0" class="imgStyle" src="../assets/images/styles/00.png" />
+                        <p class="lblStyle">无风格</p>
+                    </div>
+                    <div class="divStyleBorder">
+                        <img id="style1_checked" class="imgStyleChecked" src="../assets/images/page/checked.png" />
+                        <img id="style1" name="1" class="imgStyle" src="../assets/images/styles/01.png" />
+                        <p class="lblStyle">中国风</p>
+                    </div>
+                    <div class="divStyleBorder">
+                        <img id="style2_checked" class="imgStyleChecked" src="../assets/images/page/checked.png" />
+                        <img id="style2" name="2" class="imgStyle" src="../assets/images/styles/02.png" />
+                        <p class="lblStyle">3D渲染</p>
+                    </div>
+                    <div class="divStyleBorder">
+                        <img id="style3_checked" class="imgStyleChecked" src="../assets/images/page/checked.png" />
+                        <img id="style3" name="3" class="imgStyle" src="../assets/images/styles/03.png" />
+                        <p class="lblStyle">超现实主义</p>
+                    </div>
+                    <div class="divStyleBorder">
+                        <img id="style4_checked" class="imgStyleChecked" src="../assets/images/page/checked.png" />
+                        <img id="style4" name="4" class="imgStyle" src="../assets/images/styles/04.png" />
+                        <p class="lblStyle">CG幻想</p>
+                    </div>
+                    <div class="divStyleBorder">
+                        <img id="style5_checked" class="imgStyleChecked" src="../assets/images/page/checked.png" />
+                        <img id="style5" name="5" class="imgStyle" src="../assets/images/styles/05.png" />
+                        <p class="lblStyle">现代插画</p>
+                    </div>
+                </div>
+            </div> -->
+            <!-- <p id="title3">作品展示</p> -->
+        </div>
+        <!-- <div id="divDisplay">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="swiper-zoom-container">
+                            <img src="../assets/images/works/01.png">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="swiper-zoom-container">
+                            <img src="../assets/images/works/02.png">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="swiper-zoom-container">
+                            <img src="../assets/images/works/03.png">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="swiper-zoom-container">
+                            <img src="../assets/images/works/05.png">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="swiper-zoom-container">
+                            <img src="../assets/images/works/06.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div id="page1_bottom">
+            <img id="btnCreate" src="../assets/images/button/create_disable.png">
+            <p id="txtVersion">2022-07-08 14:00</p>
+        </div>
+    </div>
+</body>
+
+</html>

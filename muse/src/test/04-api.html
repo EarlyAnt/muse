@@ -46,7 +46,6 @@
 
     <script type="text/javascript">
         var baseUrl = "http://region-4.autodl.com:40410/api/";
-        var imgUrl = "http://region-4.autodl.com:40410/";
         var taskId = "";
         var loop = false;
         let timer;
@@ -70,7 +69,7 @@
                 return;
             }
 
-            var data = await callApi("make_image_v1?text=" + txtPrompt.value + "&style=1", callback = (data) => {
+            var data = await callApi("make_image_v1?text=" + txtPrompt.value + "&style=4", callback = (data) => {
                 console.log("----create image response----");
                 console.log(data);
                 console.log("taskId: " + data.taskId);
@@ -81,7 +80,7 @@
                         console.log("----query progress response----");
                         console.log(data);
                         if (data.progress_img != null && data.progress_img != "") {
-                            console.log("image path: " + imgUrl + data.progress_img);
+                            console.log("image path: " + data.progress_img);
                             imgTexture.src = data.progress_img;
                         }
 

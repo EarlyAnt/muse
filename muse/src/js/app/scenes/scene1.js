@@ -42,32 +42,37 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
     }, 10000);
 
     async function refresh() {
-        var response = await SERVER.callApi(params = { path: "query_progress?task_id=" + taskId });
-        console.log("----query progress response----");
-        console.log(response);
+        try {
+            var response = await SERVER.callApi(params = { path: "query_progress?task_id=" + taskId });
+            console.log("----query progress response----");
+            console.log(response);
 
-        if (response.progress == 0) {
-            var queueNumber = response.queue_num;
-            if (queueNumber == 0) {
-                txtProgress.innerText = START_TASK;
+            if (response.progress == 0) {
+                var queueNumber = response.queue_num;
+                if (queueNumber == 0) {
+                    txtProgress.innerText = START_TASK;
+                }
+                else {
+                    txtProgress.innerText = WAIT_TASK + "(大约等待" + (queueNumber * TASK_DURATION).toFixed(0) + "分钟)";
+                }
+            } else if (response.progress > 0) {
+                txtProgress.innerText = "正在生成图片...(" + response.progress + "%)";
+                SERVER.download(response.progress_img, (imageObj) => {
+                    imgProcedure.src = imageObj;
+                });
+                console.log("scene1->progress: " + txtProgress.innerText + ", imagePath: " + imgProcedure.src);
             }
-            else {
-                txtProgress.innerText = WAIT_TASK + "(大约等待" + (queueNumber * TASK_DURATION).toFixed(0) + "分钟)";
-            }
-        } else if (response.progress > 0) {
-            txtProgress.innerText = "正在生成图片...(" + response.progress + "%)";
-            SERVER.download(response.progress_img, (imageObj) => {
-                imgProcedure.src = imageObj;
-            });
-            console.log("scene1->progress: " + txtProgress.innerText + ", imagePath: " + imgProcedure.src);
-        }
 
-        if (response.progress == 100) {
-            clearTimeout(timer);
-            setTimeout(() => {
-                document.getElementById("divPage2").style.display = "none";
-                switchScene(2, taskId, response.progress_img);
-            }, 500);
+            if (response.progress == 100) {
+                clearTimeout(timer);
+                setTimeout(() => {
+                    document.getElementById("divPage2").style.display = "none";
+                    switchScene(2, taskId, response.progress_img);
+                }, 500);
+            }
+        } catch (e) {
+            console.log("scene1.refresh->error: ");
+            console.log(e);
         }
     }
 }

@@ -25,7 +25,8 @@
         const method = params.method || 'GET';
 
         let headers = {
-            "Content-Type": "application/json"
+            // "Content-Type": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded"
         };
         if (params.headers) {
             for (let item in params.headers) {
@@ -70,7 +71,15 @@
 
         // console.log("ok: " + res.ok + ", text: " + res.text() + ", json: " + res.json());
         // console.log(res);
-        return await res.json();
+        try {
+            console.log("server.request->print response: ");
+            console.log(res);
+            return await res.json();
+        } catch (e) {
+            console.log("server.request->error: ");
+            console.log(e);
+            return null;
+        }
     }
     SERVER.callApi = callApi;
 

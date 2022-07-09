@@ -35,10 +35,15 @@ this.scene2 = function (taskId, imagePath) {
     });
 
     async function getSetting() {
-        var response = await SERVER.callApi(params = { path: "query_settings?task_id=" + taskId });
-        console.log("----get setting response----");
-        console.log(response);
-        txtSetting.value = JSON.stringify(response, null, "\t");
+        try {
+            var response = await SERVER.callApi(params = { path: "query_settings?task_id=" + taskId });
+            console.log("----get setting response----");
+            console.log(response);
+            txtSetting.value = JSON.stringify(response, null, "\t");
+        } catch (e) {
+            console.log("scene2.getSetting->error: ");
+            console.log(e);
+        }
     }
 
     getSetting();

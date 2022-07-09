@@ -10,6 +10,8 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
     const TASK_DURATION = 2;
 
     let clickTimes = 0;
+    let taskIdInCookie = COOKIE.getCookie("taskId");
+
     let scene = new PIXI.Container();
     mainContainer.addChild(scene);
     // overlay.visible = true;
@@ -43,6 +45,11 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
 
     async function refresh() {
         try {
+            if (taskId != taskIdInCookie) {
+                console.log("++++++++ scene1.refresh->has two taskId, 'taskId': " + taskId + ", 'taskIdInCookie': " + taskIdInCookie);
+                taskId = taskIdInCookie;
+            }
+
             var response = await SERVER.callApi(params = { path: "query_progress?task_id=" + taskId });
             console.log("----query progress response----");
             console.log(response);

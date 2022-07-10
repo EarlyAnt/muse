@@ -2,8 +2,7 @@ html,
 body {
     margin: 0px;
     padding: 0px;
-    /* background-color: #0c0f18; */
-    background-color: #89898a;
+    background-color: #0c0f18;
 }
 
 input {
@@ -52,11 +51,11 @@ p {
 .page1_top {
     /* background-color: rgb(230, 123, 123); */
     width: 100%;
-    height: 120px;
+    height: 140px;
 
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: start;
 }
 
 .divInput {
@@ -66,6 +65,7 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-top: 25px;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -91,15 +91,15 @@ p {
     margin: 0px;
 }
 
-.title2,
-.title3 {
+.title2 {
+    margin-top: 30px;
     padding-left: 15px;
 }
 
 .divStyle {
     /* background-color: rgb(18, 199, 139); */
     width: 100%;
-    height: 40vh;
+    height: 300px;
 
     display: flex;
     justify-content: center;
@@ -108,7 +108,7 @@ p {
 
 .divStyleItems {
     /* background-color: cornflowerblue; */
-    width: 85vw;
+    width: 88vw;
     display: flex;
     flex-wrap: wrap;
 }
@@ -158,7 +158,8 @@ p {
 }
 
 .title3 {
-    margin-top: 0px;
+    margin-top: 1vh;
+    padding-left: 15px;
 }
 
 #divDisplay {
@@ -175,10 +176,14 @@ p {
     overflow: hidden;
 }
 
+.blank {
+    height: 30px;
+}
+
 
 .page1_bottom {
     /* background-color: rgb(86, 216, 74); */
-    height: 12vh;
+    height: 140px;
 
     display: flex;
     flex-direction: column;
@@ -186,6 +191,11 @@ p {
 
     padding-left: 8vw;
     padding-right: 8vw;
+}
+
+.btnCreate {
+    height: 6vh;
+    margin-top: 0px;
 }
 
 .txtVersion {
@@ -203,6 +213,7 @@ p {
     bottom: 0px;
     left: 0px;
     right: 0px;
+    z-index: 2;
 
     display: flex;
     flex-direction: column;

@@ -254,9 +254,9 @@ p {
 }
 
 #imgProcedure {
-    padding-top: 120px;
-    width: 330px;
-    height: 440px;
+    padding-top: 150px;
+    width: 360px;
+    height: 480px;
     display: block;
 
     user-select: none;
@@ -267,7 +267,7 @@ p {
 
 #txtProgress {
     position: absolute;
-    top: 560px;
+    top: 630px;
     font-size: 16px;
     color: #FFFFFF;
     text-align: center;
@@ -308,16 +308,16 @@ p {
 #imgComplete,
 #txtSetting {
     position: absolute;
-    top: 90px;
-    width: 330px;
-    height: 440px;
+    top: 150px;
+    width: 360px;
+    height: 480px;
     display: block;
 }
 
 #txtSave {
     width: 100%;
     position: absolute;
-    top: 530px;
+    top: 630px;
     text-align: center;
     font-size: 13px;
     color: #FBFEFF;
@@ -325,7 +325,7 @@ p {
 
 #divRetry {
     position: absolute;
-    top: 560px;
+    top: 660px;
     padding-left: 20px;
     padding-right: 20px;
     border-radius: 8px;

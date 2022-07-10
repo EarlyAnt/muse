@@ -103,7 +103,6 @@ p {
 
     display: flex;
     justify-content: center;
-
 }
 
 .divStyleItems {
@@ -148,15 +147,6 @@ p {
     margin-top: -15%;
 }
 
-.swiper-container {
-    width: 100%;
-    height: 100%;
-}
-
-.swiper-slide {
-    overflow: hidden;
-}
-
 .title3 {
     margin-top: 1vh;
     padding-left: 15px;
@@ -176,10 +166,13 @@ p {
     overflow: hidden;
 }
 
+.swiper-slide {
+    overflow: hidden;
+}
+
 .blank {
     height: 30px;
 }
-
 
 .page1_bottom {
     /* background-color: rgb(86, 216, 74); */

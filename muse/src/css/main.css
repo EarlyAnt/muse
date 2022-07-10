@@ -15,7 +15,7 @@ body {
 
 input {
     appearance: none;
-    height: 36px;
+    height: 50px;
     line-height: 35px;
     border-radius: 8px;
     border: 0px solid #fff;
@@ -69,66 +69,93 @@ p {
 
 /*===    page1    ===*/
 #divPage1 {
-    /* position: absolute;
-    left: 20px;
-    right: 20px; */
+    /* background-color: bisque; */
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+
+    display: flex;
+    flex-direction: column;
 }
 
-#divPage1Top {
+.divPage1Top {
+    /* background-color: rgb(230, 123, 123); */
+    width: 100%;
+    height: 140px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.divInput {
+    /* background-color: rgb(85, 141, 224); */
+    height: 110px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin-top: 30px;
     padding-left: 20px;
     padding-right: 20px;
-}
-
-#divPage1Bottom {
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-#divInput {
-    padding-top: 0px;
-}
-
-#divTip {
-    margin-top: -10px;
-    padding-left: 10px;
-    padding-right: 10px;
-
-    height: 36px;
-    color: rgb(212, 212, 212);
-    font-size: 13px;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
 }
 
 #txtInput {
-    width: 90%;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#divTip {
+    /* background-color: lightgreen; */
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.divPage1Middle {
+    /* background-color: lightblue; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    padding: 0px;
+    margin: 0px;
 }
 
 #title2 {
-    margin-top: 0px;
-}
-
-#title3 {
-    margin-top: 30px;
+    margin-top: 20px;
+    padding-left: 15px;
 }
 
 #divStyle {
-    margin-top: -30px;
+    /* background-color: rgb(18, 199, 139); */
+    width: 100%;
+    height: 300px;
+
     display: flex;
     justify-content: center;
 }
 
 .divStyleItems {
-    width: 310px;
-    height: 250px;
+    /* background-color: cornflowerblue; */
+    width: 88vw;
     display: flex;
     flex-wrap: wrap;
 }
 
 .divStyleBorder {
+    /* background-color: rgb(247, 213, 220); */
     width: 33.33%;
-    height: 15%;
-    box-sizing: border-box;
-    text-align: center;
+    height: 50%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    justify-items: end;
 }
 
 .imgStyle {
@@ -139,25 +166,33 @@ p {
 
 .imgStyleChecked {
     position: relative;
-    top: 30px;
-    right: -33px;
+    top: -70%;
+    left: 70%;
+
     width: 20px;
     height: 20px;
     visibility: hidden;
 }
 
 .lblStyle {
-    position: relative;
-    top: -15px;
-    color: #FBFEFF;
     font-size: 12px;
+    color: #FBFEFF;
+    text-align: center;
+
+    margin-top: -15%;
+}
+
+#title3 {
+    margin-top: 1vh;
+    padding-left: 15px;
 }
 
 #divDisplay {
-    margin-top: 10px;
+    margin-top: -10px;
 }
 
 .swiper-container {
+    /* background-color: yellowgreen; */
     width: 100%;
     height: 100%;
 }
@@ -166,13 +201,29 @@ p {
     overflow: hidden;
 }
 
+.blank {
+    height: 30px;
+}
+
+.divPage1Bottom {
+    /* background-color: rgb(86, 216, 74); */
+    height: 140px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+    padding-left: 8vw;
+    padding-right: 8vw;
+}
+
 #btnCreate {
     margin-top: 20px;
     width: 100%;
 }
 
 #txtVersion {
-    margin-top: 3px;
+    margin-top: 8px;
     font-size: 13px;
     text-align: center;
     color: rgba(255, 255, 255, 0.2);
@@ -307,33 +358,43 @@ p {
 
 /*===    dialog    ===*/
 #divDialog {
-    width: 100%;
-    height: 100%;
-}
+    background-color: rgba(0, 0, 0, 0.75);
 
-.divPopup {
-    display: flex;
-    justify-content: center;
-    /* background-color: rgba(0, 0, 0, 0.75); */
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 2;
+
+    text-align: center;
 }
 
 .imgPopup {
-    position: absolute;
-    top: 266px;
     width: 300px;
     height: 208px;
+
+    position: absolute;
+    top: 300px;
+    left: 11vw;
 }
 
 #txtRemark {
+    /* background-color: darkmagenta; */
+
+    width: 100%;
     position: absolute;
-    top: 262px;
+    top: 292px;
     color: #8F8F8F;
     font-size: 14px;
+    text-align: center;
 }
 
 #divPromptEdit {
-    position: relative;
-    top: 310px;
+    /* background-color: darkorange; */
+    position: absolute;
+    top: 341px;
+    left: 66px;
 }
 
 #txtPromptEdit {
@@ -347,17 +408,19 @@ p {
 }
 
 #btnCancel {
+    /* background-color: darkmagenta; */
     position: absolute;
-    top: 423px;
-    left: 100px;
+    top: 454px;
+    left: 110px;
     color: #000000;
     font-weight: bold;
 }
 
 #btnConfirm {
+    /* background-color: darkmagenta; */
     position: absolute;
-    top: 423px;
-    right: 100px;
+    top: 454px;
+    right: 120px;
     color: #576A94;
     font-weight: bold;
 }

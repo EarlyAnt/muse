@@ -58,9 +58,6 @@
         //根据当前窗口的可视区域缩放PIXI App画布尺寸
         app.view.style.transformOrigin = '0% 0%';
         app.view.style.transform = "scale(" + sysInfo.scale + ")";
-        //将PIXI 画布添加到body中
-        document.body.appendChild(app.view);
-        // app.ticker.add(loop);
 
         //加载所有静态资源
         loadAllAssets([

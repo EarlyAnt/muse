@@ -15,7 +15,7 @@ body {
 
 input {
     appearance: none;
-    height: 50px;
+    height: 30pt;
     line-height: 35px;
     border-radius: 8px;
     border: 0px solid #fff;
@@ -84,7 +84,7 @@ p {
 .divPage1Top {
     /* background-color: rgb(230, 123, 123); */
     width: 100%;
-    height: 140px;
+    height: 80pt;
 
     display: flex;
     flex-direction: column;
@@ -93,26 +93,26 @@ p {
 
 .divInput {
     /* background-color: rgb(85, 141, 224); */
-    height: 110px;
+    height: 75pt;
 
     display: flex;
     flex-direction: column;
     justify-content: start;
-    margin-top: 30px;
-    padding-left: 20px;
-    padding-right: 20px;
+    margin-top: 10pt;
+    padding-left: 10pt;
+    padding-right: 10pt;
 }
 
 #txtInput {
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: 0pt;
+    margin-right: 0pt;
 }
 
 #divTip {
     /* background-color: lightgreen; */
-    margin-top: 10px;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-top: 5pt;
+    margin-left: 5pt;
+    margin-right: 5pt;
 }
 
 .divPage1Middle {
@@ -127,14 +127,14 @@ p {
 }
 
 #title2 {
-    margin-top: 20px;
+    margin-top: 4vh;
     padding-left: 15px;
 }
 
 #divStyle {
     /* background-color: rgb(18, 199, 139); */
     width: 100%;
-    height: 300px;
+    height: 200pt;
 
     display: flex;
     justify-content: center;
@@ -142,7 +142,7 @@ p {
 
 .divStyleItems {
     /* background-color: cornflowerblue; */
-    width: 88vw;
+    width: 250pt;
     display: flex;
     flex-wrap: wrap;
 }
@@ -166,7 +166,7 @@ p {
 
 .imgStyleChecked {
     position: relative;
-    top: -70%;
+    top: -73%;
     left: 70%;
 
     width: 20px;
@@ -183,12 +183,12 @@ p {
 }
 
 #title3 {
-    margin-top: 1vh;
+    margin-top: 4vh;
     padding-left: 15px;
 }
 
 #divDisplay {
-    margin-top: -10px;
+    margin-top: -10pt;
 }
 
 .swiper-container {
@@ -202,12 +202,12 @@ p {
 }
 
 .blank {
-    height: 30px;
+    height: 30pt;
 }
 
 .divPage1Bottom {
     /* background-color: rgb(86, 216, 74); */
-    height: 140px;
+    height: 140pt;
 
     display: flex;
     flex-direction: column;
@@ -218,7 +218,7 @@ p {
 }
 
 #btnCreate {
-    margin-top: 20px;
+    margin-top: 5pt;
     width: 100%;
 }
 

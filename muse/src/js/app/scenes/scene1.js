@@ -6,7 +6,7 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
 
     let INITIALIZING = "正在初始化...";
     let MODEL_LOADING = "正在加载模型...";
-    let MODEL_CALCULATING = "正在匹配参数...";
+    let MODEL_CALCULATING = "模型计算中...";
     let waitTextStarted = false;
 
     const START_TASK = "即将开始生成图片...";

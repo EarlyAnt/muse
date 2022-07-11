@@ -32,6 +32,11 @@
     //资源加载管理器
     const loader = PIXI.Loader.shared;
     const sysInfo = $.getSysInfo();
+    var scale = document.body.clientHeight / 844;
+    var scaleValue = "scale3d(" + scale + "," + scale + ",1)";
+    console.log("scaleValue: " + scaleValue);
+    document.getElementById("divRoot").style.transform = scaleValue;
+    
     //主内容容器
     let mainContainer;
     let overlay;

@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>div页面布局</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="./css/div_layout.css" />
+    <link rel="stylesheet" href="../css/swiper.min.css">
+
+    <script src="../js/libs/swiper.min.js"></script>
+</head>
+
+<body>
+    <div class="page1">
+        <div class="page1_top">
+            <div class="divInput">
+                <input type="text" class="txtInput" name="fname" placeholder="输入任何内容">
+                <div class="divTip">
+                    <p class="txtLabel" style="display:inline">例句：</p>
+                    <p class="txtTip" style="display:inline">在冬日的早晨，满天飞雪，树上、屋顶上都落满了雪花，世界变得一片洁白。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page1_middle">
+            <p class="title2">风格</p>
+            <div class="divStyle">
+                <div class="divStyleItems">
+                    <div class="divStyleBorder">
+                        <img id="style0" name="0" class="imgStyle" src="../assets/images/styles/00.png" />
+                        <img id="style0_checked" class="imgStyleChecked" src="../assets/images/page/checked.png" />
+                        <p class="lblStyle">无</p>
+                    </div>
+                    <div class="divStyleBorder">
+                        <img id="style1" name="1" class="imgStyle" src="../assets/images/styles/01.png" />
+                        <img id="style1_checked" class="imgStyleChecked" src="../assets/images/page/checked.png" />
+                        <p class="lblStyle">中国风</p>
+                    </div>
+                    <div class="divStyleBorder">
+                        <img id="style2" name="2" class="imgStyle" src="../assets/images/styles/02.png" />
+                        <img id="style2_checked" class="imgStyleChecked" src="../assets/images/page/checked.png" />
+                        <p class="lblStyle">3D渲染</p>
+                    </div>
+                    <div class="divStyleBorder">
+                        <img id="style3" name="3" class="imgStyle" src="../assets/images/styles/03.png" />
+                        <img id="style3_checked" class="imgStyleChecked" src="../assets/images/page/checked.png" />
+                        <p class="lblStyle">超现实主义</p>
+                    </div>
+                    <div class="divStyleBorder">
+                        <img id="style4" name="4" class="imgStyle" src="../assets/images/styles/04.png" />
+                        <img id="style4_checked" class="imgStyleChecked" src="../assets/images/page/checked.png" />
+                        <p class="lblStyle">CG幻想</p>
+                    </div>
+                    <div class="divStyleBorder">
+                        <img id="style5" name="5" class="imgStyle" src="../assets/images/styles/05.png" />
+                        <img id="style5_checked" class="imgStyleChecked" src="../assets/images/page/checked.png" />
+                        <p class="lblStyle">现代插画</p>
+                    </div>
+                </div>
+            </div>
+            <p class="title3">作品展示</p>
+            <div class="divDisplay">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="swiper-zoom-container">
+                                <img src="../assets/images/works/01.png">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="swiper-zoom-container">
+                                <img src="../assets/images/works/02.png">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="swiper-zoom-container">
+                                <img src="../assets/images/works/03.png">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="swiper-zoom-container">
+                                <img src="../assets/images/works/05.png">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="swiper-zoom-container">
+                                <img src="../assets/images/works/06.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="blank"></div>
+        </div>
+        <div class="page1_bottom">
+            <img id="btnCreate" class="btnCreate" src="../assets/images/button/create_disable.png">
+            <p class="txtVersion">2022-07-08 14:00</p>
+        </div>
+    </div>
+    <div id="dialog" class="dialog" style="display:none;">
+        <div class="form">
+            <p class="confirm"></p>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.getElementById("btnCreate").addEventListener("click", () => {
+            document.getElementById("dialog").style.display = "";
+        });
+
+        document.getElementById("dialog").addEventListener("click", () => {
+            document.getElementById("dialog").style.display = "none";
+        });
+
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3,
+            spaceBetween: 6,
+            // autoplay: true,
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
+</body>
+
+</html>

@@ -32,19 +32,15 @@
     //资源加载管理器
     const loader = PIXI.Loader.shared;
     const sysInfo = $.getSysInfo();
-    var scale = document.body.clientHeight / 844;
-    var scaleValue = "scale3d(" + scale + "," + scale + ",1)";
-    console.log("scaleValue: " + scaleValue);
-    document.getElementById("divRoot").style.transform = scaleValue;
-    
+
     //主内容容器
     let mainContainer;
     let overlay;
     let divLoading, divPage1, txtPrompt, txtInput, txtTip, btnCreate, dialog;
     const PLACE_HOLDER = "输入任何内容";
-    var promptList = ["在冬日的早晨，满天飞雪，树上、屋顶上都落满了雪花，世界变得一片洁白。",
-        "一束光照在海底的梦幻宫殿上。",
-        "在夜空中，柔和的月光照耀着平静的湖面，湖边有一个宁静的小屋。"]
+    var promptList = ["例句：在冬日的早晨，满天飞雪，树上、屋顶上都落满了雪花，世界变得一片洁白。",
+        "例句：一束光照在海底的梦幻宫殿上。",
+        "例句：在夜空中，柔和的月光照耀着平静的湖面，湖边有一个宁静的小屋。"]
     var promptIndex = 0;
     var style = "";
     var canCreateImage = false;
@@ -207,7 +203,7 @@
     //prompt提示词淡入淡出效果
     function doFade(opacityFrom, opacityTo, callback) {
         // console.log("doFade->from: " + opacityFrom + ", to: " + opacityTo);
-        var divTip = document.getElementById("divTip");
+        var divTip = document.getElementById("txtTip");
         // console.log(txtTip);
         var fadeDuration = opacityTo == 1 ? 400 : 1000;
         tween = new TWEEN.Tween({ opacity: opacityFrom });

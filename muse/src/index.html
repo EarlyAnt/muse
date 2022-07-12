@@ -11,6 +11,7 @@
     <script src="./js/libs/vconsole.min.js"></script>
 
     <script src="./js/app/init.js"></script>
+    <script src="./js/libs/html5.js"></script>
     <script type="text/javascript">
         var vConsole = new VConsole();
     </script>
@@ -25,85 +26,91 @@
             <div class="divPage1Top">
                 <div class="divInput">
                     <input type="text" id="txtInput" name="fname" placeholder="输入任何内容">
-                    <div id="divTip">
-                        <p id="txtLabel" style="display:inline">例句：</p>
-                        <p id="txtTip" style="display:inline">在冬日的早晨，满天飞雪，树上、屋顶上都落满了雪花，世界变得一片洁白。</p>
-                    </div>
+                    <p id="txtTip">例句：在冬日的早晨，满天飞雪，树上、屋顶上都落满了雪花，世界变得一片洁白。</p>
                 </div>
             </div>
             <div class="divPage1Middle">
-                <p id="title2">风格</p>
-                <div id="divStyle">
-                    <div class="divStyleItems">
-                        <div class="divStyleBorder">
-                            <img id="style0" name="0" class="imgStyle" src="./assets/images/styles/00.png" />
-                            <img id="style0_checked" class="imgStyleChecked" src="./assets/images/page/checked.png" />
-                            <p class="lblStyle">无</p>
-                        </div>
-                        <div class="divStyleBorder">
-                            <img id="style1" name="1" class="imgStyle" src="./assets/images/styles/01.png" />
-                            <img id="style1_checked" class="imgStyleChecked" src="./assets/images/page/checked.png" />
-                            <p class="lblStyle">中国风</p>
-                        </div>
-                        <div class="divStyleBorder">
-                            <img id="style2" name="2" class="imgStyle" src="./assets/images/styles/02.png" />
-                            <img id="style2_checked" class="imgStyleChecked" src="./assets/images/page/checked.png" />
-                            <p class="lblStyle">3D渲染</p>
-                        </div>
-                        <div class="divStyleBorder">
-                            <img id="style3" name="3" class="imgStyle" src="./assets/images/styles/03.png" />
-                            <img id="style3_checked" class="imgStyleChecked" src="./assets/images/page/checked.png" />
-                            <p class="lblStyle">超现实主义</p>
-                        </div>
-                        <div class="divStyleBorder">
-                            <img id="style4" name="4" class="imgStyle" src="./assets/images/styles/04.png" />
-                            <img id="style4_checked" class="imgStyleChecked" src="./assets/images/page/checked.png" />
-                            <p class="lblStyle">CG幻想</p>
-                        </div>
-                        <div class="divStyleBorder">
-                            <img id="style5" name="5" class="imgStyle" src="./assets/images/styles/05.png" />
-                            <img id="style5_checked" class="imgStyleChecked" src="./assets/images/page/checked.png" />
-                            <p class="lblStyle">现代插画</p>
+                <div class="divStyleRoot">
+                    <p id="title2">风格</p>
+                    <div id="divStyle">
+                        <div class="divStyleItems">
+                            <div class="divStyleBorder">
+                                <img id="style0" name="0" class="imgStyle" src="./assets/images/styles/00.png" />
+                                <img id="style0_checked" class="imgStyleChecked"
+                                    src="./assets/images/page/checked.png" />
+                                <p class="lblStyle">无</p>
+                            </div>
+                            <div class="divStyleBorder">
+                                <img id="style1" name="1" class="imgStyle" src="./assets/images/styles/01.png" />
+                                <img id="style1_checked" class="imgStyleChecked"
+                                    src="./assets/images/page/checked.png" />
+                                <p class="lblStyle">中国风</p>
+                            </div>
+                            <div class="divStyleBorder">
+                                <img id="style2" name="2" class="imgStyle" src="./assets/images/styles/02.png" />
+                                <img id="style2_checked" class="imgStyleChecked"
+                                    src="./assets/images/page/checked.png" />
+                                <p class="lblStyle">3D渲染</p>
+                            </div>
+                            <div class="divStyleBorder">
+                                <img id="style3" name="3" class="imgStyle" src="./assets/images/styles/03.png" />
+                                <img id="style3_checked" class="imgStyleChecked"
+                                    src="./assets/images/page/checked.png" />
+                                <p class="lblStyle">超现实主义</p>
+                            </div>
+                            <div class="divStyleBorder">
+                                <img id="style4" name="4" class="imgStyle" src="./assets/images/styles/04.png" />
+                                <img id="style4_checked" class="imgStyleChecked"
+                                    src="./assets/images/page/checked.png" />
+                                <p class="lblStyle">CG幻想</p>
+                            </div>
+                            <div class="divStyleBorder">
+                                <img id="style5" name="5" class="imgStyle" src="./assets/images/styles/05.png" />
+                                <img id="style5_checked" class="imgStyleChecked"
+                                    src="./assets/images/page/checked.png" />
+                                <p class="lblStyle">现代插画</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <p id="title3">作品展示</p>
-                <div id="divDisplay">
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="swiper-zoom-container">
-                                    <img src="./assets/images/works/01.png">
+                <div class="divDisplayRoot">
+                    <p id="title3">作品展示</p>
+                    <div id="divDisplay">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img src="./assets/images/works/01.png">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="swiper-zoom-container">
-                                    <img src="./assets/images/works/02.png">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img src="./assets/images/works/02.png">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="swiper-zoom-container">
-                                    <img src="./assets/images/works/03.png">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img src="./assets/images/works/03.png">
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- <div class="swiper-slide">
+                                <!-- <div class="swiper-slide">
                             <div class="swiper-zoom-container">
                                 <img src="./assets/images/works/04.png">
                             </div>
                         </div> -->
-                            <div class="swiper-slide">
-                                <div class="swiper-zoom-container">
-                                    <img src="./assets/images/works/05.png">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img src="./assets/images/works/05.png">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="swiper-zoom-container">
-                                    <img src="./assets/images/works/06.png">
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img src="./assets/images/works/06.png">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="blank"></div>
                 </div>
             </div>
             <div class="divPage1Bottom">

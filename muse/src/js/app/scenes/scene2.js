@@ -14,7 +14,18 @@ this.scene2 = function (taskId, imagePath) {
 
     let txtSetting = document.getElementById("txtSetting");
     let imgComplete = document.getElementById("imgComplete");
+
+    let settingRepeatTimes = 0;
+    let imageRepeatTimes = 0;
+    imgComplete.onerror = () => {
+        console.log("scene2.loadImage->repeat times: " + imageRepeatTimes);
+        if (imageRepeatTimes < 3) {
+            setTimeout(() => { imgComplete.src = imagePath; }, 1000);
+        }
+        imageRepeatTimes += 1;
+    };
     imgComplete.src = imagePath;
+
     COOKIE.setCookie("taskId", "", -1);
     COOKIE.setCookie("translation", "", -1);
 
@@ -49,6 +60,12 @@ this.scene2 = function (taskId, imagePath) {
         } catch (e) {
             console.log("scene2.getSetting->error: ");
             console.log(e);
+
+            if (settingRepeatTimes < 3) {
+                console.log("scene2.getSetting->repeat times: " + settingRepeatTimes);
+                setTimeout(getSetting, 1000);
+            }
+            settingRepeatTimes += 1;
         }
     }
 

@@ -187,8 +187,8 @@ p {
 
 .imgStyleChecked {
     position: relative;
-    top: -70%;
-    left: 70%;
+    top: -68%;
+    left: 68%;
 
     width: 20px;
     height: 20px;
@@ -370,7 +370,7 @@ p {
 
 #txtRetry {
     position: relative;
-    top: 35px;
+    top: 37px;
     color: #0C0F18;
     text-align: center;
     font-size: 16px;

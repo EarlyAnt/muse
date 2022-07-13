@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>菜鸟教程(runoob.com)</title>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+	<script>
+		function onError(event) {
+			console.log("load image error");
+			console.log(event);
+			alert('图片不能被加载。')
+		}
+	</script>
+</head>
+
+<body>
+	<img src="image.gif" onerror="onError(event)" />
+	<p>加载图片时，如果图片不存在，则会触发onerror事件。</p>
+</body>
+
+</html>

@@ -35,21 +35,21 @@ const md5Js = function () {
     console.log("start js to md5 + + + + +");
 
     gulp.src(['./release_temp/js/app/*.js', '!./release_temp/js/app/main.js', '!./release_temp/js/app/init.js'])
-        .pipe(rev())  // 对JS文件MD5
+        .pipe(rev())
         .pipe(gulp.dest('./release/js/app'))
-        .pipe(rev.manifest()) //生成映射文件存放在rev/js目录
+        .pipe(rev.manifest())
         .pipe(gulp.dest('release/js/app'));
 
     gulp.src('./release_temp/js/app/scenes/*.js')
-        .pipe(rev())  // 对JS文件MD5
+        .pipe(rev())
         .pipe(gulp.dest('./release/js/app/scenes'))
-        .pipe(rev.manifest()) //生成映射文件存放在rev/js目录
+        .pipe(rev.manifest())
         .pipe(gulp.dest('release/js/app/scenes'));
 
     return gulp.src('./release_temp/js/libs/*.js')
-        .pipe(rev())  // 对JS文件MD5
+        .pipe(rev())
         .pipe(gulp.dest('./release/js/libs'))
-        .pipe(rev.manifest()) //生成映射文件存放在rev/js目录
+        .pipe(rev.manifest())
         .pipe(gulp.dest('release/js/libs'));
 }
 //替换main.js脚本中其他js脚本的文件名
@@ -67,9 +67,9 @@ const md5MainJs = function () {
     console.log("start md5 main js + + + + +");
 
     return gulp.src('./release_temp/js/app/main.js')
-        .pipe(rev())  // 对JS文件MD5
+        .pipe(rev())
         .pipe(gulp.dest('./release/js/app'))
-        .pipe(rev.manifest()) //生成映射文件存放在rev/js目录
+        .pipe(rev.manifest())
         .pipe(gulp.dest('release/js/app'));
 }
 //替换init.js脚本中其他js脚本的文件名
@@ -87,10 +87,20 @@ const md5InitJs = function () {
     console.log("start md5 init js + + + + +");
 
     return gulp.src('./release_temp/js/app/init.js')
-        .pipe(rev())  // 对JS文件MD5
+        .pipe(rev())
         .pipe(gulp.dest('./release/js/app'))
-        .pipe(rev.manifest()) //生成映射文件存放在rev/js目录
+        .pipe(rev.manifest())
         .pipe(gulp.dest('release/js/app'));
+}
+//所有css文件加上md5
+const md5Css = function () {
+    console.log("start md5 css + + + + +");
+
+    return gulp.src('./src/css/*.css')
+        .pipe(rev())
+        .pipe(gulp.dest('./release/css'))
+        .pipe(rev.manifest())
+        .pipe(gulp.dest('release/css'));
 }
 //替换html脚本中所有js脚本的文件名
 const replaceHtml = function () {
@@ -128,6 +138,7 @@ module.exports.default = gulp.series(
     initialize,
     uglifyJs,
     md5Js,
+    md5Css,
     replaceMainJs,
     replaceInitJs,
     md5MainJs,
@@ -141,6 +152,7 @@ module.exports.release = gulp.series(
     initialize,
     uglifyJs,
     md5Js,
+    md5Css,
     replaceMainJs,
     replaceInitJs,
     md5MainJs,

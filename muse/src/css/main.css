@@ -15,7 +15,6 @@ body {
 
 input {
     appearance: none;
-    height: 30pt;
     line-height: 35px;
     border-radius: 8px;
     border: 0px solid #fff;
@@ -90,7 +89,7 @@ p {
 .divPage1Top {
     /* background-color: rgb(230, 123, 123); */
     width: 100%;
-    height: 3.6rem;
+    height: 3.0rem;
 
     display: flex;
     flex-direction: column;
@@ -104,13 +103,13 @@ p {
     flex-direction: column;
     justify-content: start;
 
-    margin-top: 0.79rem;
+    margin-top: 0.5rem;
     padding-left: 10pt;
     padding-right: 10pt;
 }
 
 #txtInput {
-    height: 1.2rem;
+    height: 1.0rem;
     margin-left: 0pt;
     margin-right: 0pt;
 }
@@ -118,7 +117,7 @@ p {
 #txtTip {
     /* background-color: lightgreen; */
     height: 0.75rem;
-    line-height: 0.7rem;
+    line-height: 0.55rem;
 
     margin-top: 0.2rem;
     margin-left: 5pt;
@@ -131,7 +130,7 @@ p {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     flex: 1;
 
     padding: 0px;
@@ -144,11 +143,11 @@ p {
 
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 #title2 {
-    margin-top: 0rem;
+    margin-top: 0.0rem;
     height: 0.1rem;
     padding-left: 15px;
 }
@@ -156,7 +155,7 @@ p {
 #divStyle {
     /* background-color: rgb(18, 199, 139); */
     width: 100%;
-    height: 7.0rem;
+    height: 6.5rem;
 
     display: flex;
     justify-content: center;
@@ -164,7 +163,7 @@ p {
 
 .divStyleItems {
     /* background-color: cornflowerblue; */
-    width: 250pt;
+    width: 7.5rem;
     display: flex;
     flex-wrap: wrap;
 }
@@ -188,7 +187,7 @@ p {
 
 .imgStyleChecked {
     position: relative;
-    top: -73%;
+    top: -70%;
     left: 70%;
 
     width: 20px;
@@ -206,11 +205,11 @@ p {
 
 .divDisplayRoot {
     /* background-color: palegreen; */
-    height: 4rem;
+    height: 3.5rem;
 
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 #title3 {
@@ -225,8 +224,7 @@ p {
 
 .swiper-container {
     /* background-color: yellowgreen; */
-    width: 100%;
-    height: 100%;
+    height: 2.6rem;
 }
 
 .swiper-slide {
@@ -277,7 +275,7 @@ p {
     right: 20px;
     font-size: 16px;
     color: #FFFFFF;
-    display: block;
+    display: none;
 }
 
 #imgProcedure {

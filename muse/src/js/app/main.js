@@ -229,8 +229,11 @@
     }
     //prompt提示词填充输入框
     function fillPrompt() {
-        if (!txtInput.value.includes(txtTip.innerText)) {
-            txtInput.value += txtTip.innerText.replace('例句：', '');
+        var tip = txtTip.innerText.replace('例句：', '');
+        if (!txtInput.value.includes(tip)) {
+            txtInput.value += tip;
+        } else {
+            console.log("main.fillPrompt->prompt exsited: " + tip);
         }
 
         setButtonStatus(txtInput.value);

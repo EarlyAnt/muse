@@ -250,9 +250,7 @@
     }
     //显示编辑对话框
     function showPopup() {
-        divPage1.style.display = "none";
         dialog.style.display = "";
-        // dialog.style.zIndex = 2;
 
         txtPrompt.focus();
         if (txtInput.innerText != PLACE_HOLDER) {
@@ -263,7 +261,6 @@
     }
     //隐藏编辑对话框
     function hidePopup(confirm) {
-        divPage1.style.display = "";
         dialog.style.display = "none";
 
         if (confirm) {

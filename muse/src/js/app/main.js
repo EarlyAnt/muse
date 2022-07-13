@@ -230,7 +230,7 @@
     //prompt提示词填充输入框
     function fillPrompt() {
         if (!txtInput.value.includes(txtTip.innerText)) {
-            txtInput.value += txtTip.innerText;
+            txtInput.value += txtTip.innerText.replace('例句：', '');
         }
 
         setButtonStatus(txtInput.value);
@@ -281,7 +281,7 @@
         }
 
         startedCreateImage = true;
-        var prompt = txtInput.value.replace('，', ',').replace('。', ',');
+        var prompt = txtInput.value.replace('，', ',').replace('。', ',').replace('例句：', '').replace('：', '');
         console.log("main.onLoad->prompt: " + prompt + ", style" + style);
         var response = await SERVER.callApi(params = { path: "make_image_v1?text=" + prompt + "&style=" + style });
         console.log("main.onLoad->taskId: " + response.taskId + ", prompt_tanslation: " + response.prompt_tanslation);

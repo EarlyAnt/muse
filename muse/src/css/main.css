@@ -263,26 +263,31 @@ p {
 
 /*===    page2    ===*/
 #divPage2 {
+    /* background-color: tan; */
     height: 100%;
-    display: flex;
-    justify-content: center;
+    padding: 0px, 0px;
+    margin: 0px, 0px;
+    text-align: center;
 }
 
 #prompt_tanslation {
-    position: absolute;
-    top: 5px;
-    left: 20px;
-    right: 20px;
+    /* background-color: burlywood; */
+    height: 2.5rem;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    text-align: start;
     font-size: 16px;
     color: #FFFFFF;
     display: none;
 }
 
 #imgProcedure {
-    padding-top: 150px;
-    width: 360px;
-    height: 480px;
-    display: block;
+    /* background-color: chartreuse; */
+    width: 9rem;
+    height: 12rem;
+
+    margin-top: 3rem;
 
     user-select: none;
     pointer-events: none;
@@ -291,8 +296,7 @@ p {
 }
 
 #txtProgress {
-    position: absolute;
-    top: 630px;
+    /* top: 16.0rem; */
     font-size: 16px;
     color: #FFFFFF;
     text-align: center;
@@ -313,6 +317,7 @@ p {
 }
 
 #txtShare {
+    /* background-color: darkmagenta; */
     position: absolute;
     left: 0px;
     right: 50px;
@@ -332,17 +337,19 @@ p {
 
 #imgComplete,
 #txtSetting {
+    /* background-color: aqua; */
     position: absolute;
-    top: 150px;
-    width: 360px;
-    height: 480px;
+    margin-top: 3rem;
+    width: 9rem;
+    height: 12rem;
     display: block;
 }
 
 #txtSave {
+    /* background-color: coral; */
     width: 100%;
     position: absolute;
-    top: 630px;
+    top: 14.8rem;
     text-align: center;
     font-size: 13px;
     color: #FBFEFF;
@@ -350,7 +357,7 @@ p {
 
 #divRetry {
     position: absolute;
-    top: 660px;
+    top: 15rem;
     padding-left: 20px;
     padding-right: 20px;
     border-radius: 8px;

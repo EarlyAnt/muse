@@ -106,13 +106,18 @@ const md5Css = function () {
 const replaceHtml = function () {
     console.log("start replace html + + + + +");
 
-    del(['./release_temp'], { force: true })
-
     return gulp.src(['release/**/*.json', './src/**/index.html'])
         .pipe(revCollector({
             replaceReved: true,//允许替换, 已经被替换过的文件
         }))
         .pipe(gulp.dest('./release'));
+}
+//删除临时目录和文件
+const deleteTemp = function () {
+    console.log("start delete temp folder and file + + + + +");
+
+    del(['./release_temp'], { force: true })
+    return del(['./release/**/*.json'])
 }
 //拷贝资源文件(css及image)
 const copyAssets = function () {
@@ -142,7 +147,8 @@ module.exports.default = gulp.series(
     replaceInitJs,
     md5InitJs,
     replaceHtml,
-    copyAssets
+    copyAssets,
+    deleteTemp
 );
 //打包发布
 module.exports.release = gulp.series(
@@ -157,7 +163,8 @@ module.exports.release = gulp.series(
     md5InitJs,
     replaceHtml,
     copyAssets,
-    compressAssets
+    compressAssets,
+    deleteTemp
 );
 //压缩图片
 module.exports.compress = compressAssets;

@@ -17,9 +17,10 @@ this.scene2 = function (taskId, imagePath) {
 
     let settingRepeatTimes = 0;
     let imageRepeatTimes = 0;
+    let repeatTimesLimit = 10;
     imgComplete.onerror = () => {
         console.log("scene2.loadImage->repeat times: " + imageRepeatTimes);
-        if (imageRepeatTimes < 3) {
+        if (imageRepeatTimes < repeatTimesLimit) {
             setTimeout(() => { imgComplete.src = imagePath; }, 1000);
         }
         imageRepeatTimes += 1;
@@ -61,7 +62,7 @@ this.scene2 = function (taskId, imagePath) {
             console.log("scene2.getSetting->error: ");
             console.log(e);
 
-            if (settingRepeatTimes < 3) {
+            if (settingRepeatTimes < repeatTimesLimit) {
                 console.log("scene2.getSetting->repeat times: " + settingRepeatTimes);
                 setTimeout(getSetting, 1000);
             }

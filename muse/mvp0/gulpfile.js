@@ -118,9 +118,6 @@ const replaceHtml = function () {
 const copyAssets = function () {
     console.log("start copy assets + + + + +");
 
-    src('./src/css/**')
-        .pipe(dest('./release/css'));
-
     return src('./src/assets/**')
         .pipe(dest('./release/assets'));
 }

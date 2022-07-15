@@ -87,7 +87,18 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
             console.log("----query progress response----");
             console.log(response);
 
-            if (response.progress == 0) {
+            if (response.progress == -1) {
+                clearInterval(timerWait);
+                clearInterval(timerTask);
+                txtProgress.innerText = "服务器异常，请稍后重试！";
+                txtProgress.style.color = "#F00";
+                setTimeout(() => {
+                    console.log("scene1.refresh->progress is -1, reload");
+                    COOKIE.setCookie("taskId", "", -1);
+                    COOKIE.setCookie("translation", "", -1);
+                    location.reload();
+                }, 2000);
+            } else if (response.progress == 0) {
                 var queueNumber = response.queue_num;
                 if (queueNumber == 0) {
                     showWaitText();

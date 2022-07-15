@@ -18,6 +18,9 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
     let clickTimes = 0;
     let taskIdInCookie = COOKIE.getCookie("taskId");
 
+    let beginTime = new Date();
+    const TIME_LIMIT = 1800;
+
     let scene = new PIXI.Container();
     mainContainer.addChild(scene);
     // overlay.visible = true;
@@ -36,10 +39,7 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
         clickTimes += 1;
         console.log("scene1->clickTimes: " + clickTimes);
         if (clickTimes >= 5) {
-            COOKIE.setCookie("taskId", "", -1);
-            COOKIE.setCookie("translation", "", -1);
-            console.log("scene1->clear cookie");
-            location.reload();
+            reload();
             return;
         }
     });
@@ -88,17 +88,15 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
             console.log(response);
 
             if (response.progress == -1) {
-                clearInterval(timerWait);
-                clearInterval(timerTask);
-                txtProgress.innerText = "服务器异常，请稍后重试！";
-                txtProgress.style.color = "#F00";
-                setTimeout(() => {
-                    console.log("scene1.refresh->progress is -1, reload");
-                    COOKIE.setCookie("taskId", "", -1);
-                    COOKIE.setCookie("translation", "", -1);
-                    location.reload();
-                }, 2000);
+                reload("服务器异常，请稍后重试！", true);
             } else if (response.progress == 0) {
+                var waitTime = getWaitTime();
+                console.log("scene1.refresh->waitTime: " + waitTime);
+                if (waitTime > TIME_LIMIT) {
+                    reload("服务器繁忙，等待时间太久，请稍后再试！");
+                    return;
+                }
+
                 var queueNumber = response.queue_num;
                 if (queueNumber == 0) {
                     showWaitText();
@@ -126,5 +124,25 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
             console.log("scene1.refresh->error: ");
             console.log(e);
         }
+    }
+
+    function getWaitTime() {
+        var endTime = new Date();
+        var span = endTime - beginTime;
+        return span / 1000;
+    }
+
+    function reload(tip = "", errorColor = false) {
+        clearInterval(timerWait);
+        clearInterval(timerTask);
+        txtProgress.innerText = tip;
+        if (errorColor)
+            txtProgress.style.color = "#F00";
+        setTimeout(() => {
+            COOKIE.setCookie("taskId", "", -1);
+            COOKIE.setCookie("translation", "", -1);
+            console.log("scene1.reload->clear cookie");
+            location.reload();
+        }, 3000);
     }
 }

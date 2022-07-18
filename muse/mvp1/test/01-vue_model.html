@@ -1,0 +1,62 @@
+<html>
+
+<head>
+    <title>vue 数据绑定</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <style>
+        #app {
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+
+        #button {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-bind:style="style1">
+        <p>{{name}}</p>
+        <h4 v-text="name"></h4>
+        <h5 v-html="decoration"></h5>
+        <div id="button">
+            <button @click="changeStyle">改变样式</button>
+            <button @click="resetStyle">还原样式</button>
+        </div>
+
+        <input v-model="name" style="display: block;" />
+    </div>
+
+    <script src="../src/js/libs/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                name: '赵思露',
+                age: 25,
+                sex: '女',
+                decoration: '<h2>这是一行内嵌的html代码</h2>',
+                style1: 'background-color:darkseagreen;',
+                style2: 'background-color: lawngreen; border-style: solid; border-color: lightslategray; border-width: 2px; border-radius: 8px;',
+            },
+            methods: {
+                changeStyle: function () {
+                    document.getElementById("app").style = this.style2;
+                },
+                resetStyle: function () {
+                    document.getElementById("app").style = this.style1;
+                }
+            }
+        });        
+    </script>
+</body>
+
+</html>

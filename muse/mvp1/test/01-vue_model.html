@@ -50,7 +50,7 @@
 
 <body>
     <div id="app" v-bind:style="style1">
-        <p>v-text: {{name}}</p>
+        <p id="pName">v-text: {{name}}</p>
         <div id="vbind">
             <p>v-bind: </p>
             <h4 v-text="name"></h4>
@@ -92,7 +92,31 @@
                 resetStyle: function () {
                     document.getElementById("app").style = this.style1;
                 }
-            }
+            },
+            beforeCreate() {
+                console.log("beforeCreate->time: " + new Date());
+            },
+            created() {
+                console.log("created->time: " + new Date());
+            },
+            beforeMount() {
+                console.log("beforeMount->time: " + new Date());
+            },
+            mounted() {
+                console.log("mounted->time: " + new Date());
+            },
+            beforeUpdate() {
+                console.log("beforeUpdate->time: " + new Date() + ", innerText: " + document.getElementById("pName").innerText);
+            },
+            updated() {
+                console.log("updated->time: " + new Date() + ", innerText: " + document.getElementById("pName").innerText);
+            },
+            beforeDestroy() {
+                console.log("beforeDestroy->time: " + new Date());
+            },
+            destroyed() {
+                console.log("destroyed->time: " + new Date());
+            },
         });
 
 

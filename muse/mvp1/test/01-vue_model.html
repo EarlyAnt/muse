@@ -7,14 +7,40 @@
         content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
     <style>
+        h4 {
+            line-height: 1rem;
+        }
+
+        input {
+            font-size: 1.5rem;
+        }
+
+        button {
+            font-size: 1.1rem;
+            width: 6rem;
+            height: 2.4rem;
+        }
+
         #app {
             height: 50%;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
+
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        #vbind {
+            /* background-color: lightskyblue; */
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            justify-items: center;
         }
 
         #button {
+            /* background-color: fuchsia; */
             display: flex;
             flex-direction: row;
             justify-content: space-evenly;
@@ -24,8 +50,11 @@
 
 <body>
     <div id="app" v-bind:style="style1">
-        <p>{{name}}</p>
-        <h4 v-text="name"></h4>
+        <p>v-text: {{name}}</p>
+        <div id="vbind">
+            <p>v-bind: </p>
+            <h4 v-text="name"></h4>
+        </div>
         <h5 v-html="decoration"></h5>
         <div id="button">
             <button @click="changeStyle">改变样式</button>
@@ -45,7 +74,7 @@
                 sex: '女',
                 decoration: '<h2>这是一行内嵌的html代码</h2>',
                 style1: 'background-color:darkseagreen;',
-                style2: 'background-color: lawngreen; border-style: solid; border-color: lightslategray; border-width: 2px; border-radius: 8px;',
+                style2: 'background-color: palegreen; border-style: solid; border-color: lightslategray; border-width: 2px; border-radius: 8px;',
             },
             methods: {
                 changeStyle: function () {

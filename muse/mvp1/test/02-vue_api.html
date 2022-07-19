@@ -1,0 +1,90 @@
+<html>
+
+<head>
+    <title>vue-resource 实现访问网络接口</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <style>
+        input {
+            font-size: 1.2rem;
+        }
+
+        img {
+            width: 15rem;
+            height: 20rem;
+        }
+
+        #app {
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            justify-items: center;
+
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" placeholder="input prompt" v-model="prompt">
+        <img v-bind:src="imageUrl" />
+        <input type="button" value="get请求" @click="makeImage">
+
+    </div>
+
+    <script src="../src/js/libs/vue.js"></script>
+    <script src="../src/js/libs/vue-resource.js"></script>
+    <script>
+        //自定义指令必须放在vue实例化之前，否则会报错
+        Vue.directive('focus', {
+            bind: function () { },
+            inserted: function (el) {
+                el.focus();
+            },
+            updated: function () { }
+        });
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                name: '赵思露',
+                age: 25,
+                sex: '女',
+
+                baseUrl: 'http://region-4.autodl.com:40410/api/',
+                prompt: '黎明时分，一望无际的大海，海天相接的地方，缓缓升起了一轮新日',
+                taskId: '',
+                imageUrl: '../../mvp0/src/assets/images/page/blank.png',
+            },
+            methods: {
+                makeImage: function () {
+                    console.log("++++ start make image ++++");
+                    this.$http.get(this.baseUrl + "make_image_v1?text=" + this.prompt + "&style=2").then(function (result) {
+                        console.log(result);
+                        this.taskId = result.body.taskId;
+                        console.log("makeImage->taskId: " + this.taskId);
+
+                        setInterval(this.queryProgress, 5000);
+                    })
+                },
+                queryProgress: function () {
+                    console.log("++++ start query progress ++++");
+                    this.$http.get(this.baseUrl + "query_progress?task_id=" + this.taskId).then(function (result) {
+                        console.log(result);
+                        this.imageUrl = result.body.progress_img;
+                        console.log("queryProgress->imageUrl: " + this.imageUrl);
+                    })
+                }
+            },
+        });
+
+
+    </script>
+</body>
+
+</html>

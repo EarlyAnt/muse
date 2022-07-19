@@ -36,15 +36,11 @@
     //主内容容器
     let mainContainer;
     let overlay;
-    let divLoading, divPage1, txtPrompt, txtInput, txtTip, btnCreate, dialog;
     const PLACE_HOLDER = "输入任何内容";
     var promptList = ["例句：在冬日的早晨，满天飞雪，树上、屋顶上都落满了雪花，世界变得一片洁白。",
         "例句：一束光照在海底的梦幻宫殿上。",
         "例句：在夜空中，柔和的月光照耀着平静的湖面，湖边有一个宁静的小屋。"]
     var promptIndex = 0;
-    var style = "";
-    var canCreateImage = false;
-    var startedCreateImage = false;
 
     // 脚本入口
     function init() {
@@ -74,15 +70,8 @@
             'assets/images/works/07.png',
 
             // 场景逻辑，最后整合成一个文件
-            //replace start
             'js/app/scenes/scene1.js',
             'js/app/scenes/scene2.js',
-            // 'js/app/scenes/scene3.js',
-            // 'js/app/scenes/scene4.js',
-            // 'js/app/scenes/scene5.js',
-            // 'js/app/scenes/scene6.js',
-            // 'js/app/scenes/scene7.js'
-            //replace end
         ], (e) => {
             //使用loading div显示静态资源加载总进度
             $.setMainLoading(50 + Math.round(e.progress) / 100 * 50);
@@ -128,51 +117,6 @@
 
         let scene = new PIXI.Container();
         app.stage.addChild(scene);
-
-        console.log("main.onLoad->cookie: " + document.cookie);
-        var taskId = COOKIE.getCookie("taskId");
-        var translation = COOKIE.getCookie("translation");
-        if (taskId != null && taskId != "") {
-            console.log("main.onLoad->continue the last task");
-            document.getElementById("divLoading").style.zIndex = -1;
-            switchScene(1, taskId, translation, false);
-            return;
-        }
-
-        console.log("main.onLoad->start a new task");
-        divLoading = document.getElementById("divLoading");
-        divPage1 = document.getElementById("divPage1");
-        btnCreate = document.getElementById("btnCreate");
-        txtPrompt = document.getElementById("txtPromptEdit");
-        txtInput = document.getElementById("txtInput");
-        txtTip = document.getElementById("txtTip");
-        dialog = document.getElementById("divDialog");
-
-        divLoading.style.display = "none";
-        divPage1.style.display = "";
-
-        txtTip.addEventListener("click", () => { fillPrompt(); });
-        btnCreate.addEventListener("click", () => { createImage(); });
-        document.getElementById("txtInput").addEventListener("click", () => { showPopup(); });
-        document.getElementById("btnConfirm").addEventListener("click", () => { hidePopup(true); });
-        document.getElementById("btnCancel").addEventListener("click", () => { hidePopup(); });
-
-        var chkStyles = document.getElementsByClassName("imgStyleChecked");
-        // console.log("chkStyle.length: " + chkStyles.length);
-        for (var i = 0; i < 6; i++) {
-            var imgStyle = document.getElementById("style" + i);
-            // console.log("imgStyle: " + imgStyle.id);
-            imgStyle.addEventListener("click", (event) => {
-                // console.log("selected style: " + event.target.id + ", name: " + event.target.name);
-                style = event.target.name;
-                for (var j = 0; j < chkStyles.length; j++) {
-                    // console.log("target.id: " + event.target.id + ", enum.id: style" + j)              
-                    chkStyles[j].style.visibility = (event.target.id == "style" + j ? "visible" : "hidden");
-                }
-
-                setButtonStatus(txtInput.value);
-            });
-        }
 
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: 3,
@@ -227,71 +171,6 @@
         requestAnimationFrame(animate);
         TWEEN.update();
     }
-    //prompt提示词填充输入框
-    function fillPrompt() {
-        var tip = txtTip.innerText.replace('例句：', '');
-        if (!txtInput.value.includes(tip)) {
-            txtInput.value += tip;
-        } else {
-            console.log("main.fillPrompt->prompt exsited: " + tip);
-        }
-
-        setButtonStatus(txtInput.value);
-    }
-    //设置创造按钮的状态
-    function setButtonStatus(prompt) {
-        console.log("main.setButtonStatus->prompt: " + prompt + ", style: " + style);
-        var enable = prompt != null && prompt != "" && style != null && style != "";
-        if (enable) {
-            btnCreate.src = "./assets/images/button/create_enable.png";
-            canCreateImage = true;
-        } else {
-            btnCreate.src = "./assets/images/button/create_disable.png";
-            canCreateImage = false;
-        }
-        console.log("src: " + btnCreate.src);
-    }
-    //显示编辑对话框
-    function showPopup() {
-        dialog.style.display = "";
-
-        txtPrompt.focus();
-        if (txtInput.innerText != PLACE_HOLDER) {
-            txtPrompt.value = txtInput.value;
-        } else {
-            txtPrompt.value = "";
-        }
-    }
-    //隐藏编辑对话框
-    function hidePopup(confirm) {
-        dialog.style.display = "none";
-
-        if (confirm) {
-            txtInput.value = txtPrompt.value;
-            setButtonStatus(txtInput.value);
-        }
-    }
-    //创建图像
-    async function createImage() {
-        if (!canCreateImage) {
-            return;
-        } else if (startedCreateImage) {
-            console.log("main.createImage->can not create image twice");
-            return;
-        }
-
-        startedCreateImage = true;
-        var prompt = txtInput.value.replace('，', ',').replace('。', ',').replace('例句：', '').replace('：', '');
-        console.log("main.onLoad->prompt: " + prompt + ", style" + style);
-        var response = await SERVER.callApi(params = { path: "make_image_v1?text=" + prompt + "&style=" + style });
-        console.log("main.onLoad->taskId: " + response.taskId + ", prompt_tanslation: " + response.prompt_tanslation);
-
-        btnCreate.style.display = "none";
-        divPage1.style.display = "none";
-        COOKIE.setCookie("taskId", response.taskId, 1);
-        COOKIE.setCookie("translation", response.prompt_tanslation, 1);
-        switchScene(1, response.taskId, response.prompt_tanslation, true);
-    }
     //切换场景
     function switchScene(index, ...args) {
         //切换前先删除画面内容
@@ -302,42 +181,167 @@
         console.log("switch scene[" + index + "], args[" + args + "]");
         this['scene' + index](...args);
     }
-    //翻译多个文本
-    async function translate() {
-        console.log("++++++++ translate->begin");
-        let value = document.getElementById("txtInput").value;
-        if (value.trim() == "") {
-            showMultiResult("提示->请输入要翻译的内容");
-            return;
-        }
 
-        value = value.replace("，", ",");
-        words = value.split(",");
-        wordList = [];
-        for (var i = 0; i < words.length; i++) {
-            wordList.push(words[i]);
-        }
+    var vm = new Vue({
+        el: '#divRoot',
+        data: {
+            name: '赵思露',
+            age: 25,
+            sex: '女',
 
-        let result = await SERVER.callApi({
-            path: 'translate_multi',
-            method: "POST",
-            dataType: "json",
-            data: {
-                content: wordList,
-                src: "zh-cn",
-                dest: "en"
+            divLoading: null,
+            divPage1: null,
+            btnCreate: null,
+            txtPrompt: null,
+            txtTip: null,
+            dialog: null,
+
+            baseUrl: 'http://region-4.autodl.com:40410/api/',
+            prompt: '',
+            promptEdit: '',
+            style: '',
+            canCreateImage: false,
+            startedCreateImage: false,
+            taskId: '',
+            translation: '',
+            imageUrl: '../../mvp0/src/assets/images/page/blank.png',
+        },
+        methods: {
+            //用提示词填充prompt文本框
+            fillPrompt: function () {
+                var tip = this.txtTip.innerText.replace('例句：', '');
+                if (!this.prompt.includes(tip)) {
+                    this.prompt += tip;
+                } else {
+                    console.log("main.fillPrompt->prompt exsited: " + tip);
+                }
+
+                this.setButtonStatus(this.prompt);
+            },
+            //设置创造按钮的状态
+            setButtonStatus: function (prompt) {
+                console.log("main.setButtonStatus->prompt: " + prompt + ", style: " + this.style);
+                var enable = prompt != null && prompt != "" && this.style != null && this.style != "";
+                if (enable) {
+                    this.btnCreate.src = "./assets/images/button/create_enable.png";
+                    this.canCreateImage = true;
+                } else {
+                    this.btnCreate.src = "./assets/images/button/create_disable.png";
+                    this.canCreateImage = false;
+                }
+                console.log("src: " + btnCreate.src);
+            },
+            //显示编辑对话框
+            showPopup: function () {
+                this.dialog.style.display = "";
+
+                this.txtPrompt.focus();
+                if (this.prompt != "") {
+                    this.promptEdit = this.prompt;
+                } else {
+                    this.promptEdit = "";
+                }
+            },
+            //隐藏编辑对话框
+            hidePopup: function (confirm) {
+                this.dialog.style.display = "none";
+
+                if (confirm) {
+                    this.prompt = this.promptEdit;
+                    this.setButtonStatus(this.prompt);
+                }
+            },
+            //创建图像
+            createImage: function () {
+                console.log("++++ start createImage image ++++");
+                if (!this.canCreateImage) {
+                    return;
+                } else if (this.startedCreateImage) {
+                    console.log("main.createImage->can not create image twice");
+                    return;
+                }
+
+                this.startedCreateImage = true;
+                var prompt = this.prompt.replace('，', ',').replace('。', ',').replace('例句：', '').replace('：', '');
+                console.log("main.createImage->prompt: " + prompt + ", style" + this.style);
+
+                this.$http.get(this.baseUrl + "make_image_v1?text=" + this.prompt + "&style=" + this.style).then(function (result) {
+                    console.log(result);
+                    this.taskId = result.body.taskId;
+                    this.translation = result.body.prompt_tanslation;
+                    console.log("main.createImage->taskId: " + this.taskId + ", prompt_tanslation: " + this.translation);
+
+                    btnCreate.style.display = "none";
+                    divPage1.style.display = "none";
+                    COOKIE.setCookie("taskId", this.taskId, 1);
+                    COOKIE.setCookie("translation", this.translation, 1);
+                    switchScene(1, this.taskId, this.translation, true);
+                });
+            },
+        },
+        beforeCreate() {
+            console.log("beforeCreate->time: " + new Date());
+        },
+        created() {
+            console.log("created->time: " + new Date());
+        },
+        beforeMount() {
+            console.log("beforeMount->time: " + new Date());
+        },
+        async mounted() {
+            console.log("mounted->time: " + new Date());
+
+            this.divLoading = document.getElementById("divLoading");
+            this.divPage1 = document.getElementById("divPage1");
+            this.btnCreate = document.getElementById("btnCreate");
+            this.txtPrompt = document.getElementById("txtPromptEdit");
+            this.txtTip = document.getElementById("txtTip");
+            this.dialog = document.getElementById("divDialog");
+
+            this.divLoading.style.display = "none";
+            this.divPage1.style.display = "";
+
+            console.log("vue.mounted->cookie: " + document.cookie);
+            var taskId = COOKIE.getCookie("taskId");
+            var translation = COOKIE.getCookie("translation");
+            if (taskId != null && taskId != "") {
+                console.log("main.onLoad->continue the last task");
+                document.getElementById("divLoading").style.zIndex = -1;
+                switchScene(1, taskId, translation, false);
+                return;
             }
-        }).then(response => response.json()).then(data => {
-            console.log(data);
-            showMultiResult("翻译结果->" + JSON.stringify(data));
-        });
+            console.log("vue.mounted->start a new task");
 
-        console.log("++++++++ translate->end");
-    }
-    //显示多个文本的翻译结果
-    function showMultiResult(text) {
-        document.getElementById("txtTranslateResult").innerText = text;
-    }
+            var chkStyles = document.getElementsByClassName("imgStyleChecked");
+            // console.log("chkStyle.length: " + chkStyles.length);
+            for (var i = 0; i < 6; i++) {
+                var imgStyle = document.getElementById("style" + i);
+                // console.log("imgStyle: " + imgStyle.id);
+                imgStyle.addEventListener("click", (event) => {
+                    // console.log("selected style: " + event.target.id + ", name: " + event.target.name);
+                    this.style = event.target.name;
+                    for (var j = 0; j < chkStyles.length; j++) {
+                        // console.log("target.id: " + event.target.id + ", enum.id: style" + j)              
+                        chkStyles[j].style.visibility = (event.target.id == "style" + j ? "visible" : "hidden");
+                    }
+
+                    this.setButtonStatus(this.prompt);
+                });
+            }
+        },
+        beforeUpdate() {
+            console.log("beforeUpdate->time: " + new Date());
+        },
+        updated() {
+            console.log("updated->time: " + new Date());
+        },
+        beforeDestroy() {
+            console.log("beforeDestroy->time: " + new Date());
+        },
+        destroyed() {
+            console.log("destroyed->time: " + new Date());
+        },
+    });
 
     init();
 }();

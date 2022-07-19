@@ -36,10 +36,12 @@
             "./js/libs/pixi.textinput.min.js",
             "./js/libs/swiper.min.js",
             "./js/libs/weui.min.js",
+            "./js/libs/vue.js",
+            "./js/libs/vue-resource.js",
             //replace start
+            "./js/app/cookie.js",
             "./js/app/server.js",
             "./js/app/main.js",
-            "./js/app/cookie.js",
             //replace end
         ], (p) => {
             // setMainLoading(p*50);

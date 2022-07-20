@@ -200,12 +200,8 @@
     }
 
     var vm = new Vue({
-        el: '#divRoot',
+        el: '#divPage1',
         data: {
-            name: '赵思露',
-            age: 25,
-            sex: '女',
-
             btnCreate: null,
             txtPrompt: null,
             txtTip: null,

@@ -36,6 +36,7 @@
     //主内容容器
     let mainContainer;
     let overlay;
+    let divLoading, divPage1;
     const PLACE_HOLDER = "输入任何内容";
     var promptList = ["例句：在冬日的早晨，满天飞雪，树上、屋顶上都落满了雪花，世界变得一片洁白。",
         "例句：一束光照在海底的梦幻宫殿上。",
@@ -118,6 +119,22 @@
         let scene = new PIXI.Container();
         app.stage.addChild(scene);
 
+        divLoading = document.getElementById("divLoading");
+        divPage1 = document.getElementById("divPage1");
+        divLoading.style.display = "none";
+        console.log("vue.mounted->cookie: " + document.cookie);
+        var taskId = COOKIE.getCookie("taskId");
+        var translation = COOKIE.getCookie("translation");
+        if (taskId != null && taskId != "") {
+            console.log("main.onLoad->continue the last task");
+            divPage1.style.display = "none";
+            switchScene(1, taskId, translation, false);
+            return;
+        } else {
+            console.log("vue.mounted->start a new task");
+            divPage1.style.display = "";
+        }
+
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: 3,
             spaceBetween: 6,
@@ -189,8 +206,6 @@
             age: 25,
             sex: '女',
 
-            divLoading: null,
-            divPage1: null,
             btnCreate: null,
             txtPrompt: null,
             txtTip: null,
@@ -291,26 +306,10 @@
         async mounted() {
             console.log("mounted->time: " + new Date());
 
-            this.divLoading = document.getElementById("divLoading");
-            this.divPage1 = document.getElementById("divPage1");
             this.btnCreate = document.getElementById("btnCreate");
             this.txtPrompt = document.getElementById("txtPromptEdit");
             this.txtTip = document.getElementById("txtTip");
             this.dialog = document.getElementById("divDialog");
-
-            this.divLoading.style.display = "none";
-            this.divPage1.style.display = "";
-
-            console.log("vue.mounted->cookie: " + document.cookie);
-            var taskId = COOKIE.getCookie("taskId");
-            var translation = COOKIE.getCookie("translation");
-            if (taskId != null && taskId != "") {
-                console.log("main.onLoad->continue the last task");
-                document.getElementById("divLoading").style.zIndex = -1;
-                switchScene(1, taskId, translation, false);
-                return;
-            }
-            console.log("vue.mounted->start a new task");
 
             var chkStyles = document.getElementsByClassName("imgStyleChecked");
             // console.log("chkStyle.length: " + chkStyles.length);

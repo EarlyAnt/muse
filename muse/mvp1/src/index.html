@@ -25,7 +25,8 @@
         <div id="divPage1" style="display: none;">
             <div class="divPage1Top">
                 <div class="divInput">
-                    <input type="text" id="txtInput" name="fname" placeholder="输入任何内容" v-model="prompt" @click="showPopup">
+                    <input type="text" id="txtInput" name="fname" placeholder="输入任何内容" v-model="prompt"
+                        @click="showPopup">
                     <p id="txtTip" @click="fillPrompt">例句：在冬日的早晨，满天飞雪，树上、屋顶上都落满了雪花，世界变得一片洁白。</p>
                 </div>
             </div>
@@ -124,14 +125,14 @@
             <p id="txtProgress" @click="goback"></p>
         </div>
         <div id="divPage3" style="display: none;">
-            <p id="txtShare">请点击右上角分享</p>
+            <p id="txtShare" @click="goback">请点击右上角分享</p>
             <img id="imgShare" src="./assets/images/page/share.png" />
             <img id="imgComplete" src="./assets/images/page/blank.png" />
             <textarea id="txtSetting" style="display:none;"></textarea>
             <p id="txtSave">长按图片以保存至手机</p>
             <div id="divRetry">
                 <p id="txtRetry">再玩一次</p>
-                <img id="btnRetry" src="./assets/images/button/retry.png" />
+                <img id="btnRetry" src="./assets/images/button/retry.png" @click="reload" />
             </div>
         </div>
         <div id="divDialog" style="display: none;">

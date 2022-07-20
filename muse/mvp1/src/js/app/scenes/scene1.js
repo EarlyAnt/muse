@@ -46,7 +46,7 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
                 this.waitTextStarted = true;
                 let seconds = 0;
                 timerWait = setInterval(() => {
-                    if (imageCreating) {
+                    if (this.imageCreating) {
                         clearInterval(timerWait);
                         return;
                     }
@@ -72,43 +72,46 @@ this.scene1 = function (taskId, prompt_tanslation, newTask) {
                         taskId = this.taskIdInCookie;
                     }
 
-                    var response = await SERVER.callApi(params = { path: "query_progress?task_id=" + taskId });
-                    console.log("----query progress response----");
-                    console.log(response);
+                    this.$http.get(this.baseUrl + "query_progress?task_id=" + taskId).then(function (result) {
+                        console.log("----query progress response----");
+                        console.log(result);
+                        var progress = result.body.progress;
+                        var queueNumber = result.body.queue_num;
+                        var imageUrl = result.body.progress_img;
 
-                    if (response.progress == -1) {
-                        reload("服务器异常，请稍后重试！", true);
-                    } else if (response.progress == 0) {
-                        var waitTime = this.getWaitTime();
-                        console.log("scene1.refresh->waitTime: " + waitTime);
-                        if (waitTime > TIME_LIMIT) {
-                            reload("服务器繁忙，等待时间太久，请稍后再试！");
-                            return;
+                        if (progress == -1) {
+                            reload("服务器异常，请稍后重试！", true);
+                        } else if (progress == 0) {
+                            var waitTime = this.getWaitTime();
+                            console.log("scene1.refresh->waitTime: " + waitTime);
+                            if (waitTime > TIME_LIMIT) {
+                                this.reload("服务器繁忙，等待时间太久，请稍后再试！");
+                                return;
+                            }
+
+                            if (queueNumber == 0) {
+                                this.showWaitText();
+                            }
+                            else {
+                                this.txtProgress.innerText = WAIT_TASK + "(大约等待" + (queueNumber * TASK_DURATION).toFixed(0) + "分钟)";
+                            }
+                        } else if (progress > 0) {
+                            this.imageCreating = true;
+                            this.txtProgress.innerText = "正在生成图片...(" + progress + "%)";
+                            SERVER.download(imageUrl, (imageObj) => {
+                                this.imgProcedure.src = imageObj;
+                            });
+                            console.log("scene1->progress: " + this.txtProgress.innerText + ", imagePath: " + this.imgProcedure.src);
                         }
 
-                        var queueNumber = response.queue_num;
-                        if (queueNumber == 0) {
-                            showWaitText();
+                        if (progress == 100) {
+                            clearInterval(this.timerTask);
+                            setTimeout(() => {
+                                this.divPage2.style.display = "none";
+                                switchScene(2, taskId, imageUrl);
+                            }, 500);
                         }
-                        else {
-                            txtProgress.innerText = WAIT_TASK + "(大约等待" + (queueNumber * TASK_DURATION).toFixed(0) + "分钟)";
-                        }
-                    } else if (response.progress > 0) {
-                        this.imageCreating = true;
-                        this.txtProgress.innerText = "正在生成图片...(" + response.progress + "%)";
-                        SERVER.download(response.progress_img, (imageObj) => {
-                            this.imgProcedure.src = imageObj;
-                        });
-                        console.log("scene1->progress: " + this.txtProgress.innerText + ", imagePath: " + this.imgProcedure.src);
-                    }
-
-                    if (response.progress == 100) {
-                        clearInterval(this.timerTask);
-                        setTimeout(() => {
-                            this.divPage2.style.display = "none";
-                            switchScene(2, taskId, response.progress_img);
-                        }, 500);
-                    }
+                    });
                 } catch (e) {
                     console.log("scene1.refresh->error: ");
                     console.log(e);

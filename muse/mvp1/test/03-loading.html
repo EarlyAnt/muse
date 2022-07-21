@@ -7,6 +7,12 @@
         content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
     <style>
+        html,
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+
         .divPage {
             width: 100%;
             height: 100%;
@@ -17,18 +23,52 @@
             justify-items: center;
         }
 
+        .divPhoto {
+            /* background-color: lightblue; */
+
+            display: flex;
+            justify-content: center;
+        }
+
+        .imgPhoto {
+            width: 15rem;
+            height: 15rem;
+        }
+
+        .divLoading {
+            /* background-color: khaki; */
+
+            display: flex;
+            justify-content: center;
+            margin-top: 0rem;
+        }
+
+        #txtTip {
+            /* background-color: lightcoral; */
+
+            width: 3rem;
+            height: 1rem;
+        }
+
         #txtLoading {
             /* background-color: yellowgreen; */
 
-            width: 100%;
-            text-align: center;
+            width: 1rem;
+            height: 1rem;
         }
     </style>
 </head>
 
 <body>
     <div class="divPage">
-        <p id="txtLoading">加载中</p>
+        <div class="divPhoto">
+            <img class="imgPhoto" src="../src/assets/images/works/03.png" />
+        </div>
+
+        <div class="divLoading">
+            <p id="txtTip">加载中</p>
+            <p id="txtLoading"></p>
+        </div>
     </div>
 
     <script src="../src/js/app/bot.js"></script>
@@ -38,7 +78,7 @@
         var txtLoading = document.getElementById("txtLoading");
 
         BOT.start((content) => {
-            txtLoading.innerText = "加载中" + content;
+            txtLoading.innerText = content;
         }, interval = 500);
 
         setTimeout(() => {

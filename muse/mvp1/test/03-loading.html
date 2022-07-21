@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <title>loading 效果测试</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <style>
+        .divPage {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            justify-items: center;
+        }
+
+        #txtLoading {
+            /* background-color: yellowgreen; */
+
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="divPage">
+        <p id="txtLoading">加载中</p>
+    </div>
+
+    <script src="../src/js/app/bot.js"></script>
+    <script>
+        console.log("---- start timer ---- " + new Date());
+
+        var txtLoading = document.getElementById("txtLoading");
+
+        BOT.start((content) => {
+            txtLoading.innerText = "加载中" + content;
+        }, interval = 500);
+
+        setTimeout(() => {
+            BOT.stop();
+            console.log("---- stop timer ---- " + new Date());
+        }, 20000);
+    </script>
+</body>
+
+</html>

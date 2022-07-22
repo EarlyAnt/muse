@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>v2 接口测试</title>
+    <title>v2 接口测试(1.0)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
     <style type="text/css">
@@ -28,6 +28,12 @@
             align-items: center;
         }
 
+        #txtPrompt {
+            width: 100%;
+            margin-top: 1rem;
+            flex: 1;
+        }
+
         .divButton {
             display: flex;
             flex-direction: row;
@@ -36,28 +42,14 @@
             margin-top: 1rem;
         }
 
-        img {
+        #imgTexture {
             margin-top: 20px;
             width: 100%;
             height: 20rem;
         }
 
-        #txtPrompt {
-            width: 100%;
-            height: 10rem;
-            margin-top: 1rem;
-        }
-
         #txtProgress {
             margin-top: 4px;
-        }
-
-        .txtVersion {
-            /* background-color: greenyellow; */
-            color: rgba(0, 0, 0, 0.5);
-
-            position: absolute;
-            bottom: 10px;
         }
     </style>
 
@@ -77,7 +69,6 @@
 
         <img id="imgTexture" src="../src/assets/images/page/blank.png" />
         <p id="txtProgress"></p>
-        <p class="txtVersion">v 1.0</p>
     </div>
 
     <script src="../src/js/libs/vue.js"></script>
@@ -113,6 +104,7 @@
             methods: {
                 generateImage: function () {
                     if (this.imageGenerating) {
+                        console.log("generating image + + + + +");
                         return;
                     }
 
@@ -158,15 +150,17 @@
 
                                 if (progress == 100) {
                                     clearInterval(this.timer);
+                                    this.imageGenerating = false;
                                 }
                             });
                         }, 5000);
-
                     });
                 },
                 clearPrompt: function () {
                     console.log("clearPrompt + + + + +");
+                    this.imgTexture.src = "../src/assets/images/page/blank.png";
                     this.txtPrompt.value = "";
+                    this.txtProgress.innerText = "";
                 }
             },
             beforeCreate() {

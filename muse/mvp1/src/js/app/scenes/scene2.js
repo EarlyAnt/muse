@@ -81,8 +81,8 @@ this.scene2 = function (taskId, imagePath) {
             };
             this.imgComplete.src = imagePath;
 
-            // COOKIE.setCookie("taskId", "", -1);
-            // COOKIE.setCookie("translation", "", -1);
+            COOKIE.setCookie("taskId", "", -1);
+            COOKIE.setCookie("translation", "", -1);
 
             this.getSetting();
         },

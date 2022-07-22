@@ -125,6 +125,17 @@
                 <img id="btnCreate" src="./assets/images/button/create_disable.png">
                 <p id="txtVersion">v0.1.5</p>
             </div>
+            <div id="divDialog" style="display: none;">
+                <div id="divPopup" class="divPopup" style="z-index: 1">
+                    <img class="imgPopup" src="./assets/images/page/dialog.png">
+                    <p id="txtRemark">请尽量用一段完整的句子来描述你的画</p>
+                    <p id="btnCancel" @click="hidePopup(false)">取消</p>
+                    <p id="btnConfirm" @click="hidePopup(true)">确定</p>
+                    <div id="divPromptEdit">
+                        <textarea id="txtPromptEdit" v-model="promptEdit"></textarea>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="divPage2" style="display: none;">
             <p id="prompt_tanslation">翻译内容</p>
@@ -140,17 +151,6 @@
             <div id="divRetry">
                 <p id="txtRetry">再玩一次</p>
                 <img id="btnRetry" src="./assets/images/button/retry.png" @click="reload" />
-            </div>
-        </div>
-        <div id="divDialog" style="display: none;">
-            <div id="divPopup" class="divPopup" style="z-index: 1">
-                <img class="imgPopup" src="./assets/images/page/dialog.png">
-                <p id="txtRemark">请尽量用一段完整的句子来描述你的画</p>
-                <p id="btnCancel" @click="hidePopup(false)">取消</p>
-                <p id="btnConfirm" @click="hidePopup(true)">确定</p>
-                <div id="divPromptEdit">
-                    <textarea id="txtPromptEdit" v-model="promptEdit"></textarea>
-                </div>
             </div>
         </div>
     </div>

@@ -5,6 +5,7 @@
     let timer = null;
 
     function start(callback, interval = 500, count = 3, symbol = '.') {
+        stop();
         timer = setInterval(() => {
             if (content.length < count) {
                 content += symbol;

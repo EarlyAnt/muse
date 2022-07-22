@@ -1,0 +1,208 @@
+<html>
+
+<head>
+    <title>v2 接口测试</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <style type="text/css">
+        html,
+        body {
+            /* background-color: paleturquoise; */
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #divPage {
+            /* background-color: violet; */
+            height: 100%;
+
+            margin-top: 0px;
+            padding-left: 10px;
+            padding-right: 10px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+        }
+
+        .divButton {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        img {
+            margin-top: 20px;
+            width: 100%;
+            height: 20rem;
+        }
+
+        #txtPrompt {
+            width: 100%;
+            height: 10rem;
+            margin-top: 1rem;
+        }
+
+        #txtProgress {
+            margin-top: 4px;
+        }
+
+        .txtVersion {
+            /* background-color: greenyellow; */
+            color: rgba(0, 0, 0, 0.5);
+
+            position: absolute;
+            bottom: 10px;
+        }
+    </style>
+
+    <script src="../src/js/libs/vconsole.min.js"></script>
+    <script type="text/javascript">
+        var vConsole = new VConsole();
+    </script>
+</head>
+
+<body>
+    <div id="divPage">
+        <textarea id="txtPrompt" onkeyup="printValue(this.value);">一束光照在海底的梦幻宫殿上。</textarea>
+        <div class="divButton">
+            <button id="btnCallApi" @click="generateImage">访问接口</button>
+            <button id="btnClear" @click="clearPrompt">清除</button>
+        </div>
+
+        <img id="imgTexture" src="../src/assets/images/page/blank.png" />
+        <p id="txtProgress"></p>
+        <p class="txtVersion">v 1.0</p>
+    </div>
+
+    <script src="../src/js/libs/vue.js"></script>
+    <script src="../src/js/libs/vue-resource.js"></script>
+    <script src="../src/js/app/server.js"></script>
+    <script src="../src/js/app/bot.js"></script>
+
+    <script type="text/javascript">
+        var baseUrl = "http://region-4.autodl.com:40410/api/";
+        let INITIALIZING = "正在初始化...";
+        let MODEL_LOADING = "正在加载模型...";
+        let MODEL_CALCULATING = "模型计算中...";
+
+        const START_TASK = "即将开始生成图片...";
+        const WAIT_TASK = "任务排队中...";
+        const LAST_TASK = "正在尝试继续上一个任务...";
+        const TASK_DURATION = 2;
+        const TIME_LIMIT = 1800;
+
+        var vm = new Vue({
+            el: '#divPage',
+            data: {
+                imageGenerating: false,
+                txtPrompt: null,
+                imgTexture: null,
+                txtProgress: null,
+
+                baseUrl: "http://region-4.autodl.com:40410/api/",
+                timer: null,
+                taskId: '',
+                translation: '',
+            },
+            methods: {
+                generateImage: function () {
+                    if (this.imageGenerating) {
+                        return;
+                    }
+
+                    console.log("generateImage + + + + +");
+                    this.imageGenerating = true;
+                    this.$http.post(this.baseUrl + "generate_image_v2", { text_prompt: txtPrompt.value, style: 2 }, { emulateJSON: true }).then(function (result) {
+                        console.log("----create image response----");
+                        console.log(result);
+                        this.taskId = result.body.taskId;
+                        this.translation = result.body.prompt_tanslation;
+                        console.log("generate image->taskId: " + this.taskId + ", prompt_tanslation: " + this.translation);
+
+                        BOT.start((dot) => this.txtProgress.innerText = "请稍后" + dot);
+                        this.timer = setInterval(async () => {
+                            this.$http.get(this.baseUrl + "query_progress_v2?task_id=" + this.taskId).then(function (result) {
+                                console.log("----query progress response----");
+                                console.log(result);
+                                var progress = result.body.generate_progress;
+                                var queueNumber = result.body.queue_num;
+                                var imageUrl = result.body.progress_img;
+                                var imageList = result.body.final_image_url_list;
+
+                                if (progress == 0) {
+                                    if (queueNumber == 0) {
+                                        BOT.start((dot) => this.txtProgress.innerText = "正在排队" + dot);
+                                    }
+                                    else {
+                                        this.txtProgress.innerText = WAIT_TASK + "(大约等待" + (queueNumber * TASK_DURATION).toFixed(0) + "分钟)";
+                                    }
+                                } else if (progress > 0) {
+                                    this.imageCreating = true;
+                                    BOT.start((dot) => this.txtProgress.innerText = "正在生成图片" + dot + "(" + progress + "%)");
+                                    SERVER.download(imageList[0], (imageObj) => {
+                                        this.imgTexture.src = imageObj;
+
+                                        if (progress == 100) {
+                                            BOT.stop();
+                                            this.txtProgress.innerText = "图片生成完毕";
+                                        }
+                                    });
+                                    console.log("scene1->progress: " + this.txtProgress.innerText + ", imagePath: " + this.imgTexture.src);
+                                }
+
+                                if (progress == 100) {
+                                    clearInterval(this.timer);
+                                }
+                            });
+                        }, 5000);
+
+                    });
+                },
+                clearPrompt: function () {
+                    console.log("clearPrompt + + + + +");
+                    this.txtPrompt.value = "";
+                }
+            },
+            beforeCreate() {
+                // console.log("beforeCreate->time: " + new Date());
+            },
+            created() {
+                // console.log("created->time: " + new Date());
+            },
+            beforeMount() {
+                // console.log("beforeMount->time: " + new Date());
+            },
+            async mounted() {
+                console.log("mounted->time: " + new Date());
+
+                this.txtPrompt = document.getElementById("txtPrompt");
+                this.imgTexture = document.getElementById("imgTexture");
+                this.txtProgress = document.getElementById("txtProgress");
+            },
+            beforeUpdate() {
+                // console.log("beforeUpdate->time: " + new Date());
+            },
+            updated() {
+                // console.log("updated->time: " + new Date());
+            },
+            beforeDestroy() {
+                // console.log("beforeDestroy->time: " + new Date());
+            },
+            destroyed() {
+                // console.log("destroyed->time: " + new Date());
+            },
+        });
+
+        function printValue(value) {
+            console.log("onkeyup->value: " + value);
+        }
+    </script>
+</body>
+
+</html>

@@ -137,7 +137,7 @@ p {
     margin-right: 5px;
 }
 
-.mode {
+.divMode {
     /* background-color: hotpink; */
     width: 2rem;
     height: 1rem;
@@ -149,7 +149,7 @@ p {
     margin-right: 5px;
 }
 
-.modeText {
+.txtMode {
     color: #565D69;
 }
 
@@ -178,12 +178,12 @@ p {
 }
 
 .hline {
-    width: 55px;
+    width: 60px;
     height: 1px;
-    border-top: 2px solid #59606C;
+    border-top: 1.5px solid #59606C;
 
-    margin-top: 3px;
-    margin-bottom: 0px;
+    margin-top: 5px;
+    margin-bottom: 2px;
 }
 
 .chkQuick {

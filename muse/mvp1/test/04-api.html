@@ -42,6 +42,19 @@
             margin-top: 1rem;
         }
 
+        #selStyle {
+            margin-right: 10px;
+        }
+
+        #btnGenerateImage {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        #btnClear {
+            margin-left: 10px;
+        }
+
         #imgTexture {
             margin-top: 20px;
             width: 100%;
@@ -63,7 +76,15 @@
     <div id="divPage">
         <textarea id="txtPrompt" onkeyup="printValue(this.value);">一束光照在海底的梦幻宫殿上。</textarea>
         <div class="divButton">
-            <button id="btnCallApi" @click="generateImage">访问接口</button>
+            <select id="selStyle" @change="setStyle($event)">
+                <option value="0">无</option>
+                <option value="1">中国风</option>
+                <option value="2">3D渲染</option>
+                <option value="3">超现实主义</option>
+                <option value="4">CG幻想</option>
+                <option value="5">现在插画</option>
+            </select>
+            <button id="btnGenerateImage" @click="generateImage">生成图片</button>
             <button id="btnClear" @click="clearPrompt">清除</button>
         </div>
 
@@ -93,6 +114,7 @@
             data: {
                 imageGenerating: false,
                 txtPrompt: null,
+                selStyle: null,
                 imgTexture: null,
                 txtProgress: null,
 
@@ -100,8 +122,13 @@
                 timer: null,
                 taskId: '',
                 translation: '',
+                style: 0,
             },
             methods: {
+                setStyle(event) {
+                    console.log("setStyle->value: " + event.target.value + ", text: " + event.target[event.target.selectedIndex].innerText);
+                    this.style = event.target.value;
+                },
                 generateImage: function () {
                     if (this.imageGenerating) {
                         console.log("generating image + + + + +");
@@ -110,7 +137,7 @@
 
                     console.log("generateImage + + + + +");
                     this.imageGenerating = true;
-                    this.$http.post(this.baseUrl + "generate_image_v2", { text_prompt: txtPrompt.value, style: 2 }, { emulateJSON: true }).then(function (result) {
+                    this.$http.post(this.baseUrl + "generate_image_v2", { text_prompt: this.txtPrompt.value, style: this.style }, { emulateJSON: true }).then(function (result) {
                         console.log("----create image response----");
                         console.log(result);
                         this.taskId = result.body.taskId;
@@ -161,6 +188,7 @@
                     this.imgTexture.src = "../src/assets/images/page/blank.png";
                     this.txtPrompt.value = "";
                     this.txtProgress.innerText = "";
+                    this.selStyle.selectedIndex = 0;
                 }
             },
             beforeCreate() {
@@ -176,6 +204,7 @@
                 console.log("mounted->time: " + new Date());
 
                 this.txtPrompt = document.getElementById("txtPrompt");
+                this.selStyle = document.getElementById("selStyle");
                 this.imgTexture = document.getElementById("imgTexture");
                 this.txtProgress = document.getElementById("txtProgress");
             },

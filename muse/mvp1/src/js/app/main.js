@@ -206,6 +206,8 @@
             txtPrompt: null,
             txtTip: null,
             dialog: null,
+            chkQuick: null,
+            chkHighDefinition: null,
 
             baseUrl: 'http://region-4.autodl.com:40410/api/',
             prompt: '',
@@ -216,8 +218,25 @@
             taskId: '',
             translation: '',
             imageUrl: '../../mvp0/src/assets/images/page/blank.png',
+
+            menuVisible: false,
+            generateMode: 0,
+            generateModeText: '快速',
         },
         methods: {
+            //设置制图模式菜单的状态(是否可见)
+            setModeMenuStatus: function () {
+                this.chkQuick.style.color = this.generateMode == 0 ? '#CCD0D5' : '#565D69';
+                this.chkHighDefinition.style.color = this.generateMode == 1 ? '#CCD0D5' : '#565D69';
+                this.menuVisible = !this.menuVisible;
+            },
+            //设置制图模式
+            setGenerateMode: function (mode, modeText) {
+                this.generateMode = mode;
+                this.generateModeText = modeText;
+                this.menuVisible = false;
+                console.log("vue.mothods.setGenerateMode->generateMode: " + this.generateMode + ", generateModeText: " + this.generateModeText);
+            },
             //用提示词填充prompt文本框
             fillPrompt: function () {
                 var tip = this.txtTip.innerText.replace('例句：', '');
@@ -306,6 +325,8 @@
             this.txtPrompt = document.getElementById("txtPromptEdit");
             this.txtTip = document.getElementById("txtTip");
             this.dialog = document.getElementById("divDialog");
+            this.chkQuick = document.getElementById("chkQuick");
+            this.chkHighDefinition = document.getElementById("chkHighDefinition");
 
             var chkStyles = document.getElementsByClassName("imgStyleChecked");
             // console.log("chkStyle.length: " + chkStyles.length);

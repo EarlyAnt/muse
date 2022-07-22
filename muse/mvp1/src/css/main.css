@@ -175,6 +175,7 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 2;
 }
 
 .hline {
@@ -186,13 +187,13 @@ p {
     margin-bottom: 2px;
 }
 
-.chkQuick {
+#chkQuick {
     /* background-color: violet; */
     margin-top: 6px;
     margin-bottom: 0px;
 }
 
-.chkHighDefinition {
+#chkHighDefinition {
     /* background-color: palegreen; */
     margin-top: 0px;
     margin-bottom: 0px;

@@ -29,14 +29,14 @@
                         <input type="text" id="txtInput" name="fname" placeholder="输入任何内容" v-model="prompt"
                             @click="showPopup">
                         <div class="vline"></div>
-                        <div class="divMode">
-                            <p class="txtMode">快速</p>
+                        <div class="divMode" @click="setModeMenuStatus">
+                            <p class="txtMode">{{generateModeText}}</p>
                             <img class="arrow" src="../src/assets/images/page/arrow.png">
                         </div>
-                        <div class="divMenu">
-                            <p class="chkQuick">快速</p>
+                        <div class="divMenu" style="display:none;" v-show="menuVisible">
+                            <p id="chkQuick" @click="setGenerateMode(0, '快速')">快速</p>
                             <div class="hline"></div>
-                            <p class="chkHighDefinition">高清</p>
+                            <p id="chkHighDefinition" @click="setGenerateMode(1, '高清')">高清</p>
                         </div>
                     </div>
                     <p id="txtTip" @click="fillPrompt">例句：在冬日的早晨，满天飞雪，树上、屋顶上都落满了雪花，世界变得一片洁白。</p>

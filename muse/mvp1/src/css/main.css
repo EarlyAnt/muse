@@ -14,28 +14,24 @@ body {
 }
 
 input {
-    appearance: none;
-    line-height: 35px;
-    border-radius: 8px;
-    border: 0px solid #fff;
+    background-color: transparent;
+    /* background-color: chartreuse; */
+    width: 6rem;
+
+    border: none;
     padding: 0 12px;
-    outline: 0;
-    letter-spacing: 1px;
     color: #FBFEFF;
+    letter-spacing: 1px;
+    line-height: 35px;
     font-size: 15px;
     font-weight: 600;
-    background: rgba(49, 57, 72, 1);
-    border: 1px solid rgba(255, 255, 255, .15);
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1) inset;
     text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
-    box-shadow: 0 0 5px 4px rgba(0, 0, 0, 0.1);
 }
 
 input::-webkit-input-placeholder {
-    color: rgb(216, 216, 216);
-    text-align: center;
+    color: #565D69;
+    text-align: start;
     font-size: 16px;
-    font-style: italic;
 }
 
 h2 {
@@ -95,7 +91,7 @@ p {
     flex-direction: column;
 }
 
-.divInput {
+.divPrompt {
     /* background-color: rgb(85, 141, 224); */
     height: 2.8rem;
 
@@ -108,10 +104,59 @@ p {
     padding-right: 10pt;
 }
 
+.divInput {
+    background: rgba(49, 57, 72, 1);
+    height: 1rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+
+    border-radius: 8px;
+    border: 0px solid #fff;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1) inset;
+    box-shadow: 0 0 5px 4px rgba(0, 0, 0, 0.1);
+}
+
 #txtInput {
+    /* background-color: cyan; */
+
     height: 1.0rem;
     margin-left: 0pt;
     margin-right: 0pt;
+    flex: 1;
+}
+
+.vline {
+    width: 0px;
+    height: 0.7rem;
+    border-right: 2.5px solid #4B525F;
+
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.mode {
+    /* background-color: hotpink; */
+    width: 2rem;
+    height: 1rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-right: 5px;
+}
+
+.modeText {
+    color: #565D69;
+}
+
+.arrow {
+    width: 15.6px;
+    height: 8.4px;
+    margin-top: 3.5px;
 }
 
 #txtTip {

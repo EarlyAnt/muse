@@ -24,9 +24,16 @@
         </div>
         <div id="divPage1" style="display: none;">
             <div class="divPage1Top">
-                <div class="divInput">
-                    <input type="text" id="txtInput" name="fname" placeholder="输入任何内容" v-model="prompt"
-                        @click="showPopup">
+                <div class="divPrompt">
+                    <div class="divInput">
+                        <input type="text" id="txtInput" name="fname" placeholder="输入任何内容" v-model="prompt"
+                            @click="showPopup">
+                        <div class="vline"></div>
+                        <div class="mode">
+                            <p class="modeText">快速</p>
+                            <img class="arrow" src="../src/assets/images/page/arrow.png">
+                        </div>
+                    </div>
                     <p id="txtTip" @click="fillPrompt">例句：在冬日的早晨，满天飞雪，树上、屋顶上都落满了雪花，世界变得一片洁白。</p>
                 </div>
             </div>

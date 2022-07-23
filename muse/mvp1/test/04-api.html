@@ -35,24 +35,13 @@
         }
 
         .divButton {
+            /* background-color: greenyellow; */
+            width: 100%;
             display: flex;
             flex-direction: row;
             justify-content: space-evenly;
             align-items: center;
             margin-top: 1rem;
-        }
-
-        #selStyle {
-            margin-right: 10px;
-        }
-
-        #btnGenerateImage {
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-
-        #btnClear {
-            margin-left: 10px;
         }
 
         #divImage {
@@ -103,6 +92,9 @@
                 <option value=0>快速</option>
                 <option value=1>高清</option>
             </select>
+            <select id="selBatchSize($event)" @change="setBatchSize">
+                <option v-for="item in batchSizeList" :value="item.value" :key="item.value">{{item.label}}</option>
+            </select>
             <button id="btnGenerateImage" @click="generateImage">生成图片</button>
             <button id="btnClear" @click="clearPrompt">清除</button>
         </div>
@@ -134,6 +126,13 @@
                 imgTexture: null,
                 txtProgress: null,
 
+                batchSizeList: [
+                    { value: '1', label: '1' },
+                    { value: '2', label: '2' },
+                    { value: '3', label: '3' },
+                    { value: '4', label: '4' },
+                ],
+
                 baseUrl: "http://region-4.autodl.com:40410/api/",
                 timer: null,
                 taskId: '',
@@ -141,21 +140,26 @@
                 style: 0,
                 generateMode: 0,
                 agentName: '0201',
+                batchSize: 1,
             },
             methods: {
-                setStyle(event) {
+                setStyle: function (event) {
                     console.log("setStyle->value: " + event.target.value + ", text: " + event.target[event.target.selectedIndex].innerText);
                     this.style = event.target.value;
                 },
-                setGenerateMode(event) {
+                setGenerateMode: function (event) {
                     console.log("setGenerateMode->value: " + event.target.value + ", text: " + event.target[event.target.selectedIndex].innerText);
                     this.generateMode = event.target.value;
 
                     this.agentName = this.getAgentName();
                     console.log("setGenerateMode->agentName: " + this.agentName);
                 },
-                getAgentName() {
+                getAgentName: function () {
                     return this.generateMode == 0 ? '0201' : '0101';
+                },
+                setBatchSize: function (event) {
+                    console.log("setBatchSize->value: " + event.target.value + ", text: " + event.target[event.target.selectedIndex].innerText);
+                    this.batchSize = event.target.value;
                 },
                 generateImage: function () {
                     if (this.imageGenerating) {
@@ -164,12 +168,14 @@
                     }
 
                     console.log("generateImage + + + + +");
+                    console.log("generate image->textPromt: " + this.txtPrompt.value + ", style: " + this.style + ", generateMode: " + this.generateMode + ", agentName: " + this.agentName + ", batchSize: " + this.batchSize);
                     this.imageGenerating = true;
                     this.$http.post(this.baseUrl + "generate_image_v2", {
                         text_prompt: this.txtPrompt.value,
                         style: this.style,
                         generate_mode: this.generateMode,
                         agent_name: this.agentName,
+                        batch_size: this.batchSize,
                     }, { emulateJSON: true }).then(function (result) {
                         console.log("----create image response----");
                         console.log(result);

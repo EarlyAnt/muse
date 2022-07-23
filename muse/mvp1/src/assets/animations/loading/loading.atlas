@@ -1,0 +1,27 @@
+
+loading.png
+size: 584,517
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dot
+  rotate: false
+  xy: 517, 425
+  size: 15, 9
+  orig: 15, 9
+  offset: 0, 0
+  index: -1
+image
+  rotate: false
+  xy: 4, 4
+  size: 509, 509
+  orig: 509, 509
+  offset: 0, 0
+  index: -1
+shalou
+  rotate: false
+  xy: 517, 438
+  size: 63, 75
+  orig: 63, 75
+  offset: 0, 0
+  index: -1

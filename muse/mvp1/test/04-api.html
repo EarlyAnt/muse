@@ -99,6 +99,10 @@
                 <option value="4">CG幻想</option>
                 <option value="5">现在插画</option>
             </select>
+            <select id="selGenerateMode" @change="setGenerateMode($event)">
+                <option value=0>快速</option>
+                <option value=1>高清</option>
+            </select>
             <button id="btnGenerateImage" @click="generateImage">生成图片</button>
             <button id="btnClear" @click="clearPrompt">清除</button>
         </div>
@@ -135,11 +139,23 @@
                 taskId: '',
                 translation: '',
                 style: 0,
+                generateMode: 0,
+                agentName: '0201',
             },
             methods: {
                 setStyle(event) {
                     console.log("setStyle->value: " + event.target.value + ", text: " + event.target[event.target.selectedIndex].innerText);
                     this.style = event.target.value;
+                },
+                setGenerateMode(event) {
+                    console.log("setGenerateMode->value: " + event.target.value + ", text: " + event.target[event.target.selectedIndex].innerText);
+                    this.generateMode = event.target.value;
+
+                    this.agentName = this.getAgentName();
+                    console.log("setGenerateMode->agentName: " + this.agentName);
+                },
+                getAgentName() {
+                    return this.generateMode == 0 ? '0201' : '0101';
                 },
                 generateImage: function () {
                     if (this.imageGenerating) {
@@ -149,7 +165,12 @@
 
                     console.log("generateImage + + + + +");
                     this.imageGenerating = true;
-                    this.$http.post(this.baseUrl + "generate_image_v2", { text_prompt: this.txtPrompt.value, style: this.style }, { emulateJSON: true }).then(function (result) {
+                    this.$http.post(this.baseUrl + "generate_image_v2", {
+                        text_prompt: this.txtPrompt.value,
+                        style: this.style,
+                        generate_mode: this.generateMode,
+                        agent_name: this.agentName,
+                    }, { emulateJSON: true }).then(function (result) {
                         console.log("----create image response----");
                         console.log(result);
                         this.taskId = result.body.taskId;

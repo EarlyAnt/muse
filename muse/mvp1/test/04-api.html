@@ -55,10 +55,16 @@
             margin-left: 10px;
         }
 
-        #imgTexture {
+        #divImage {
+            background-color: mistyrosed;
             margin-top: 20px;
             width: 100%;
             height: 20rem;
+        }
+
+        #imgTexture {
+            width: 100%;
+            height: 100%;
         }
 
         #txtProgress {
@@ -66,7 +72,15 @@
         }
     </style>
 
+    <script src="../src/js/libs/vue.js"></script>
+    <script src="../src/js/libs/vue-resource.js"></script>
+    <script src="../src/js/app/server.js"></script>
+    <script src="../src/js/app/bot.js"></script>
     <script src="../src/js/libs/vconsole.min.js"></script>
+
+    <script src="../src/js/libs/pixi.min.js"></script>
+    <script src="../src/js/libs/pixi-spine.js"></script>
+
     <script type="text/javascript">
         var vConsole = new VConsole();
     </script>
@@ -88,14 +102,11 @@
             <button id="btnClear" @click="clearPrompt">清除</button>
         </div>
 
-        <img id="imgTexture" src="../src/assets/images/page/blank.png" />
+        <div id="divImage">
+            <img id="imgTexture" src="../src/assets/images/page/blank.png" />
+        </div>
         <p id="txtProgress"></p>
     </div>
-
-    <script src="../src/js/libs/vue.js"></script>
-    <script src="../src/js/libs/vue-resource.js"></script>
-    <script src="../src/js/app/server.js"></script>
-    <script src="../src/js/app/bot.js"></script>
 
     <script type="text/javascript">
         var baseUrl = "http://region-4.autodl.com:40410/api/";
@@ -117,6 +128,11 @@
                 selStyle: null,
                 imgTexture: null,
                 txtProgress: null,
+
+                app: null,
+                scene: null,
+                spine: null,
+                animationScale: 0.0005,
 
                 baseUrl: "http://region-4.autodl.com:40410/api/",
                 timer: null,
@@ -207,6 +223,58 @@
                 this.selStyle = document.getElementById("selStyle");
                 this.imgTexture = document.getElementById("imgTexture");
                 this.txtProgress = document.getElementById("txtProgress");
+
+                this.imgTexture.style.display = "none";
+
+                console.log("canvas width: " + this.imgTexture.width + ", canvas height: " + this.imgTexture.height);
+                this.app = new PIXI.Application({
+                    width: 355,
+                    height: 320
+                });
+                document.getElementById("divImage").appendChild(this.app.view);
+
+                //初始化时钟(相当于unity里的update函数)
+                this.app.ticker.add(() => {
+                    if (this.spine != null) {
+                        this.spine.update(0.01666666666667);//按每秒60帧的速度播放动画
+                    }
+                });
+
+                this.scene = new PIXI.Container();
+                this.app.stage.addChild(this.scene);
+
+                console.log("---- spine animation ----");
+                var animationPath = "../src/assets/animations/loading/loading.json";
+                this.app.stop();
+                this.app.loader.reset();
+                this.app.loader.add('spine', animationPath).load((loader, res) => {
+                    //新建spine对象
+                    this.spine = new PIXI.spine.Spine(res.spine.spineData);
+                    this.spine.skeleton.setToSetupPose();
+                    this.spine.update(0);
+                    this.spine.autoUpdate = false;
+
+                    //创建spine容器
+                    var upgradeCage = new PIXI.Container();
+                    upgradeCage.addChild(this.spine);
+
+                    //计算spine动画大小和位置
+                    const localRect = this.spine.getLocalBounds();
+                    this.spine.position.set(- localRect.x, -localRect.y);
+
+                    //设置spine动画缩放
+                    const scale = Math.min(this.app.screen.width * this.animationScale, this.app.screen.height * this.animationScale);
+                    upgradeCage.scale.set(scale, scale);
+                    upgradeCage.position.set((this.app.screen.width - upgradeCage.width) * 0.5, (this.app.screen.height - upgradeCage.height) * 0.5,);
+
+                    //将spine动画添加至舞台
+                    this.app.stage.addChild(upgradeCage);
+
+                    //播放spine动画
+                    this.spine.state.setAnimation(0, "animation", true);
+                    this.app.start();
+                    console.log("---- start play animation ----" + this.animationScale);
+                });
             },
             beforeUpdate() {
                 // console.log("beforeUpdate->time: " + new Date());
